@@ -1,36 +1,21 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './App.css';
-import { useAppDispatch } from '../../utils/hooks';
-import { ActionType } from '../../actions/second';
+import { Route, Routes } from 'react-router-dom';
+import Retro from '../Retro';
+import Planning from '../Planning';
+import Kudos from '../Kudos';
+import Home from '../Home';
 
 function App() {
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch({
-      type: ActionType.Increment,
-    });
-  });
-
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit
-          {' '}
-          <code>src/App.tsx</code>
-          {' '}
-          and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Welcome to Scrum Toolkit!</h1>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/retro/:id" element={<Retro />} />
+        <Route path="/planning/:id" element={<Planning />} />
+        <Route path="/kudos/:id" element={<Kudos />} />
+      </Routes>
     </div>
   );
 }

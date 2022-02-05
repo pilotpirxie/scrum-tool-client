@@ -26,6 +26,8 @@ module.exports = {
     '@typescript-eslint/no-unused-vars': ['error'],
     'import/no-unresolved': 'off',
     'import/extensions': 'off',
+    // suppress errors for missing 'import React' in files
+    'react/react-in-jsx-scope': 'off',
     'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
     'no-shadow': 'off',
     '@typescript-eslint/no-shadow': ['error'],
