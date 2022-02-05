@@ -1,16 +1,19 @@
 import { ActionType, Setup } from '../actions/config';
 
 export type ConfigState = {
-    value: string;
-}
+  value: string;
+};
 
-const initialState : ConfigState = {
+const initialState: ConfigState = {
   value: '',
 };
 
-export type ConfigActions = Setup
+export type ConfigActions = Setup;
 
-export default function reducer(state: ConfigState = initialState, action: ConfigActions) {
+export default function reducer(
+  state: ConfigState = initialState,
+  action: ConfigActions,
+) {
   switch (action.type) {
     case ActionType.Setup:
       return {

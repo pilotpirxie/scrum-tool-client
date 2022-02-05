@@ -1,18 +1,19 @@
-import {
-  ActionType, Decrement, Increment, SetValue,
-} from '../actions/second';
+import { ActionType, Decrement, Increment, SetValue } from '../actions/second';
 
 export type SecondState = {
-    counter: number;
-}
+  counter: number;
+};
 
-const initialState : SecondState = {
+const initialState: SecondState = {
   counter: 0,
 };
 
 export type Action = Increment | Decrement | SetValue;
 
-export default function reducer(state:SecondState = initialState, action: Action) {
+export default function reducer(
+  state: SecondState = initialState,
+  action: Action,
+) {
   switch (action.type) {
     case ActionType.Increment:
       return {
