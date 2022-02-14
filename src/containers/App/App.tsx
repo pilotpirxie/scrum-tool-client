@@ -9,7 +9,6 @@ import Home from '../Home';
 function App() {
   return (
     <div>
-      <h1>Welcome to Scrum Toolkit!</h1>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/retro/:id" element={<Retro />} />
