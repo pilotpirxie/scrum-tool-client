@@ -21,6 +21,7 @@ module.exports = {
   plugins: ['react', '@typescript-eslint'],
   rules: {
     'no-unused-vars': 'off',
+    'jsx-a11y/anchor-is-valid': 'off',
     '@typescript-eslint/no-unused-vars': ['error'],
     'import/no-unresolved': 'off',
     'import/extensions': 'off',
