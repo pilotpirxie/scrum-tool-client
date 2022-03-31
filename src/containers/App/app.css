@@ -1,0 +1,13 @@
+html, body, .app {
+  display: flex;
+  height: 100%;
+}
+
+html {
+  background: #F3F3F3;
+}
+
+
+.rounded-4 {
+  border-radius: 4rem;
+}

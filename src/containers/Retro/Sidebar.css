@@ -1,0 +1,22 @@
+.sidebar {
+    height: 100%;
+    width: 300px;
+    overflow: auto;
+}
+
+.avatar {
+    border: 3px #37CAEC solid;
+    border-radius: 50%;
+    width: 42px;
+    height: 42px;
+}
+
+
+.avatar-bg-success {
+    background: #B9FB1A;
+    border-radius: 50%;
+}
+
+.avatar-success {
+    opacity: 0.5;
+}
