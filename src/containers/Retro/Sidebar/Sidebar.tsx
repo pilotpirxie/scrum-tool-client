@@ -1,17 +1,27 @@
 import './Sidebar.css';
 
 import logo from './logo.png';
+import smallLogo from './small-logo.png';
 import Avatar from '../../../components/Avatar';
 import DimContainer from '../../../components/DimContainer';
 
-function Sidebar() {
-  return (
+function Sidebar({
+  isOpen,
+  onSidebarToggle,
+}: {
+  isOpen: boolean;
+  onSidebarToggle: () => void;
+}) {
+  return isOpen ? (
     <DimContainer>
-      <div className="d-flex flex-column justify-content-between p-3 bg-white shadow sidebar vh-100">
+      <div className="d-flex flex-column justify-content-between p-3 bg-white shadow sidebar">
         <div>
           <div className="d-flex justify-content-between my-2 align-items-center">
             <img src={logo} className="img-fluid p-3" alt="logo" />
-            <i className="ri-menu-5-line cursor-pointer" />
+            <i
+              className="ri-menu-5-line cursor-pointer"
+              onClick={onSidebarToggle}
+            />
           </div>
           <div>
             <div className="text-center">
@@ -121,6 +131,57 @@ function Sidebar() {
         </div>
       </div>
     </DimContainer>
+  ) : (
+    <div className="position-absolute d-flex vw-100 vh-100">
+      <div className="d-flex flex-column justify-content-between p-3 shadow narrow-sidebar">
+        <div>
+          <div className="d-flex justify-content-center my-2 align-items-center flex-column">
+            <img src={smallLogo} className="img-fluid p-3" alt="logo" />
+            <i
+              className="ri-menu-5-line cursor-pointer"
+              onClick={onSidebarToggle}
+            />
+          </div>
+          <div className="text-center">
+            <div className="fw-bolder text-primary text-uppercase small">
+              Stage 1
+            </div>
+          </div>
+        </div>
+        <div className="overflow-y-auto overflow-x-hidden hide-scrollbar">
+          <div className="pt-4 d-flex flex-row flex-wrap justify-content-center">
+            <Avatar image={0} success={false} />
+            <Avatar image={0} success={false} />
+            <Avatar image={0} success />
+            <Avatar image={0} success={false} />
+            <Avatar image={0} success />
+            <Avatar image={0} success />
+            <Avatar image={0} success={false} />
+            <Avatar image={0} success={false} />
+            <Avatar image={0} success={false} />
+            <Avatar image={0} success={false} />
+            <Avatar image={0} success={false} />
+            <Avatar image={0} success={false} />
+            <Avatar image={0} success={false} />
+            <Avatar image={0} success={false} />
+            <Avatar image={0} success={false} />
+            <Avatar image={0} success={false} />
+            <Avatar image={0} success={false} />
+          </div>
+        </div>
+        <div className="d-flex flex-column align-items-center">
+          <div className="btn-timer btn-circle-lg my-3 rounded-circle text-center shadow cursor-pointer text-black fw-bold d-flex align-items-center justify-content-center">
+            4:49
+          </div>
+          <button
+            type="button"
+            className="btn btn-primary btn-circle-md form-control shadow rounded-circle fs-3 p-0"
+          >
+            <i className="ri-arrow-right-circle-line" />
+          </button>
+        </div>
+      </div>
+    </div>
   );
 }
 

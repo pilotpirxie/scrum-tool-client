@@ -1,13 +1,17 @@
+import { useState } from 'react';
 import Sidebar from './Sidebar/Sidebar';
 import Container from '../../components/Container';
 
 function Retro() {
   // const { id } = useParams<{ id: string }>();
-  // const [isNavbarOpen, setIsNavbarOpen] = useState(false);
+  const [isNavbarOpen, setIsNavbarOpen] = useState(false);
 
   return (
     <Container>
-      <Sidebar />
+      <Sidebar
+        isOpen={isNavbarOpen}
+        onSidebarToggle={() => setIsNavbarOpen(!isNavbarOpen)}
+      />
       <div>
         <h1>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio

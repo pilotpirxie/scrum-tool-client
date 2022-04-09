@@ -20,10 +20,10 @@ html, .bg-main {
   background: rgba(0, 0, 0, 0.75);
 }
 
-.btn-timer {
-  background: #B9FB1A;
+.overflow-y-auto {
+  overflow-y: auto;
 }
 
-.btn-timer:hover {
-  background: #b1f117;
+.overflow-x-hidden {
+  overflow-x: hidden;
 }

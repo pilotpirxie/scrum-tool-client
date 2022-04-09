@@ -2,4 +2,38 @@
     height: 100%;
     width: 300px;
     overflow: auto;
+    background: #ffffff;
+}
+
+.narrow-sidebar {
+    height: 100%;
+    width: 100px;
+    overflow: hidden;
+    background: #ffffff;
+}
+
+.hide-scrollbar {
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: none;
+}
+
+.btn-circle-lg {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+}
+
+.btn-circle-md {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+}
+
+.btn-timer {
+    background: #B9FB1A;
+}
+
+.btn-timer:hover {
+    background: #b1f117;
 }
