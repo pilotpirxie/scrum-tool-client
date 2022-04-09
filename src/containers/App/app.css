@@ -3,11 +3,27 @@ html, body, .app {
   height: 100%;
 }
 
-html {
+html, .bg-main {
   background: #F3F3F3;
 }
 
 
 .rounded-4 {
   border-radius: 4rem;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.bg-black-75 {
+  background: rgba(0, 0, 0, 0.75);
+}
+
+.btn-timer {
+  background: #B9FB1A;
+}
+
+.btn-timer:hover {
+  background: #b1f117;
 }
