@@ -30,6 +30,12 @@
     border-radius: 50%;
 }
 
+.btn-circle-sm {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+}
+
 .btn-timer {
     background: #B9FB1A;
 }

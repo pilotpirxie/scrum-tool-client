@@ -3163,7 +3163,7 @@ textarea.form-control.is-invalid {
 }
 
 .btn {
-  border: none;
+  border: 2px solid;
   display: inline-block;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji',

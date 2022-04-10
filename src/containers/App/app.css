@@ -31,3 +31,11 @@ html, .bg-main {
 .w-33 {
   width: calc(100% / 3);
 }
+
+.bg-blue-10 {
+  background: rgba(173, 217, 216, 0.1);
+}
+
+.bg-grey {
+  background: rgba(243, 243, 243, 1);
+}

@@ -75,13 +75,13 @@ function Sidebar({
               </div>
               <div>
                 <button
-                  className="btn btn-outline-secondary btn-block btn-sm mx-1 px-3"
+                  className="btn btn-outline-secondary btn-block btn-sm mx-1 px-3 shadow"
                   type="button"
                 >
                   PDF
                 </button>
                 <button
-                  className="btn btn-outline-secondary btn-block btn-sm mx-1 px-3"
+                  className="btn btn-outline-secondary btn-block btn-sm mx-1 px-3 shadow"
                   type="button"
                 >
                   CSV
@@ -94,19 +94,19 @@ function Sidebar({
               </div>
               <div>
                 <button
-                  className="btn btn-outline-secondary btn-block btn-sm mx-1 px-3"
+                  className="btn btn-outline-secondary btn-block btn-sm mx-1 px-3 shadow"
                   type="button"
                 >
                   1 min
                 </button>
                 <button
-                  className="btn btn-outline-secondary btn-block btn-sm mx-1 px-3"
+                  className="btn btn-outline-secondary btn-block btn-sm mx-1 px-3 shadow"
                   type="button"
                 >
                   3 min
                 </button>
                 <button
-                  className="btn btn-outline-secondary btn-block btn-sm mx-1 px-3"
+                  className="btn btn-outline-secondary btn-block btn-sm mx-1 px-3 shadow"
                   type="button"
                 >
                   5 min
@@ -116,7 +116,7 @@ function Sidebar({
           </div>
         </div>
         <div>
-          <div className="btn-timer p-3 my-3 rounded-4 text-center shadow">
+          <div className="btn-timer p-3 my-3 rounded-4 text-center">
             <div className="text-black fw-bold fs-3 d-flex align-items-center justify-content-center">
               <i className="ri-timer-line" /> 4:49
             </div>
@@ -177,7 +177,7 @@ function Sidebar({
           </div>
         </div>
         <div className="d-flex flex-column align-items-center">
-          <div className="btn-timer btn-circle-lg my-3 rounded-circle text-center shadow text-black fw-bold d-flex align-items-center justify-content-center">
+          <div className="btn-timer btn-circle-lg my-3 rounded-circle text-center text-black fw-bold d-flex align-items-center justify-content-center">
             4:49
           </div>
           <button
