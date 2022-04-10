@@ -11,14 +11,12 @@ import Home from '../Home';
 
 function App() {
   return (
-    <div className="app">
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/retro/:id" element={<Retro />} />
-        <Route path="/planning/:id" element={<Planning />} />
-        <Route path="/kudos/:id" element={<Kudos />} />
-      </Routes>
-    </div>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/retro/:id" element={<Retro />} />
+      <Route path="/planning/:id" element={<Planning />} />
+      <Route path="/kudos/:id" element={<Kudos />} />
+    </Routes>
   );
 }
 

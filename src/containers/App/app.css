@@ -27,3 +27,7 @@ html, .bg-main {
 .overflow-x-hidden {
   overflow-x: hidden;
 }
+
+.w-33 {
+  width: calc(100% / 3);
+}
