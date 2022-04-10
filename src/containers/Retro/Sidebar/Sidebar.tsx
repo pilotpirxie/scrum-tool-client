@@ -7,10 +7,10 @@ import DimContainer from '../../../components/DimContainer';
 
 function Sidebar({
   isOpen,
-  onSidebarToggle,
+  onSidebarToggleClick,
 }: {
   isOpen: boolean;
-  onSidebarToggle: () => void;
+  onSidebarToggleClick: () => void;
 }) {
   return isOpen ? (
     <DimContainer>
@@ -20,7 +20,7 @@ function Sidebar({
             <img src={logo} className="img-fluid p-3" alt="logo" />
             <i
               className="ri-menu-5-line cursor-pointer"
-              onClick={onSidebarToggle}
+              onClick={onSidebarToggleClick}
             />
           </div>
           <div>
@@ -116,30 +116,37 @@ function Sidebar({
           </div>
         </div>
         <div>
-          <div className="btn-timer p-3 my-3 rounded-4 text-center shadow cursor-pointer">
+          <div className="btn-timer p-3 my-3 rounded-4 text-center shadow">
             <div className="text-black fw-bold fs-3 d-flex align-items-center justify-content-center">
               <i className="ri-timer-line" /> 4:49
             </div>
-            <div className="text-black small">Mark as done</div>
           </div>
-          <button type="button" className="btn btn-primary form-control shadow">
+          <button
+            type="button"
+            className="btn btn-outline-primary form-control shadow d-flex align-items-center justify-content-center"
+          >
+            <i className="ri-checkbox-circle-line fs-5 me-1" />
+            Mark as done
+          </button>
+          <button
+            type="button"
+            className="mt-3 btn btn-outline-primary form-control shadow d-flex align-items-center justify-content-center"
+          >
+            <i className="ri-arrow-right-circle-line fs-5 me-1" />
             Next stage
           </button>
-          <div className="d-flex justify-content-center mt-3 small">
-            <a href="#">About</a>
-          </div>
         </div>
       </div>
     </DimContainer>
   ) : (
-    <div className="position-absolute d-flex vw-100 vh-100">
+    <div className="position-absolute d-flex vh-100">
       <div className="d-flex flex-column justify-content-between p-3 shadow narrow-sidebar">
         <div>
           <div className="d-flex justify-content-center my-2 align-items-center flex-column">
             <img src={smallLogo} className="img-fluid p-3" alt="logo" />
             <i
               className="ri-menu-5-line cursor-pointer"
-              onClick={onSidebarToggle}
+              onClick={onSidebarToggleClick}
             />
           </div>
           <div className="text-center">
@@ -170,12 +177,18 @@ function Sidebar({
           </div>
         </div>
         <div className="d-flex flex-column align-items-center">
-          <div className="btn-timer btn-circle-lg my-3 rounded-circle text-center shadow cursor-pointer text-black fw-bold d-flex align-items-center justify-content-center">
+          <div className="btn-timer btn-circle-lg my-3 rounded-circle text-center shadow text-black fw-bold d-flex align-items-center justify-content-center">
             4:49
           </div>
           <button
             type="button"
-            className="btn btn-primary btn-circle-md form-control shadow rounded-circle fs-3 p-0"
+            className="btn btn-outline-primary btn-circle-md form-control shadow rounded-circle fs-3 p-0"
+          >
+            <i className="ri-checkbox-circle-line" />
+          </button>
+          <button
+            type="button"
+            className="mt-3 btn btn-outline-primary btn-circle-md form-control shadow rounded-circle fs-3 p-0"
           >
             <i className="ri-arrow-right-circle-line" />
           </button>
