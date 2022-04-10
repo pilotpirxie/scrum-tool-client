@@ -15,8 +15,8 @@ function Retro() {
       />
       <ShiftedContent>
         <div className="row m-0 vh-100">
-          <div className="col-4 bg-blue-10 p-3 d-flex flex-column justify-content-between">
-            <div>
+          <div className="col-4 bg-blue-10 p-0 d-flex flex-column justify-content-between vh-100">
+            <div className="overflow-y-auto overflow-x-hidden h-100 p-3">
               <h1 className="text-black">Positives</h1>
               <div className="row">
                 <div className="col-12 col-xl-6">
@@ -93,7 +93,7 @@ function Retro() {
                 </div>
               </div>
             </div>
-            <div className="input-group">
+            <div className="input-group p-3">
               <input
                 type="text"
                 className="form-control shadow"
@@ -104,11 +104,33 @@ function Retro() {
               </button>
             </div>
           </div>
-          <div className="col-4 bg-grey p-3 d-flex flex-column justify-content-between">
-            <div>
+          <div className="col-4 bg-grey p-0 d-flex flex-column justify-content-between vh-100">
+            <div className="overflow-y-auto overflow-x-hidden h-100 p-3">
               <h1 className="text-black">Negatives</h1>
+              <div className="row">
+                <div className="col-12 col-xl-6">
+                  <div className="card card-body mt-3 retro-card">
+                    <div className="retro-card-text">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                      Aut iusto magnam minus mollitia numquam officia, pariatur.
+                      Blanditiis, debitis dignissimos id magnam optio
+                      praesentium voluptatibus! Accusantium cupiditate harum
+                      illo officia sapiente.
+                    </div>
+                    <div className="retro-card-buttons d-flex align-items-center justify-content-end">
+                      <div className="btn btn-outline-primary btn-sm">
+                        <i className="ri-edit-2-line" />
+                      </div>
+                      <div className="btn btn-outline-primary btn-sm">16</div>
+                      <div className="btn btn-outline-primary btn-sm">
+                        <i className="ri-add-line" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div className="input-group">
+            <div className="input-group p-3">
               <input
                 type="text"
                 className="form-control shadow"
@@ -119,11 +141,33 @@ function Retro() {
               </button>
             </div>
           </div>
-          <div className="col-4 bg-light p-3 d-flex flex-column justify-content-between">
-            <div>
+          <div className="col-4 bg-light p-0 d-flex flex-column justify-content-between vh-100">
+            <div className="overflow-y-auto overflow-x-hidden h-100 p-3">
               <h1 className="text-black">Actions</h1>
+              <div className="row">
+                <div className="col-12 col-xl-6">
+                  <div className="card card-body mt-3 retro-card">
+                    <div className="retro-card-text">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                      Aut iusto magnam minus mollitia numquam officia, pariatur.
+                      Blanditiis, debitis dignissimos id magnam optio
+                      praesentium voluptatibus! Accusantium cupiditate harum
+                      illo officia sapiente.
+                    </div>
+                    <div className="retro-card-buttons d-flex align-items-center justify-content-end">
+                      <div className="btn btn-outline-primary btn-sm">
+                        <i className="ri-edit-2-line" />
+                      </div>
+                      <div className="btn btn-outline-primary btn-sm">16</div>
+                      <div className="btn btn-outline-primary btn-sm">
+                        <i className="ri-add-line" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div className="input-group">
+            <div className="input-group p-3">
               <input
                 type="text"
                 className="form-control shadow"
