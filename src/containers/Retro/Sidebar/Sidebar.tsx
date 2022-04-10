@@ -19,7 +19,7 @@ function Sidebar({
           <div className="d-flex justify-content-between my-2 align-items-center">
             <img src={logo} className="img-fluid p-3" alt="logo" />
             <i
-              className="ri-menu-5-line cursor-pointer"
+              className="ri-close-line fs-3 cursor-pointer"
               onClick={onSidebarToggleClick}
             />
           </div>
@@ -145,18 +145,18 @@ function Sidebar({
           <div className="d-flex justify-content-center my-2 align-items-center flex-column">
             <img src={smallLogo} className="img-fluid p-3" alt="logo" />
             <i
-              className="ri-menu-5-line cursor-pointer"
+              className="ri-menu-5-line fs-3 cursor-pointer"
               onClick={onSidebarToggleClick}
             />
           </div>
           <div className="text-center">
-            <div className="fw-bolder text-primary text-uppercase small">
+            <div className="fw-bolder text-primary text-uppercase small mb-1">
               Stage 1
             </div>
           </div>
         </div>
         <div className="overflow-y-auto overflow-x-hidden hide-scrollbar">
-          <div className="pt-4 d-flex flex-row flex-wrap justify-content-center">
+          <div className="d-flex flex-row flex-wrap justify-content-center">
             <Avatar image={0} success={false} />
             <Avatar image={0} success={false} />
             <Avatar image={0} success />
