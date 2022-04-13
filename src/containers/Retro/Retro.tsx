@@ -20,10 +20,30 @@ function Retro() {
             <div className="overflow-y-auto overflow-x-hidden h-100 p-3">
               <h1 className="text-black">Positives</h1>
               <div className="row">
-                <Card />
-                <Card />
-                <Card />
-                <Card />
+                <Card
+                  content="Lorem ipsum dolor sit amet."
+                  onDecreaseVote={() => {}}
+                  votesCount={5}
+                  onDelete={() => {}}
+                  onEdit={() => {}}
+                  onIncreaseVote={() => {}}
+                />
+                <Card
+                  content="Lorem ipsum dolor sit amet."
+                  onDecreaseVote={() => {}}
+                  votesCount={5}
+                  onDelete={() => {}}
+                  onEdit={() => {}}
+                  onIncreaseVote={() => {}}
+                />
+                <Card
+                  content="Lorem ipsum dolor sit amet."
+                  onDecreaseVote={() => {}}
+                  votesCount={5}
+                  onDelete={() => {}}
+                  onEdit={() => {}}
+                  onIncreaseVote={() => {}}
+                />
               </div>
             </div>
             <div className="input-group p-3">
@@ -41,7 +61,14 @@ function Retro() {
             <div className="overflow-y-auto overflow-x-hidden h-100 p-3">
               <h1 className="text-black">Negatives</h1>
               <div className="row">
-                <Card />
+                <Card
+                  content="Lorem ipsum dolor sit amet."
+                  onDecreaseVote={() => {}}
+                  votesCount={5}
+                  onDelete={() => {}}
+                  onEdit={() => {}}
+                  onIncreaseVote={() => {}}
+                />
               </div>
             </div>
             <div className="input-group p-3">
@@ -59,7 +86,14 @@ function Retro() {
             <div className="overflow-y-auto overflow-x-hidden h-100 p-3">
               <h1 className="text-black">Actions</h1>
               <div className="row">
-                <Card />
+                <Card
+                  content="Lorem ipsum dolor sit amet."
+                  onDecreaseVote={() => {}}
+                  votesCount={5}
+                  onDelete={() => {}}
+                  onEdit={() => {}}
+                  onIncreaseVote={() => {}}
+                />
               </div>
             </div>
             <div className="input-group p-3">
