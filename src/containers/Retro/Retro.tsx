@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Sidebar from './Sidebar/Sidebar';
 import ShiftedContent from '../../components/ShiftedContent';
 import './Retro.css';
+import Card from '../../components/Card';
 
 function Retro() {
   // const { id } = useParams<{ id: string }>();
@@ -19,78 +20,10 @@ function Retro() {
             <div className="overflow-y-auto overflow-x-hidden h-100 p-3">
               <h1 className="text-black">Positives</h1>
               <div className="row">
-                <div className="col-12 col-xl-6">
-                  <div className="card card-body mt-3 retro-card">
-                    <div className="retro-card-text">
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                      Delectus deserunt, labore? Atque doloribus esse ex fugiat
-                      illo impedit nostrum quo!
-                    </div>
-                    <div className="retro-card-buttons d-flex align-items-center justify-content-end">
-                      <div className="btn btn-outline-primary btn-sm">
-                        <i className="ri-edit-2-line" />
-                      </div>
-                      <div className="btn btn-outline-primary btn-sm">16</div>
-                      <div className="btn btn-outline-primary btn-sm">
-                        <i className="ri-add-line" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-12 col-xl-6">
-                  <div className="card card-body mt-3 retro-card">
-                    <div className="retro-card-text">
-                      Lorem ipsum dolor sit.
-                    </div>
-                    <div className="retro-card-buttons d-flex align-items-center justify-content-end">
-                      <div className="btn btn-outline-primary btn-sm">
-                        <i className="ri-edit-2-line" />
-                      </div>
-                      <div className="btn btn-outline-primary btn-sm">16</div>
-                      <div className="btn btn-outline-primary btn-sm">
-                        <i className="ri-add-line" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-12 col-xl-6">
-                  <div className="card card-body mt-3 retro-card">
-                    <div className="retro-card-text">
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                      Aut iusto magnam minus mollitia numquam officia, pariatur.
-                      Blanditiis, debitis dignissimos id magnam optio
-                      praesentium voluptatibus! Accusantium cupiditate harum
-                      illo officia sapiente.
-                    </div>
-                    <div className="retro-card-buttons d-flex align-items-center justify-content-end">
-                      <div className="btn btn-outline-primary btn-sm">
-                        <i className="ri-edit-2-line" />
-                      </div>
-                      <div className="btn btn-outline-primary btn-sm">16</div>
-                      <div className="btn btn-outline-primary btn-sm">
-                        <i className="ri-add-line" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-12 col-xl-6">
-                  <div className="card card-body mt-3 retro-card">
-                    <div className="retro-card-text">
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                      Delectus deserunt, labore? Atque doloribus esse ex fugiat
-                      illo impedit nostrum quo!
-                    </div>
-                    <div className="retro-card-buttons d-flex align-items-center justify-content-end">
-                      <div className="btn btn-outline-primary btn-sm">
-                        <i className="ri-edit-2-line" />
-                      </div>
-                      <div className="btn btn-outline-primary btn-sm">16</div>
-                      <div className="btn btn-outline-primary btn-sm">
-                        <i className="ri-add-line" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <Card />
+                <Card />
+                <Card />
+                <Card />
               </div>
             </div>
             <div className="input-group p-3">
@@ -108,26 +41,7 @@ function Retro() {
             <div className="overflow-y-auto overflow-x-hidden h-100 p-3">
               <h1 className="text-black">Negatives</h1>
               <div className="row">
-                <div className="col-12 col-xl-6">
-                  <div className="card card-body mt-3 retro-card">
-                    <div className="retro-card-text">
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                      Aut iusto magnam minus mollitia numquam officia, pariatur.
-                      Blanditiis, debitis dignissimos id magnam optio
-                      praesentium voluptatibus! Accusantium cupiditate harum
-                      illo officia sapiente.
-                    </div>
-                    <div className="retro-card-buttons d-flex align-items-center justify-content-end">
-                      <div className="btn btn-outline-primary btn-sm">
-                        <i className="ri-edit-2-line" />
-                      </div>
-                      <div className="btn btn-outline-primary btn-sm">16</div>
-                      <div className="btn btn-outline-primary btn-sm">
-                        <i className="ri-add-line" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <Card />
               </div>
             </div>
             <div className="input-group p-3">
@@ -145,26 +59,7 @@ function Retro() {
             <div className="overflow-y-auto overflow-x-hidden h-100 p-3">
               <h1 className="text-black">Actions</h1>
               <div className="row">
-                <div className="col-12 col-xl-6">
-                  <div className="card card-body mt-3 retro-card">
-                    <div className="retro-card-text">
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                      Aut iusto magnam minus mollitia numquam officia, pariatur.
-                      Blanditiis, debitis dignissimos id magnam optio
-                      praesentium voluptatibus! Accusantium cupiditate harum
-                      illo officia sapiente.
-                    </div>
-                    <div className="retro-card-buttons d-flex align-items-center justify-content-end">
-                      <div className="btn btn-outline-primary btn-sm">
-                        <i className="ri-edit-2-line" />
-                      </div>
-                      <div className="btn btn-outline-primary btn-sm">16</div>
-                      <div className="btn btn-outline-primary btn-sm">
-                        <i className="ri-add-line" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <Card />
               </div>
             </div>
             <div className="input-group p-3">
