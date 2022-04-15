@@ -88,7 +88,32 @@ function Retro() {
               <h1 className="text-black">Actions</h1>
               <div className="row">
                 <Card
-                  content="Lorem ipsum dolor sit amet."
+                  content="Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet."
+                  onDecreaseVote={() => {}}
+                  votesCount={5}
+                  onDelete={() => {}}
+                  onEdit={() => {}}
+                  onIncreaseVote={() => {}}
+                  stack
+                />
+                <Card
+                  content="Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet."
+                  onDecreaseVote={() => {}}
+                  votesCount={5}
+                  onDelete={() => {}}
+                  onEdit={() => {}}
+                  onIncreaseVote={() => {}}
+                />
+                <Card
+                  content="Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet."
+                  onDecreaseVote={() => {}}
+                  votesCount={5}
+                  onDelete={() => {}}
+                  onEdit={() => {}}
+                  onIncreaseVote={() => {}}
+                />
+                <Card
+                  content="Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet."
                   onDecreaseVote={() => {}}
                   votesCount={5}
                   onDelete={() => {}}

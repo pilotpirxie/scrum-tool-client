@@ -1,3 +1,5 @@
+import './Card.css';
+
 function Card({
   content,
   votesCount,
@@ -16,11 +18,12 @@ function Card({
   stack?: boolean;
 }) {
   return (
-    <div className="col-12 col-xl-6">
+    <div className="col-12 col-xl-6 position-relative">
       <div className="card card-body mt-3 retro-card border-2 border-primary">
-        <div className="retro-card-text">{content}</div>
-        <div className="retro-card-buttons d-flex align-items-center justify-content-between">
-          <div>{stack && <i className="ri-stack-line ms-1" />}</div>
+        <div className="retro-card-text">
+          {stack && <i className="ri-stack-line ms-1" />} {content}
+        </div>
+        <div className="retro-card-buttons d-flex align-items-center justify-content-end">
           <div>
             <div
               className="btn btn-outline-primary shadow me-1 btn-sm"
@@ -49,6 +52,12 @@ function Card({
           </div>
         </div>
       </div>
+      {stack && (
+        <>
+          <div className="card card-body mt-3 retro-card border-2 border-primary stack position-absolute" />
+          <div className="card card-body mt-3 retro-card border-2 border-primary stack-2 position-absolute" />
+        </>
+      )}
     </div>
   );
 }

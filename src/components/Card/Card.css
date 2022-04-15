@@ -1,0 +1,45 @@
+.retro-card {
+    height: 200px;
+    cursor: pointer;
+    box-shadow: 8px 8px 48px rgba(18, 84, 136, 0.2), inset 0px 0px 20px rgba(55, 202, 236, 0.2), inset 0px 0px 20px rgba(42, 147, 213, 0.2);
+    border-radius: 32px;
+    z-index: 2;
+}
+
+.retro-card:hover {
+    box-shadow: 8px 8px 48px rgba(18, 84, 136, 0.15), inset 0px 0px 20px rgba(55, 202, 236, 0.15), inset 0px 0px 20px rgba(42, 147, 213, 0.15);
+}
+
+.retro-card-text {
+    font-size: 16px;
+    color: #000000;
+    height: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    line-clamp: 5;
+    -webkit-box-orient: vertical;
+}
+
+.retro-card-buttons {
+    padding: 8px 0;
+}
+
+.stack {
+    width: calc(100% - 32px);
+    top: 0px;
+    right: 16px;
+    z-index: 1;
+    background: #eaf7ff;
+    transform: rotate(5deg);
+}
+
+.stack-2 {
+    width: calc(100% - 48px);
+    top: 0;
+    right: 24px;
+    z-index: 0;
+    background: #d2e0e8;
+    transform: rotate(-7deg);
+}
