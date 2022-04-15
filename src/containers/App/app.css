@@ -17,7 +17,7 @@ html, .bg-main {
 }
 
 .bg-black-75 {
-  background: rgba(0, 0, 0, 0.75);
+  background: rgba(0, 0, 0, 0.5);
 }
 
 .overflow-y-auto {

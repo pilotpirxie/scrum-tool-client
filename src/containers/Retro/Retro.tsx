@@ -49,7 +49,7 @@ function Retro() {
             <div className="input-group p-3">
               <input
                 type="text"
-                className="form-control shadow"
+                className="form-control shadow border-success border-2"
                 placeholder="Add positive note..."
               />
               <button className="btn btn-success shadow" type="button">
@@ -74,7 +74,7 @@ function Retro() {
             <div className="input-group p-3">
               <input
                 type="text"
-                className="form-control shadow"
+                className="form-control shadow border-danger border-2"
                 placeholder="Add negative note..."
               />
               <button className="btn btn-danger shadow" type="button">
@@ -99,7 +99,7 @@ function Retro() {
             <div className="input-group p-3">
               <input
                 type="text"
-                className="form-control shadow"
+                className="form-control shadow border-primary border-2"
                 placeholder="Add action note..."
               />
               <button className="btn btn-primary shadow" type="button">

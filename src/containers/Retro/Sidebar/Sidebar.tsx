@@ -44,25 +44,25 @@ function Sidebar({
               <Avatar image={0} success={false} />
               <Avatar image={0} success={false} />
             </div>
-            <div className="pt-4">
+            <div className="mt-4">
               <div className="fw-bolder text-primary text-uppercase d-flex align-items-center">
                 Username & Avatar <i className="ri-user-smile-line ms-2" />
               </div>
               <button
                 type="button"
-                className="btn btn-primary form-control shadow"
+                className="btn btn-primary form-control shadow mt-1"
               >
                 Change
               </button>
             </div>
-            <div className="pt-4">
+            <div className="mt-4">
               <div className="fw-bolder text-primary text-uppercase d-flex align-items-center">
                 Share link to the board <i className="ri-share-line ms-2" />
               </div>
               <div>
                 <input
                   type="text"
-                  className="form-control form-control-sm"
+                  className="form-control form-control-sm mt-1"
                   placeholder="Link to the board"
                   value="https://scrm.ly/43kjb17d81"
                   readOnly
@@ -73,7 +73,7 @@ function Sidebar({
               <div className="fw-bolder text-primary text-uppercase d-flex align-items-center">
                 Export <i className="ri-download-line ms-2" />
               </div>
-              <div>
+              <div className="mt-1">
                 <button
                   className="btn btn-outline-secondary btn-block btn-sm mx-1 px-3 shadow"
                   type="button"
@@ -92,7 +92,7 @@ function Sidebar({
               <div className="fw-bolder text-primary text-uppercase d-flex align-items-center">
                 Timer <i className="ri-timer-line ms-2" />
               </div>
-              <div>
+              <div className="mt-1">
                 <button
                   className="btn btn-outline-secondary btn-block btn-sm mx-1 px-3 shadow"
                   type="button"
