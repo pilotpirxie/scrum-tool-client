@@ -3,7 +3,8 @@ import Sidebar from './Sidebar/Sidebar';
 import ShiftedContent from '../../components/ShiftedContent';
 import './Retro.css';
 import Card from '../../components/Card';
-import EditModal from '../../EditModal';
+import EditModal from '../../components/EditModal';
+import UserModal from '../../components/UserModal';
 
 function Retro() {
   // const { id } = useParams<{ id: string }>();
@@ -137,6 +138,7 @@ function Retro() {
         </div>
       </ShiftedContent>
       <EditModal />
+      <UserModal />
     </div>
   );
 }
