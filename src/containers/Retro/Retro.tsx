@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 import Sidebar from './Sidebar/Sidebar';
 import ShiftedContent from '../../components/ShiftedContent';
 import './Retro.css';
@@ -109,6 +110,25 @@ function Retro() {
           </div>
         </div>
       </ShiftedContent>
+      <Modal isOpen className="rounded-4">
+        <ModalHeader className="text-black">
+          <i className="ri-edit-2-line" /> Edit
+        </ModalHeader>
+        <ModalBody>
+          <textarea
+            className="form-control shadow border-primary border-2"
+            placeholder="Ticket content"
+          />
+        </ModalBody>
+        <ModalFooter className="d-flex justify-content-between">
+          <Button color="danger" outline className="shadow">
+            Delete
+          </Button>
+          <Button color="primary" className="shadow d-flex align-items-center">
+            <i className="ri-save-line me-1" /> Save
+          </Button>
+        </ModalFooter>
+      </Modal>
     </div>
   );
 }
