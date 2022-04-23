@@ -21,7 +21,7 @@ function Retro() {
       />
       <ShiftedContent>
         <div className="row m-0 vh-100">
-          <List type="positive" columnWidth={4}>
+          <List id={0} type="positive" columnWidth={4}>
             <Card
               id={0}
               content="Lorem ipsum dolor sit amet."
@@ -51,7 +51,7 @@ function Retro() {
               stack
             />
           </List>
-          <List type="negative" columnWidth={4}>
+          <List id={1} type="negative" columnWidth={4}>
             <Card
               id={3}
               content="Lorem ipsum dolor sit amet."
@@ -62,7 +62,7 @@ function Retro() {
               onIncreaseVote={() => {}}
             />
           </List>
-          <List type="actions" columnWidth={4}>
+          <List id={2} type="actions" columnWidth={4}>
             <Card
               id={4}
               content="Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet."

@@ -1,10 +1,14 @@
 import React from 'react';
+import { useDrop } from 'react-dnd';
+import './List.css';
 
 function List({
+  id,
   type,
   children,
   columnWidth,
 }: {
+  id: number;
   type: 'positive' | 'negative' | 'actions';
   children: React.ReactNode;
   columnWidth: number;
@@ -26,11 +30,26 @@ function List({
     negative: 'Add negative item...',
     actions: 'Add action item...',
   }[type];
+
+  const [{ isOver }, drop] = useDrop(() => ({
+    accept: 'card',
+    drop: (item: { id: number }) => {
+      // eslint-disable-next-line no-console
+      console.log('Moved ', item.id, ' to column ', id);
+    },
+    collect: (monitor) => ({
+      isOver: monitor.isOver(),
+    }),
+  }));
+
   return (
     <div
+      ref={drop}
       className={`col-${
         columnWidth || 4
-      } bg-blue-10 p-0 d-flex flex-column justify-content-between vh-100`}
+      } bg-blue-10 p-0 d-flex flex-column justify-content-between vh-100 retro-list ${
+        isOver ? 'is-over' : ''
+      }`}
     >
       <div className="overflow-y-auto overflow-x-hidden h-100 p-3">
         <h1 className="text-black">{heading}</h1>
