@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 
 import config from './config';
-import second from './second';
+import cards from './cards';
 
 export default combineReducers({
   config,
-  second,
+  cards,
 });

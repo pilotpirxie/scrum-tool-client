@@ -11,7 +11,7 @@ function UserModal({ isOpen }: { isOpen?: boolean }) {
       <ModalBody>
         <input
           type="text"
-          className="form-control shadow border-primary border-2 text-black"
+          className="form-control shadow border-primary border-2 text-black mb-3"
           placeholder="Username"
         />
         <div className="row py-3 user-modal">

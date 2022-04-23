@@ -1,7 +1,7 @@
-import { ActionType as second } from './second';
+import { ActionType as cards } from './cards';
 
 const actions = {
-  second,
+  cards,
 };
 
 export default actions;

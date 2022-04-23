@@ -45,6 +45,7 @@ function Retro() {
                   onDelete={() => {}}
                   onEdit={() => {}}
                   onIncreaseVote={() => {}}
+                  stack
                 />
               </div>
             </div>
