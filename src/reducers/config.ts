@@ -1,24 +1,60 @@
-import { ActionType, Setup } from '../actions/config';
+import {
+  ActionType,
+  SetCode,
+  SetStage,
+  SetTimer,
+  SetUsers,
+} from '../actions/config';
+
+export type User = {
+  id: string;
+  name: string;
+  avatar: number;
+  done: boolean;
+  createdAt: string;
+  updatedAt: string;
+};
 
 export type ConfigState = {
-  value: string;
+  code: string;
+  stage: number;
+  timer: number;
+  users: Array<User>;
 };
 
 const initialState: ConfigState = {
-  value: '',
+  code: '',
+  stage: 0,
+  timer: 0,
+  users: [],
 };
 
-export type ConfigActions = Setup;
+export type ConfigActions = SetCode | SetStage | SetTimer | SetUsers;
 
 export default function reducer(
   state: ConfigState = initialState,
   action: ConfigActions,
 ) {
   switch (action.type) {
-    case ActionType.Setup:
+    case ActionType.SetCode:
       return {
         ...state,
-        value: action.newValue,
+        code: action.payload.code,
+      };
+    case ActionType.SetStage:
+      return {
+        ...state,
+        stage: action.payload.stage,
+      };
+    case ActionType.SetTimer:
+      return {
+        ...state,
+        timer: action.payload.timer,
+      };
+    case ActionType.SetUsers:
+      return {
+        ...state,
+        users: action.payload.users,
       };
     default:
       return state;
