@@ -1,6 +1,8 @@
 import './Card.css';
+import { useDrag } from 'react-dnd';
 
 function Card({
+  id,
   content,
   votesCount,
   onIncreaseVote,
@@ -9,6 +11,7 @@ function Card({
   onEdit,
   stack = false,
 }: {
+  id: number;
   content: string;
   votesCount: number;
   onIncreaseVote: () => void;
@@ -17,9 +20,23 @@ function Card({
   onEdit: () => void;
   stack?: boolean;
 }) {
+  const [{ isDragging }, drag] = useDrag(() => ({
+    type: 'card',
+    item: {
+      id,
+    },
+    collect: (monitor) => ({
+      isDragging: monitor.isDragging(),
+    }),
+  }));
   return (
-    <div className="col-12 col-xl-6 position-relative">
-      <div className="card card-body mt-3 retro-card border-2 border-primary">
+    <div className="col-12 col-xl-6 position-relative" key={id}>
+      <div
+        ref={drag}
+        className={`card card-body mt-3 retro-card border-2 border-primary ${
+          isDragging ? `is-dragging` : ''
+        }`}
+      >
         <div className="retro-card-text">
           {stack && <i className="ri-stack-line ms-1" />} {content}
         </div>

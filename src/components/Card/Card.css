@@ -6,6 +6,10 @@
     z-index: 2;
 }
 
+.retro-card.is-dragging {
+    opacity: 0.2;
+}
+
 .retro-card:hover {
     box-shadow: 8px 8px 48px rgba(18, 84, 136, 0.15), inset 0px 0px 20px rgba(55, 202, 236, 0.15), inset 0px 0px 20px rgba(42, 147, 213, 0.15);
 }
