@@ -17,7 +17,7 @@ export type SetOneCard = {
 export type SetAllCards = {
   type: ActionType.SetAllCards;
   payload: {
-    [id: string]: Card;
+    cards: Array<Card>;
   };
 };
 
