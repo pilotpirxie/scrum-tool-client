@@ -1,6 +1,7 @@
 import {
   ActionType,
   DeleteCard,
+  GroupCards,
   SetAllCards,
   SetOneCard,
 } from '../actions/cards';
@@ -91,7 +92,7 @@ const initialState: CardsState = [
   },
 ];
 
-export type Action = SetOneCard | SetAllCards | DeleteCard;
+export type Action = SetOneCard | SetAllCards | DeleteCard | GroupCards;
 
 export default function reducer(
   state: CardsState = initialState,

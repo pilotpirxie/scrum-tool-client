@@ -9,6 +9,7 @@ function Card({
   onDecreaseVote,
   onDelete,
   onEdit,
+  onGroup,
   stack = false,
 }: {
   id: string;
@@ -18,6 +19,7 @@ function Card({
   onDecreaseVote: () => void;
   onDelete: () => void;
   onEdit: () => void;
+  onGroup: (sourceCard: string, targetCard: string) => void;
   stack?: boolean;
 }) {
   const [{ isDragging }, drag] = useDrag(() => ({
@@ -32,9 +34,8 @@ function Card({
 
   const [{ isOver }, drop] = useDrop(() => ({
     accept: 'card',
-    drop: (item: { id: number }) => {
-      // eslint-disable-next-line no-console
-      console.log('Grpuped ', item.id, ' together with ', id);
+    drop: (item: { id: string }) => {
+      onGroup(item.id, id);
     },
     collect: (monitor) => ({
       isOver: monitor.isOver(),

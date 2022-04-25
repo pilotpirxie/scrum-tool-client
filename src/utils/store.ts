@@ -20,7 +20,7 @@ const globalStore = createStore(
 
 sagaMiddleware.run(rootSaga);
 
-export type AppDispatch = typeof globalStore.dispatch;
+export type RootDispatch = typeof globalStore.dispatch;
 export type RootState = ReturnType<typeof rootReducer>;
 
 export default globalStore;

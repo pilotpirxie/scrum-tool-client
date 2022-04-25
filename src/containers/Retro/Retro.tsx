@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Sidebar from './Sidebar/Sidebar';
 import ShiftedContent from '../../components/ShiftedContent';
 import './Retro.css';
@@ -7,15 +7,27 @@ import Card from '../../components/Card';
 import EditModal from '../../components/EditModal';
 import UserModal from '../../components/UserModal';
 import List from '../../components/List';
-import { RootState } from '../../utils/store';
+import { RootDispatch, RootState } from '../../utils/store';
+import actions from '../../actions';
 
 function Retro() {
   // const { id } = useParams<{ id: string }>();
   const [isNavbarOpen, setIsNavbarOpen] = useState(false);
+  const dispatch = useDispatch<RootDispatch>();
 
   // const [cards, setCards] = useState([]);
 
   const cards = useSelector((state: RootState) => state.cards);
+
+  const handleCardGroup = (sourceCard: string, targetCard: string) => {
+    dispatch({
+      type: actions.cards.GroupCards,
+      payload: {
+        sourceCard,
+        targetCard,
+      },
+    });
+  };
 
   return (
     <div>
@@ -34,12 +46,14 @@ function Retro() {
               )
               .map((card) => (
                 <Card
+                  key={card.id}
                   id={card.id}
                   content={card.content}
                   onDecreaseVote={() => {}}
                   votesCount={card.votes}
                   onDelete={() => {}}
                   onEdit={() => {}}
+                  onGroup={handleCardGroup}
                   onIncreaseVote={() => {}}
                   stack={!!card.stackedOn}
                 />
@@ -54,12 +68,14 @@ function Retro() {
               )
               .map((card) => (
                 <Card
+                  key={card.id}
                   id={card.id}
                   content={card.content}
                   onDecreaseVote={() => {}}
                   votesCount={card.votes}
                   onDelete={() => {}}
                   onEdit={() => {}}
+                  onGroup={handleCardGroup}
                   onIncreaseVote={() => {}}
                   stack={!!card.stackedOn}
                 />
@@ -74,12 +90,14 @@ function Retro() {
               )
               .map((card) => (
                 <Card
+                  key={card.id}
                   id={card.id}
                   content={card.content}
                   onDecreaseVote={() => {}}
                   votesCount={card.votes}
                   onDelete={() => {}}
                   onEdit={() => {}}
+                  onGroup={handleCardGroup}
                   onIncreaseVote={() => {}}
                   stack={!!card.stackedOn}
                 />
