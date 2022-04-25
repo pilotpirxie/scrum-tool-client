@@ -11,7 +11,7 @@ function Card({
   onEdit,
   stack = false,
 }: {
-  id: number;
+  id: string;
   content: string;
   votesCount: number;
   onIncreaseVote: () => void;

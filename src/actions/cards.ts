@@ -8,22 +8,15 @@ export enum ActionType {
 
 export type SetOneCard = {
   type: ActionType.SetOneCard;
-  payload: {
-    id: string;
-    card: Card;
-  };
+  payload: Card;
 };
 
 export type SetAllCards = {
   type: ActionType.SetAllCards;
-  payload: {
-    cards: Array<Card>;
-  };
+  payload: Array<Card>;
 };
 
 export type DeleteCard = {
   type: ActionType.DeleteCard;
-  payload: {
-    id: string;
-  };
+  payload: string;
 };
