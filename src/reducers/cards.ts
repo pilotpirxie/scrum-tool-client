@@ -101,13 +101,13 @@ export default function reducer(
   switch (action.type) {
     case ActionType.SetOneCard:
       return [
-        ...state.filter((card) => card.id !== action.payload.id),
-        action.payload,
+        ...state.filter((card) => card.id !== action.payload.card.id),
+        action.payload.card,
       ];
     case ActionType.SetAllCards:
-      return action.payload;
+      return action.payload.cards;
     case ActionType.DeleteCard:
-      return [...state.filter((card) => card.id !== action.payload)];
+      return [...state.filter((card) => card.id !== action.payload.cardId)];
     default:
       return state;
   }

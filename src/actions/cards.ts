@@ -17,15 +17,21 @@ export type GroupCards = {
 
 export type SetOneCard = {
   type: ActionType.SetOneCard;
-  payload: Card;
+  payload: {
+    card: Card;
+  };
 };
 
 export type SetAllCards = {
   type: ActionType.SetAllCards;
-  payload: Array<Card>;
+  payload: {
+    cards: Array<Card>;
+  };
 };
 
 export type DeleteCard = {
   type: ActionType.DeleteCard;
-  payload: string;
+  payload: {
+    cardId: string;
+  };
 };

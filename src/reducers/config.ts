@@ -1,6 +1,7 @@
 import {
   ActionType,
   SetCode,
+  SetNickname,
   SetStage,
   SetTimer,
   SetUsers,
@@ -8,14 +9,15 @@ import {
 
 export type User = {
   id: string;
-  name: string;
-  avatar: number;
-  done: boolean;
+  nickname: string;
+  avatarId: number;
+  isReady: boolean;
   createdAt: string;
   updatedAt: string;
 };
 
 export type ConfigState = {
+  nickname: string;
   code: string;
   stage: number;
   timer: number;
@@ -23,13 +25,19 @@ export type ConfigState = {
 };
 
 const initialState: ConfigState = {
+  nickname: '',
   code: '',
   stage: 0,
   timer: 0,
   users: [],
 };
 
-export type ConfigActions = SetCode | SetStage | SetTimer | SetUsers;
+export type ConfigActions =
+  | SetNickname
+  | SetCode
+  | SetStage
+  | SetTimer
+  | SetUsers;
 
 export default function reducer(
   state: ConfigState = initialState,
@@ -40,6 +48,11 @@ export default function reducer(
       return {
         ...state,
         code: action.payload.code,
+      };
+    case ActionType.SetNickname:
+      return {
+        ...state,
+        nickname: action.payload.nickname,
       };
     case ActionType.SetStage:
       return {
