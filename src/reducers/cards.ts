@@ -10,7 +10,7 @@ export type Card = {
   id: string;
   stackedOn: string | null;
   content: string;
-  author: string;
+  userId: string;
   column: number;
   votes: number;
   createdAt: string;
@@ -24,7 +24,7 @@ const initialState: CardsState = [
     id: 'card-1',
     stackedOn: 'card-2',
     content: 'Card 1',
-    author: 'Author 1',
+    userId: 'Author 1',
     column: 0,
     createdAt: '2020-01-01T00:00:00.000Z',
     updatedAt: '2020-01-01T00:00:00.000Z',
@@ -34,7 +34,7 @@ const initialState: CardsState = [
     id: 'card-2',
     stackedOn: 'card-3',
     content: 'Card 2',
-    author: 'Author 1',
+    userId: 'Author 1',
     column: 0,
     createdAt: '2020-01-01T00:00:00.000Z',
     updatedAt: '2020-01-01T00:00:00.000Z',
@@ -44,7 +44,7 @@ const initialState: CardsState = [
     id: 'card-3',
     stackedOn: null,
     content: 'Card 3',
-    author: 'Author 2',
+    userId: 'Author 2',
     column: 0,
     createdAt: '2020-01-01T00:00:00.000Z',
     updatedAt: '2020-01-01T00:00:00.000Z',
@@ -54,7 +54,7 @@ const initialState: CardsState = [
     id: 'card-4',
     stackedOn: 'card-1',
     content: 'Card 4',
-    author: 'Author 1',
+    userId: 'Author 1',
     column: 0,
     createdAt: '2020-01-01T00:00:00.000Z',
     updatedAt: '2020-01-01T00:00:00.000Z',
@@ -64,7 +64,7 @@ const initialState: CardsState = [
     id: 'card-5',
     stackedOn: null,
     content: 'Card 5',
-    author: 'Author 1',
+    userId: 'Author 1',
     column: 1,
     createdAt: '2020-01-01T00:00:00.000Z',
     updatedAt: '2020-01-01T00:00:00.000Z',
@@ -74,7 +74,7 @@ const initialState: CardsState = [
     id: 'card-6',
     stackedOn: null,
     content: 'Card 6',
-    author: 'Author 1',
+    userId: 'Author 1',
     column: 2,
     createdAt: '2020-01-01T00:00:00.000Z',
     updatedAt: '2020-01-01T00:00:00.000Z',
@@ -84,7 +84,7 @@ const initialState: CardsState = [
     id: 'card-7',
     stackedOn: null,
     content: 'Card 7',
-    author: 'Author 1',
+    userId: 'Author 1',
     column: 2,
     createdAt: '2020-01-01T00:00:00.000Z',
     updatedAt: '2020-01-01T00:00:00.000Z',
