@@ -3,7 +3,9 @@ import { User } from '../reducers/config';
 
 export enum ActionType {
   SetNickname = 'CONFIG/SET_NICKNAME',
-  SetCode = 'CONFIG/SET_CODE',
+  SetAvatar = 'CONFIG/SET_AVATAR',
+  SetIsReady = 'CONFIG/SET_IS_READY',
+  SetBoardId = 'CONFIG/SET_CODE',
   SetStage = 'CONFIG/SET_STAGE',
   SetTimer = 'CONFIG/SET_TIMER',
   SetUsers = 'CONFIG/SET_USERS',
@@ -18,10 +20,24 @@ export type SetNickname = {
   };
 };
 
-export type SetCode = {
-  type: ActionType.SetCode;
+export type SetAvatar = {
+  type: ActionType.SetAvatar;
   payload: {
-    code: string;
+    avatar: number;
+  };
+};
+
+export type SetIsReady = {
+  type: ActionType.SetIsReady;
+  payload: {
+    isReady: boolean;
+  };
+};
+
+export type SetCode = {
+  type: ActionType.SetBoardId;
+  payload: {
+    boardId: string;
   };
 };
 

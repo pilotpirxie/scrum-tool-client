@@ -2,7 +2,9 @@ import { Socket } from 'socket.io-client';
 import {
   ActionType,
   ConfigureNewSocket,
+  SetAvatar,
   SetCode,
+  SetIsReady,
   SetNickname,
   SetSocket,
   SetStage,
@@ -17,25 +19,35 @@ export type User = {
 };
 
 export type ConfigState = {
-  nickname: string;
-  boardId: string;
-  stage: number;
-  timer: number;
+  localUser: User;
+  board: {
+    boardId: string;
+    stage: number;
+    timer: number;
+  };
   users: Array<User>;
   socket: Socket | null;
 };
 
 const initialState: ConfigState = {
-  nickname: '',
-  boardId: '',
-  stage: 0,
-  timer: 0,
+  localUser: {
+    avatar: 0,
+    isReady: false,
+    nickname: '',
+  },
+  board: {
+    boardId: '',
+    stage: 0,
+    timer: 0,
+  },
   users: [],
   socket: null,
 };
 
 export type ConfigActions =
   | SetNickname
+  | SetAvatar
+  | SetIsReady
   | SetCode
   | SetStage
   | SetTimer
@@ -48,25 +60,53 @@ export default function reducer(
   action: ConfigActions,
 ) {
   switch (action.type) {
-    case ActionType.SetCode:
+    case ActionType.SetBoardId:
       return {
         ...state,
-        code: action.payload.code,
-      };
-    case ActionType.SetNickname:
-      return {
-        ...state,
-        nickname: action.payload.nickname,
+        board: {
+          ...state.board,
+          boardId: action.payload.boardId,
+        },
       };
     case ActionType.SetStage:
       return {
         ...state,
-        stage: action.payload.stage,
+        board: {
+          ...state.board,
+          stage: action.payload.stage,
+        },
       };
     case ActionType.SetTimer:
       return {
         ...state,
-        timer: action.payload.timer,
+        board: {
+          ...state.board,
+          timer: action.payload.timer,
+        },
+      };
+    case ActionType.SetNickname:
+      return {
+        ...state,
+        localUser: {
+          ...state.localUser,
+          nickname: action.payload.nickname,
+        },
+      };
+    case ActionType.SetAvatar:
+      return {
+        ...state,
+        localUser: {
+          ...state.localUser,
+          avatar: action.payload.avatar,
+        },
+      };
+    case ActionType.SetIsReady:
+      return {
+        ...state,
+        localUser: {
+          ...state.localUser,
+          isReady: action.payload.isReady,
+        },
       };
     case ActionType.SetUsers:
       return {

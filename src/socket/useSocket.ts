@@ -1,4 +1,5 @@
 import { io, Socket } from 'socket.io-client';
+import { useNavigate } from 'react-router-dom';
 import { IncomingEvents, OutgoingEvents } from './events';
 import actions from '../actions';
 import { useAppDispatch, useAppSelector } from '../utils/hooks';
@@ -12,6 +13,7 @@ export type SocketHook = {
 export function useSocket(): SocketHook {
   const socket = useAppSelector((state) => state.config.socket);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   function connect(nickname: string, boardId: string) {
     if (socket) {
@@ -30,9 +32,23 @@ export function useSocket(): SocketHook {
         nickname,
         boardId,
       });
+
+      dispatch({
+        type: actions.config.SetNickname,
+        payload: {
+          nickname,
+        },
+      });
+
+      dispatch({
+        type: actions.config.SetBoardId,
+        payload: {
+          boardId,
+        },
+      });
     });
 
-    registerCardsHandlers(newSocket, dispatch);
+    registerCardsHandlers(newSocket, dispatch, navigate);
 
     dispatch({
       type: actions.config.SetSocket,
