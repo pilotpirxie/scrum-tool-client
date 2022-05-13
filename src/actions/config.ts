@@ -9,6 +9,7 @@ export enum ActionType {
   SetBoardId = 'CONFIG/SET_CODE',
   SetStage = 'CONFIG/SET_STAGE',
   SetTimer = 'CONFIG/SET_TIMER',
+  SetUser = 'CONFIG/SET_USER',
   SetUsers = 'CONFIG/SET_USERS',
   ConfigureNewSocket = 'CONFIG/CONFIGURE_NEW_SOCKET',
   SetSocket = 'CONFIG/SET_SOCKET',
@@ -59,7 +60,14 @@ export type SetStage = {
 export type SetTimer = {
   type: ActionType.SetTimer;
   payload: {
-    timer: number;
+    timer: string;
+  };
+};
+
+export type SetUser = {
+  type: ActionType.SetUser;
+  payload: {
+    user: User;
   };
 };
 

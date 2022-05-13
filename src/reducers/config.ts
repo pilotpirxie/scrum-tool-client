@@ -9,6 +9,7 @@ import {
   SetSocket,
   SetStage,
   SetTimer,
+  SetUser,
   SetUserId,
   SetUsers,
 } from '../actions/config';
@@ -25,7 +26,7 @@ export type ConfigState = {
   board: {
     boardId: string;
     stage: number;
-    timer: number;
+    timerTo: string;
   };
   users: Array<User>;
   socket: Socket | null;
@@ -41,7 +42,7 @@ const initialState: ConfigState = {
   board: {
     boardId: '',
     stage: 0,
-    timer: 0,
+    timerTo: Date().toString(),
   },
   users: [],
   socket: null,
@@ -55,6 +56,7 @@ export type ConfigActions =
   | SetCode
   | SetStage
   | SetTimer
+  | SetUser
   | SetUsers
   | SetSocket
   | ConfigureNewSocket;
@@ -119,6 +121,14 @@ export default function reducer(
           ...state.localUser,
           isReady: action.payload.isReady,
         },
+      };
+    case ActionType.SetUser:
+      return {
+        ...state,
+        users: [
+          ...state.users.filter((user) => user.id !== action.payload.user.id),
+          action.payload.user,
+        ],
       };
     case ActionType.SetUsers:
       return {

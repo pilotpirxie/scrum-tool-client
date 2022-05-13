@@ -4,6 +4,8 @@ import { IncomingEvents, OutgoingEvents } from './events';
 import actions from '../actions';
 import { useAppDispatch, useAppSelector } from '../utils/hooks';
 import registerBoardsHandlers from './boardsHandlers';
+import registerCardsHandlers from './cardsHandlers';
+import registerUsersHandlers from './usersHandlers';
 
 export type SocketHook = {
   connect: (nickname: string, boardId: string) => void;
@@ -48,7 +50,9 @@ export function useSocket(): SocketHook {
       });
     });
 
-    registerBoardsHandlers(newSocket, dispatch, navigate);
+    registerUsersHandlers(newSocket, dispatch, navigate);
+    registerBoardsHandlers(newSocket, dispatch);
+    registerCardsHandlers(newSocket, dispatch);
 
     dispatch({
       type: actions.config.SetSocket,
