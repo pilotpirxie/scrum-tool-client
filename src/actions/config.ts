@@ -1,3 +1,4 @@
+import { Socket } from 'socket.io-client';
 import { User } from '../reducers/config';
 
 export enum ActionType {
@@ -6,6 +7,8 @@ export enum ActionType {
   SetStage = 'CONFIG/SET_STAGE',
   SetTimer = 'CONFIG/SET_TIMER',
   SetUsers = 'CONFIG/SET_USERS',
+  ConfigureNewSocket = 'CONFIG/CONFIGURE_NEW_SOCKET',
+  SetSocket = 'CONFIG/SET_SOCKET',
 }
 
 export type SetNickname = {
@@ -40,5 +43,20 @@ export type SetUsers = {
   type: ActionType.SetUsers;
   payload: {
     users: Array<User>;
+  };
+};
+
+export type ConfigureNewSocket = {
+  type: ActionType.ConfigureNewSocket;
+  payload: {
+    nickname: string;
+    boardId: string;
+  };
+};
+
+export type SetSocket = {
+  type: ActionType.SetSocket;
+  payload: {
+    socket: Socket;
   };
 };

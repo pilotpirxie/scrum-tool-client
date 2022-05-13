@@ -1,7 +1,10 @@
+import { Socket } from 'socket.io-client';
 import {
   ActionType,
+  ConfigureNewSocket,
   SetCode,
   SetNickname,
+  SetSocket,
   SetStage,
   SetTimer,
   SetUsers,
@@ -22,6 +25,7 @@ export type ConfigState = {
   stage: number;
   timer: number;
   users: Array<User>;
+  socket: Socket | null;
 };
 
 const initialState: ConfigState = {
@@ -30,6 +34,7 @@ const initialState: ConfigState = {
   stage: 0,
   timer: 0,
   users: [],
+  socket: null,
 };
 
 export type ConfigActions =
@@ -37,7 +42,9 @@ export type ConfigActions =
   | SetCode
   | SetStage
   | SetTimer
-  | SetUsers;
+  | SetUsers
+  | SetSocket
+  | ConfigureNewSocket;
 
 export default function reducer(
   state: ConfigState = initialState,
@@ -68,6 +75,11 @@ export default function reducer(
       return {
         ...state,
         users: action.payload.users,
+      };
+    case ActionType.SetSocket:
+      return {
+        ...state,
+        socket: action.payload.socket,
       };
     default:
       return state;
