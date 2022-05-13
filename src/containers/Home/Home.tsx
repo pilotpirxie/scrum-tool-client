@@ -1,22 +1,17 @@
 import { useState } from 'react';
-import { useAppDispatch } from '../../utils/hooks';
-import actions from '../../actions';
+import { useSocket } from '../../socket/useSocket';
 
 function Home() {
   const [nickname, setNickname] = useState(
     `Guest${Math.floor(Math.random() * 10000)}`,
   );
   const [boardId, setBoardId] = useState('');
-  const dispatch = useAppDispatch();
+  const socketController = useSocket();
 
   const handleJoin = () => {
-    dispatch({
-      type: actions.config.ConfigureNewSocket,
-      payload: {
-        nickname,
-        boardId,
-      },
-    });
+    if (!socketController.socket?.connected) {
+      socketController.connect(nickname, boardId);
+    }
   };
 
   return (

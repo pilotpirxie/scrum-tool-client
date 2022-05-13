@@ -3,6 +3,7 @@ export type RawUser = {
   avatar: number;
   isReady: boolean;
 };
+
 export type RawCard = {
   id: string;
   stackedOn: string;
@@ -10,12 +11,4 @@ export type RawCard = {
   userId: string;
   column: number;
   votes: number;
-  createdAt: Date;
-  updatedAt: Date;
-};
-
-export type JoinedEventPayload = {
-  users: RawUser[];
-  cards: RawCard[];
-  board: { id: string; stage: number; timerTo: Date };
 };
