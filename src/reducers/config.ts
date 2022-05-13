@@ -11,17 +11,14 @@ import {
 } from '../actions/config';
 
 export type User = {
-  id: string;
   nickname: string;
-  avatarId: number;
+  avatar: number;
   isReady: boolean;
-  createdAt: string;
-  updatedAt: string;
 };
 
 export type ConfigState = {
   nickname: string;
-  code: string;
+  boardId: string;
   stage: number;
   timer: number;
   users: Array<User>;
@@ -30,7 +27,7 @@ export type ConfigState = {
 
 const initialState: ConfigState = {
   nickname: '',
-  code: '',
+  boardId: '',
   stage: 0,
   timer: 0,
   users: [],

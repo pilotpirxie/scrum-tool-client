@@ -13,8 +13,6 @@ export type Card = {
   userId: string;
   column: number;
   votes: number;
-  createdAt: string;
-  updatedAt: string;
 };
 
 export type CardsState = Array<Card>;
@@ -26,8 +24,6 @@ const initialState: CardsState = [
     content: 'Card 1',
     userId: 'Author 1',
     column: 0,
-    createdAt: '2020-01-01T00:00:00.000Z',
-    updatedAt: '2020-01-01T00:00:00.000Z',
     votes: 0,
   },
   {
@@ -36,8 +32,6 @@ const initialState: CardsState = [
     content: 'Card 2',
     userId: 'Author 1',
     column: 0,
-    createdAt: '2020-01-01T00:00:00.000Z',
-    updatedAt: '2020-01-01T00:00:00.000Z',
     votes: 0,
   },
   {
@@ -46,8 +40,6 @@ const initialState: CardsState = [
     content: 'Card 3',
     userId: 'Author 2',
     column: 0,
-    createdAt: '2020-01-01T00:00:00.000Z',
-    updatedAt: '2020-01-01T00:00:00.000Z',
     votes: 0,
   },
   {
@@ -56,8 +48,6 @@ const initialState: CardsState = [
     content: 'Card 4',
     userId: 'Author 1',
     column: 0,
-    createdAt: '2020-01-01T00:00:00.000Z',
-    updatedAt: '2020-01-01T00:00:00.000Z',
     votes: 0,
   },
   {
@@ -66,8 +56,6 @@ const initialState: CardsState = [
     content: 'Card 5',
     userId: 'Author 1',
     column: 1,
-    createdAt: '2020-01-01T00:00:00.000Z',
-    updatedAt: '2020-01-01T00:00:00.000Z',
     votes: 0,
   },
   {
@@ -76,8 +64,6 @@ const initialState: CardsState = [
     content: 'Card 6',
     userId: 'Author 1',
     column: 2,
-    createdAt: '2020-01-01T00:00:00.000Z',
-    updatedAt: '2020-01-01T00:00:00.000Z',
     votes: 0,
   },
   {
@@ -86,8 +72,6 @@ const initialState: CardsState = [
     content: 'Card 7',
     userId: 'Author 1',
     column: 2,
-    createdAt: '2020-01-01T00:00:00.000Z',
-    updatedAt: '2020-01-01T00:00:00.000Z',
     votes: 0,
   },
 ];
