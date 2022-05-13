@@ -1,4 +1,5 @@
 export type RawUser = {
+  id: string;
   nickname: string;
   avatar: number;
   isReady: boolean;

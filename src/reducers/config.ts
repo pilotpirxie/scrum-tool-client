@@ -9,10 +9,12 @@ import {
   SetSocket,
   SetStage,
   SetTimer,
+  SetUserId,
   SetUsers,
 } from '../actions/config';
 
 export type User = {
+  id: string;
   nickname: string;
   avatar: number;
   isReady: boolean;
@@ -31,6 +33,7 @@ export type ConfigState = {
 
 const initialState: ConfigState = {
   localUser: {
+    id: '',
     avatar: 0,
     isReady: false,
     nickname: '',
@@ -45,6 +48,7 @@ const initialState: ConfigState = {
 };
 
 export type ConfigActions =
+  | SetUserId
   | SetNickname
   | SetAvatar
   | SetIsReady
@@ -82,6 +86,14 @@ export default function reducer(
         board: {
           ...state.board,
           timer: action.payload.timer,
+        },
+      };
+    case ActionType.SetUserId:
+      return {
+        ...state,
+        localUser: {
+          ...state.localUser,
+          id: action.payload.id,
         },
       };
     case ActionType.SetNickname:

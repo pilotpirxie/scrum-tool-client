@@ -2,6 +2,7 @@ import { Socket } from 'socket.io-client';
 import { User } from '../reducers/config';
 
 export enum ActionType {
+  SetUserId = 'CONFIG/SET_USER_ID',
   SetNickname = 'CONFIG/SET_NICKNAME',
   SetAvatar = 'CONFIG/SET_AVATAR',
   SetIsReady = 'CONFIG/SET_IS_READY',
@@ -12,6 +13,13 @@ export enum ActionType {
   ConfigureNewSocket = 'CONFIG/CONFIGURE_NEW_SOCKET',
   SetSocket = 'CONFIG/SET_SOCKET',
 }
+
+export type SetUserId = {
+  type: ActionType.SetUserId;
+  payload: {
+    id: string;
+  };
+};
 
 export type SetNickname = {
   type: ActionType.SetNickname;

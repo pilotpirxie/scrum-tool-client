@@ -1,5 +1,6 @@
 import React from 'react';
 import './List.css';
+import { useSocket } from '../../socket/useSocket';
 
 function List({
   id,
@@ -30,6 +31,15 @@ function List({
     actions: 'Add action item...',
   }[type];
 
+  const [input, setInput] = React.useState('');
+  const socketController = useSocket();
+  const handleSubmit = () => {
+    socketController.socket?.emit('CreateCard', {
+      column: 0,
+      content: input,
+    });
+  };
+
   return (
     <div
       key={id}
@@ -44,10 +54,16 @@ function List({
       <div className="input-group p-3">
         <input
           type="text"
+          onChange={(e) => setInput(e.target.value)}
+          value={input}
           className={`form-control shadow border-${color} border-2`}
           placeholder={inputPlaceholder}
         />
-        <button className={`btn btn-${color} shadow`} type="button">
+        <button
+          onClick={handleSubmit}
+          className={`btn btn-${color} shadow`}
+          type="button"
+        >
           <i className="ri-add-line" />
         </button>
       </div>

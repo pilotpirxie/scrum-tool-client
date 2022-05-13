@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { IncomingEvents, OutgoingEvents } from './events';
 import actions from '../actions';
 import { useAppDispatch, useAppSelector } from '../utils/hooks';
-import registerCardsHandlers from './cardsHandlers';
+import registerBoardsHandlers from './boardsHandlers';
 
 export type SocketHook = {
   connect: (nickname: string, boardId: string) => void;
@@ -48,7 +48,7 @@ export function useSocket(): SocketHook {
       });
     });
 
-    registerCardsHandlers(newSocket, dispatch, navigate);
+    registerBoardsHandlers(newSocket, dispatch, navigate);
 
     dispatch({
       type: actions.config.SetSocket,

@@ -4,7 +4,7 @@ import { IncomingEvents, OutgoingEvents } from './events';
 import { RootDispatch } from '../utils/store';
 import actions from '../actions';
 
-function registerCardsHandlers(
+function registerBoardsHandlers(
   socket: Socket<IncomingEvents, OutgoingEvents>,
   dispatch: RootDispatch,
   navigate: NavigateFunction,
@@ -42,4 +42,4 @@ function registerCardsHandlers(
   });
 }
 
-export default registerCardsHandlers;
+export default registerBoardsHandlers;
