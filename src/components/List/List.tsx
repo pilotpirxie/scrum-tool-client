@@ -13,6 +13,12 @@ function List({
   children: React.ReactNode;
   columnWidth: number;
 }) {
+  const column = {
+    positive: 0,
+    negative: 1,
+    actions: 2,
+  }[type];
+
   const color = {
     positive: 'success',
     negative: 'danger',
@@ -35,7 +41,7 @@ function List({
   const socketController = useSocket();
   const handleSubmit = () => {
     socketController.socket?.emit('CreateCard', {
-      column: 0,
+      column,
       content: input,
     });
   };

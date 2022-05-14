@@ -135,11 +135,13 @@ export default function reducer(
         ...state,
         users: action.payload.users,
       };
-    case ActionType.SetSocket:
+    case ActionType.SetSocket: {
+      state.socket?.disconnect();
       return {
         ...state,
         socket: action.payload.socket,
       };
+    }
     default:
       return state;
   }

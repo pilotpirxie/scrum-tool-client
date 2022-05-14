@@ -18,7 +18,7 @@ export function useSocket(): SocketHook {
   const navigate = useNavigate();
 
   function connect(nickname: string, boardId: string) {
-    if (socket) {
+    if (socket?.connected) {
       socket.disconnect();
     }
 

@@ -39,6 +39,10 @@ function Retro() {
 
       socketController.connect(nickname, id || '');
     }
+
+    return () => {
+      socketController.socket?.disconnect();
+    };
   }, []);
 
   return (
