@@ -4,6 +4,7 @@ import logo from './logo.png';
 import smallLogo from './small-logo.png';
 import Avatar from '../../../components/Avatar';
 import DimContainer from '../../../components/DimContainer';
+import { useAppSelector } from '../../../utils/hooks';
 
 function Sidebar({
   isOpen,
@@ -12,6 +13,9 @@ function Sidebar({
   isOpen: boolean;
   onSidebarToggleClick: () => void;
 }) {
+  const users = useAppSelector((state) => state.config.users);
+  const board = useAppSelector((state) => state.config.board);
+
   return isOpen ? (
     <DimContainer>
       <div className="d-flex flex-column justify-content-between p-3 bg-white shadow sidebar">
@@ -26,23 +30,16 @@ function Sidebar({
           <div>
             <div className="text-center">
               <div className="fw-bolder text-primary text-uppercase fs-5">
-                Stage 1
+                Stage {board.stage + 1}
               </div>
               <div className="text-uppercase text-success fs-6">
                 Positives & Negatives
               </div>
             </div>
             <div className="pt-4 d-flex flex-row flex-wrap justify-content-center">
-              <Avatar image={1} success={false} />
-              <Avatar image={2} success={false} />
-              <Avatar image={3} success />
-              <Avatar image={4} success={false} />
-              <Avatar image={5} success />
-              <Avatar image={6} success />
-              <Avatar image={7} success={false} />
-              <Avatar image={8} success={false} />
-              <Avatar image={9} success={false} />
-              <Avatar image={10} success={false} />
+              {users.map((user) => (
+                <Avatar image={user.avatar} success={user.isReady} />
+              ))}
             </div>
             <div className="mt-4">
               <div className="fw-bolder text-primary text-uppercase d-flex align-items-center">
@@ -64,7 +61,7 @@ function Sidebar({
                   type="text"
                   className="form-control form-control-sm mt-1"
                   placeholder="Link to the board"
-                  value="https://scrm.ly/43kjb17d81"
+                  value={`${window.location.origin}/board/${board.boardId}`}
                   readOnly
                 />
               </div>
@@ -151,29 +148,15 @@ function Sidebar({
           </div>
           <div className="text-center">
             <div className="fw-bolder text-primary text-uppercase small mb-1">
-              Stage 1
+              Stage {board.stage + 1}
             </div>
           </div>
         </div>
         <div className="overflow-y-auto overflow-x-hidden hide-scrollbar">
           <div className="d-flex flex-row flex-wrap justify-content-center">
-            <Avatar image={1} success={false} />
-            <Avatar image={2} success={false} />
-            <Avatar image={3} success />
-            <Avatar image={4} success={false} />
-            <Avatar image={5} success />
-            <Avatar image={6} success />
-            <Avatar image={7} success={false} />
-            <Avatar image={8} success={false} />
-            <Avatar image={9} success={false} />
-            <Avatar image={10} success={false} />
-            <Avatar image={11} success={false} />
-            <Avatar image={12} success={false} />
-            <Avatar image={13} success={false} />
-            <Avatar image={14} success={false} />
-            <Avatar image={15} success={false} />
-            <Avatar image={16} success={false} />
-            <Avatar image={17} success={false} />
+            {users.map((user) => (
+              <Avatar image={user.avatar} success={user.isReady} />
+            ))}
           </div>
         </div>
         <div className="d-flex flex-column align-items-center">
