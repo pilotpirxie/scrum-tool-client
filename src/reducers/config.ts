@@ -26,7 +26,7 @@ export type ConfigState = {
   board: {
     boardId: string;
     stage: number;
-    timerTo: string;
+    timerTo: number;
   };
   users: Array<User>;
   socket: Socket | null;
@@ -42,7 +42,7 @@ const initialState: ConfigState = {
   board: {
     boardId: '',
     stage: 0,
-    timerTo: Date().toString(),
+    timerTo: Date.now(),
   },
   users: [],
   socket: null,
@@ -87,7 +87,7 @@ export default function reducer(
         ...state,
         board: {
           ...state.board,
-          timer: action.payload.timer,
+          timerTo: action.payload.timerTo,
         },
       };
     case ActionType.SetUserId:

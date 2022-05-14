@@ -11,6 +11,7 @@ function Card({
   onEdit,
   onGroup,
   stack = false,
+  displayVotes = false,
 }: {
   id: string;
   content: string;
@@ -21,6 +22,7 @@ function Card({
   onEdit: () => void;
   onGroup: (sourceCard: string, targetCard: string) => void;
   stack?: boolean;
+  displayVotes?: boolean;
 }) {
   const [{ isDragging }, drag] = useDrag(() => ({
     type: 'card',
@@ -67,18 +69,22 @@ function Card({
             >
               <i className="ri-edit-2-line" />
             </div>
-            <div
-              className="btn btn-outline-primary shadow me-1 btn-sm"
-              onClick={onDecreaseVote}
-            >
-              {votesCount}
-            </div>
-            <div
-              className="btn btn-outline-primary shadow me-1 btn-sm"
-              onClick={onIncreaseVote}
-            >
-              <i className="ri-add-line" />
-            </div>
+            {displayVotes && (
+              <>
+                <div
+                  className="btn btn-outline-primary shadow me-1 btn-sm"
+                  onClick={onDecreaseVote}
+                >
+                  {votesCount}
+                </div>
+                <div
+                  className="btn btn-outline-primary shadow me-1 btn-sm"
+                  onClick={onIncreaseVote}
+                >
+                  <i className="ri-add-line" />
+                </div>
+              </>
+            )}
           </div>
         </div>
       </div>

@@ -60,7 +60,7 @@ export type SetStage = {
 export type SetTimer = {
   type: ActionType.SetTimer;
   payload: {
-    timer: string;
+    timerTo: number;
   };
 };
 

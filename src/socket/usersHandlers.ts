@@ -48,7 +48,7 @@ function registerUsersHandlers(
     dispatch({
       type: actions.config.SetTimer,
       payload: {
-        timer: data.board.timerTo,
+        timerTo: data.board.timerTo,
       },
     });
 

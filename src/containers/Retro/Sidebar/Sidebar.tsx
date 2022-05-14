@@ -1,5 +1,7 @@
 import './Sidebar.css';
 
+import dayjs from 'dayjs';
+import { useEffect, useState } from 'react';
 import logo from './logo.png';
 import smallLogo from './small-logo.png';
 import Avatar from '../../../components/Avatar';
@@ -41,6 +43,30 @@ function Sidebar({
     socketController.socket?.emit('ToggleReady');
   };
 
+  const handleSetTimer = (duration: number) => {
+    socketController.socket?.emit('SetTimer', {
+      duration,
+    });
+  };
+
+  const timerTo = useAppSelector((state) => state.config.board.timerTo);
+  const [timer, setTimer] = useState('');
+
+  const getDiffFormat = (diff: number) =>
+    dayjs(dayjs(diff).diff(dayjs())).format('m:ss');
+
+  useEffect(() => {
+    setTimer(getDiffFormat(board.timerTo));
+
+    const intervalHandler = setInterval(() => {
+      setTimer(getDiffFormat(board.timerTo));
+    }, 500);
+
+    return () => {
+      clearInterval(intervalHandler);
+    };
+  }, [timerTo]);
+
   return isOpen ? (
     <DimContainer>
       <div className="d-flex flex-column justify-content-between p-3 bg-white shadow sidebar">
@@ -63,7 +89,12 @@ function Sidebar({
             </div>
             <div className="pt-4 d-flex flex-row flex-wrap justify-content-center">
               {users.map((user) => (
-                <Avatar image={user.avatar} success={user.isReady} />
+                <Avatar
+                  key={user.id}
+                  image={user.avatar}
+                  success={user.isReady}
+                  alt={user.nickname}
+                />
               ))}
             </div>
             <div className="mt-4">
@@ -118,18 +149,21 @@ function Sidebar({
                 <button
                   className="btn btn-outline-secondary btn-block btn-sm mx-1 px-3 shadow"
                   type="button"
+                  onClick={() => handleSetTimer(60)}
                 >
                   1 min
                 </button>
                 <button
                   className="btn btn-outline-secondary btn-block btn-sm mx-1 px-3 shadow"
                   type="button"
+                  onClick={() => handleSetTimer(180)}
                 >
                   3 min
                 </button>
                 <button
                   className="btn btn-outline-secondary btn-block btn-sm mx-1 px-3 shadow"
                   type="button"
+                  onClick={() => handleSetTimer(300)}
                 >
                   5 min
                 </button>
@@ -140,7 +174,8 @@ function Sidebar({
         <div>
           <div className="btn-timer p-3 my-3 rounded-4 text-center">
             <div className="text-black fw-bold fs-3 d-flex align-items-center justify-content-center">
-              <i className="ri-timer-line" /> 4:49
+              <i className="ri-timer-line" />{' '}
+              {timerTo > Date.now() ? timer : '0:00'}
             </div>
           </div>
           <button
@@ -194,13 +229,26 @@ function Sidebar({
         <div className="overflow-y-auto overflow-x-hidden hide-scrollbar">
           <div className="d-flex flex-row flex-wrap justify-content-center">
             {users.map((user) => (
-              <Avatar image={user.avatar} success={user.isReady} />
+              <Avatar
+                key={user.id}
+                image={user.avatar}
+                success={user.isReady}
+                alt={user.nickname}
+              />
             ))}
           </div>
         </div>
         <div className="d-flex flex-column align-items-center">
-          <div className="btn-timer btn-circle-lg my-3 rounded-circle text-center text-black fw-bold d-flex align-items-center justify-content-center">
-            4:49
+          <div
+            onClick={
+              timerTo < Date.now() ? () => handleSetTimer(180) : undefined
+            }
+            className={`${
+              timerTo < Date.now() ? 'cursor-pointer' : ''
+            } btn-timer btn-circle-lg my-3 rounded-circle text-center text-black fw-bold d-flex align-items-center justify-content-center`}
+          >
+            {timerTo < Date.now() && <i className="ri-timer-line fs-3" />}
+            {timerTo > Date.now() ? timer : ''}
           </div>
           <button
             type="button"

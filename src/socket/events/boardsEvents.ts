@@ -4,5 +4,5 @@ export type OutgoingBoardsEvents = {
 };
 
 export type IncomingBoardsEvents = {
-  BoardConfig: (data: { board: { stage: number; timerTo: string } }) => void;
+  BoardConfig: (data: { board: { stage: number; timerTo: number } }) => void;
 };
