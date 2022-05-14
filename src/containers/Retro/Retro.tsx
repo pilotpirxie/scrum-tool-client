@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate, useParams } from 'react-router-dom';
 import Sidebar from './Sidebar/Sidebar';
 import ShiftedContent from '../../components/ShiftedContent';
 import './Retro.css';
@@ -9,13 +10,14 @@ import UserModal from '../../components/UserModal';
 import List from '../../components/List';
 import { RootDispatch, RootState } from '../../utils/store';
 import actions from '../../actions';
+import { useSocket } from '../../socket/useSocket';
 
 function Retro() {
-  // const { id } = useParams<{ id: string }>();
+  const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
   const [isNavbarOpen, setIsNavbarOpen] = useState(false);
   const dispatch = useDispatch<RootDispatch>();
-
-  // const [cards, setCards] = useState([]);
+  const socketController = useSocket();
 
   const cards = useSelector((state: RootState) => state.cards);
 
@@ -28,6 +30,16 @@ function Retro() {
       },
     });
   };
+
+  useEffect(() => {
+    if (!socketController.socket?.connected) {
+      const nickname = `Guest${Math.floor(Math.random() * 10000)}`;
+
+      if (!id) navigate('/');
+
+      socketController.connect(nickname, id || '');
+    }
+  }, []);
 
   return (
     <div>
