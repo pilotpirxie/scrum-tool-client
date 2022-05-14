@@ -1,7 +1,4 @@
-import avatar0 from './avatar0.png';
 import './Avatar.css';
-
-const avatarMap = [avatar0];
 
 function Avatar({
   image,
@@ -15,7 +12,7 @@ function Avatar({
       {!success ? (
         <div className="m-1">
           <img
-            src={avatarMap[image]}
+            src={`/avatars/avatar${image}.png`}
             className="img-fluid avatar"
             alt="avatar"
           />
@@ -23,7 +20,7 @@ function Avatar({
       ) : (
         <div className="avatar-bg-success m-1">
           <img
-            src={avatarMap[image]}
+            src={`/avatars/avatar${image}.png`}
             className="img-fluid avatar avatar-success"
             alt="avatar"
           />

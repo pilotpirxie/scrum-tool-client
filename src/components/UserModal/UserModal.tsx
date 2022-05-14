@@ -15,17 +15,17 @@ function UserModal({ isOpen }: { isOpen?: boolean }) {
           placeholder="Username"
         />
         <div className="row py-3 user-modal">
-          <AvatarItem onSelect={() => {}} image={0} />
-          <AvatarItem onSelect={() => {}} image={0} />
-          <AvatarItem onSelect={() => {}} image={0} selected />
-          <AvatarItem onSelect={() => {}} image={0} />
-          <AvatarItem onSelect={() => {}} image={0} />
-          <AvatarItem onSelect={() => {}} image={0} />
-          <AvatarItem onSelect={() => {}} image={0} />
-          <AvatarItem onSelect={() => {}} image={0} />
-          <AvatarItem onSelect={() => {}} image={0} />
-          <AvatarItem onSelect={() => {}} image={0} />
-          <AvatarItem onSelect={() => {}} image={0} />
+          <AvatarItem onSelect={() => {}} image={1} />
+          <AvatarItem onSelect={() => {}} image={2} />
+          <AvatarItem onSelect={() => {}} image={3} selected />
+          <AvatarItem onSelect={() => {}} image={4} />
+          <AvatarItem onSelect={() => {}} image={5} />
+          <AvatarItem onSelect={() => {}} image={6} />
+          <AvatarItem onSelect={() => {}} image={7} />
+          <AvatarItem onSelect={() => {}} image={8} />
+          <AvatarItem onSelect={() => {}} image={9} />
+          <AvatarItem onSelect={() => {}} image={10} />
+          <AvatarItem onSelect={() => {}} image={11} />
         </div>
         <div className="d-flex justify-content-end mt-3">
           <Button color="primary" className="shadow d-flex align-items-center">

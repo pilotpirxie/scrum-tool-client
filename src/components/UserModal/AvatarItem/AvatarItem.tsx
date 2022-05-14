@@ -1,7 +1,3 @@
-import avatar0 from '../../Avatar/avatar0.png';
-
-const avatarMap = [avatar0];
-
 function AvatarItem({
   selected = false,
   onSelect,
@@ -19,7 +15,11 @@ function AvatarItem({
         } shadow`}
         onClick={() => onSelect()}
       >
-        <img src={avatarMap[image]} alt="Avatar" className="img-fluid" />
+        <img
+          src={`/avatars/avatar${image}.png`}
+          alt="Avatar"
+          className="img-fluid"
+        />
       </div>
     </div>
   );

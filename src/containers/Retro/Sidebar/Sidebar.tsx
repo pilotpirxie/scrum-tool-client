@@ -33,16 +33,16 @@ function Sidebar({
               </div>
             </div>
             <div className="pt-4 d-flex flex-row flex-wrap justify-content-center">
-              <Avatar image={0} success={false} />
-              <Avatar image={0} success={false} />
-              <Avatar image={0} success />
-              <Avatar image={0} success={false} />
-              <Avatar image={0} success />
-              <Avatar image={0} success />
-              <Avatar image={0} success={false} />
-              <Avatar image={0} success={false} />
-              <Avatar image={0} success={false} />
-              <Avatar image={0} success={false} />
+              <Avatar image={1} success={false} />
+              <Avatar image={2} success={false} />
+              <Avatar image={3} success />
+              <Avatar image={4} success={false} />
+              <Avatar image={5} success />
+              <Avatar image={6} success />
+              <Avatar image={7} success={false} />
+              <Avatar image={8} success={false} />
+              <Avatar image={9} success={false} />
+              <Avatar image={10} success={false} />
             </div>
             <div className="mt-4">
               <div className="fw-bolder text-primary text-uppercase d-flex align-items-center">
@@ -157,23 +157,23 @@ function Sidebar({
         </div>
         <div className="overflow-y-auto overflow-x-hidden hide-scrollbar">
           <div className="d-flex flex-row flex-wrap justify-content-center">
-            <Avatar image={0} success={false} />
-            <Avatar image={0} success={false} />
-            <Avatar image={0} success />
-            <Avatar image={0} success={false} />
-            <Avatar image={0} success />
-            <Avatar image={0} success />
-            <Avatar image={0} success={false} />
-            <Avatar image={0} success={false} />
-            <Avatar image={0} success={false} />
-            <Avatar image={0} success={false} />
-            <Avatar image={0} success={false} />
-            <Avatar image={0} success={false} />
-            <Avatar image={0} success={false} />
-            <Avatar image={0} success={false} />
-            <Avatar image={0} success={false} />
-            <Avatar image={0} success={false} />
-            <Avatar image={0} success={false} />
+            <Avatar image={1} success={false} />
+            <Avatar image={2} success={false} />
+            <Avatar image={3} success />
+            <Avatar image={4} success={false} />
+            <Avatar image={5} success />
+            <Avatar image={6} success />
+            <Avatar image={7} success={false} />
+            <Avatar image={8} success={false} />
+            <Avatar image={9} success={false} />
+            <Avatar image={10} success={false} />
+            <Avatar image={11} success={false} />
+            <Avatar image={12} success={false} />
+            <Avatar image={13} success={false} />
+            <Avatar image={14} success={false} />
+            <Avatar image={15} success={false} />
+            <Avatar image={16} success={false} />
+            <Avatar image={17} success={false} />
           </div>
         </div>
         <div className="d-flex flex-column align-items-center">
