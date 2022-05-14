@@ -21,16 +21,6 @@ function Retro() {
 
   const cards = useSelector((state: RootState) => state.cards);
 
-  const handleCardGroup = (sourceCard: string, targetCard: string) => {
-    dispatch({
-      type: actions.cards.GroupCards,
-      payload: {
-        sourceCard,
-        targetCard,
-      },
-    });
-  };
-
   useEffect(() => {
     if (!socketController.socket?.connected) {
       const nickname = `Guest${Math.floor(Math.random() * 10000)}`;
@@ -44,6 +34,20 @@ function Retro() {
       socketController.socket?.disconnect();
     };
   }, []);
+
+  const handleCardGroup = (sourceCard: string, targetCard: string) => {
+    dispatch({
+      type: actions.cards.GroupCards,
+      payload: {
+        sourceCard,
+        targetCard,
+      },
+    });
+  };
+
+  const handleCardDelete = (cardId: string) => {
+    socketController.socket?.emit('DeleteCard', { cardId });
+  };
 
   return (
     <div>
@@ -67,7 +71,7 @@ function Retro() {
                   content={card.content}
                   onDecreaseVote={() => {}}
                   votesCount={card.votes}
-                  onDelete={() => {}}
+                  onDelete={() => handleCardDelete(card.id)}
                   onEdit={() => {}}
                   onGroup={handleCardGroup}
                   onIncreaseVote={() => {}}
@@ -89,7 +93,7 @@ function Retro() {
                   content={card.content}
                   onDecreaseVote={() => {}}
                   votesCount={card.votes}
-                  onDelete={() => {}}
+                  onDelete={() => handleCardDelete(card.id)}
                   onEdit={() => {}}
                   onGroup={handleCardGroup}
                   onIncreaseVote={() => {}}
@@ -111,7 +115,7 @@ function Retro() {
                   content={card.content}
                   onDecreaseVote={() => {}}
                   votesCount={card.votes}
-                  onDelete={() => {}}
+                  onDelete={() => handleCardDelete(card.id)}
                   onEdit={() => {}}
                   onGroup={handleCardGroup}
                   onIncreaseVote={() => {}}

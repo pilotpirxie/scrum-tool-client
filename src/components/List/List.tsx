@@ -38,12 +38,16 @@ function List({
   }[type];
 
   const [input, setInput] = React.useState('');
+
   const socketController = useSocket();
+
   const handleSubmit = () => {
     socketController.socket?.emit('CreateCard', {
       column,
       content: input,
     });
+
+    setInput('');
   };
 
   return (
@@ -59,6 +63,11 @@ function List({
       </div>
       <div className="input-group p-3">
         <input
+          onKeyPress={(e) => {
+            if (e.key === 'Enter') {
+              handleSubmit();
+            }
+          }}
           type="text"
           onChange={(e) => setInput(e.target.value)}
           value={input}
