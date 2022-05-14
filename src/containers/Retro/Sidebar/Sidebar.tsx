@@ -12,9 +12,11 @@ import { useSocket } from '../../../socket/useSocket';
 function Sidebar({
   isOpen,
   onSidebarToggleClick,
+  onChangeUserData,
 }: {
   isOpen: boolean;
   onSidebarToggleClick: () => void;
+  onChangeUserData: () => void;
 }) {
   const users = useAppSelector((state) => state.config.users);
   const board = useAppSelector((state) => state.config.board);
@@ -84,7 +86,9 @@ function Sidebar({
                 Stage {board.stage + 1}
               </div>
               <div className="text-uppercase text-success fs-6">
-                Positives & Negatives
+                {board.stage === 0 && <div>Positives & Negatives</div>}
+                {board.stage === 1 && <div>Vote for cards</div>}
+                {board.stage === 2 && <div>Write action items</div>}
               </div>
             </div>
             <div className="pt-4 d-flex flex-row flex-wrap justify-content-center">
@@ -104,6 +108,7 @@ function Sidebar({
               <button
                 type="button"
                 className="btn btn-primary form-control shadow mt-1"
+                onClick={onChangeUserData}
               >
                 Change
               </button>

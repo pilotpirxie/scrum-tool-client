@@ -69,7 +69,7 @@ function Retro() {
     setEditModalContent(content);
   };
 
-  const handleModalSave = () => {
+  const handleEditModalSave = () => {
     socketController.socket?.emit('UpdateCard', {
       cardId: modalCardId,
       content: editModalContent,
@@ -77,9 +77,29 @@ function Retro() {
     setIsEditModalOpen(false);
   };
 
-  const handleModalDelete = () => {
+  const handleEditModalDelete = () => {
     handleCardDelete(modalCardId);
     setIsEditModalOpen(false);
+  };
+
+  const localUser = useAppSelector((state) => state.config.localUser);
+
+  const [isUserModalOpen, setIsUserModalOpen] = useState(false);
+  const [userModalNickname, setUserModalNickname] = useState('');
+  const [userModalAvatar, setUserModalAvatar] = useState(0);
+
+  const handleUserModalOpen = () => {
+    setUserModalNickname(localUser.nickname);
+    setUserModalAvatar(localUser.avatar);
+    setIsUserModalOpen(true);
+  };
+
+  const handleUserModalSave = () => {
+    socketController.socket?.emit('ChangeUserData', {
+      nickname: userModalNickname,
+      avatar: userModalAvatar,
+    });
+    setIsUserModalOpen(false);
   };
 
   return (
@@ -87,6 +107,7 @@ function Retro() {
       <Sidebar
         isOpen={isNavbarOpen}
         onSidebarToggleClick={() => setIsNavbarOpen(!isNavbarOpen)}
+        onChangeUserData={handleUserModalOpen}
       />
       <ShiftedContent>
         <div className="row m-0 vh-100">
@@ -168,12 +189,20 @@ function Retro() {
       <EditModal
         isOpen={isEditModalOpen}
         onClose={() => setIsEditModalOpen(false)}
-        onSave={handleModalSave}
+        onSave={handleEditModalSave}
         onChange={setEditModalContent}
-        onDelete={handleModalDelete}
+        onDelete={handleEditModalDelete}
         content={editModalContent}
       />
-      <UserModal />
+      <UserModal
+        isOpen={isUserModalOpen}
+        avatar={userModalAvatar}
+        nickname={userModalNickname}
+        onSave={handleUserModalSave}
+        onChangeAvatar={setUserModalAvatar}
+        onChangeNickname={setUserModalNickname}
+        onClose={() => setIsUserModalOpen(false)}
+      />
     </div>
   );
 }

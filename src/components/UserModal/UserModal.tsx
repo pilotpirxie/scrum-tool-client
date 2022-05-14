@@ -2,10 +2,31 @@ import { Button, Modal, ModalBody, ModalHeader } from 'reactstrap';
 import AvatarItem from './AvatarItem/AvatarItem';
 import './UserModal.css';
 
-function UserModal({ isOpen }: { isOpen?: boolean }) {
+function UserModal({
+  isOpen,
+  onChangeAvatar,
+  nickname,
+  onChangeNickname,
+  onClose,
+  onSave,
+  avatar,
+}: {
+  isOpen?: boolean;
+  avatar: number;
+  nickname: string;
+  onChangeAvatar: (avatar: number) => void;
+  onChangeNickname: (nickname: string) => void;
+  onClose: () => void;
+  onSave: () => void;
+}) {
+  const avatars = [];
+
+  for (let i = 0; i <= 88; i++) {
+    avatars.push(i);
+  }
   return (
     <Modal isOpen={isOpen} className="rounded-4">
-      <ModalHeader className="text-black" toggle={() => {}}>
+      <ModalHeader className="text-black" toggle={() => onClose()}>
         <i className="ri-user-line" /> User Settings
       </ModalHeader>
       <ModalBody>
@@ -13,22 +34,29 @@ function UserModal({ isOpen }: { isOpen?: boolean }) {
           type="text"
           className="form-control shadow border-primary border-2 text-black mb-3"
           placeholder="Username"
+          value={nickname}
+          onChange={(e) => onChangeNickname(e.target.value)}
+          onKeyPress={(e) => {
+            if (e.key === 'Enter') {
+              onSave();
+            }
+          }}
         />
         <div className="row py-3 user-modal">
-          <AvatarItem onSelect={() => {}} image={1} />
-          <AvatarItem onSelect={() => {}} image={2} />
-          <AvatarItem onSelect={() => {}} image={3} selected />
-          <AvatarItem onSelect={() => {}} image={4} />
-          <AvatarItem onSelect={() => {}} image={5} />
-          <AvatarItem onSelect={() => {}} image={6} />
-          <AvatarItem onSelect={() => {}} image={7} />
-          <AvatarItem onSelect={() => {}} image={8} />
-          <AvatarItem onSelect={() => {}} image={9} />
-          <AvatarItem onSelect={() => {}} image={10} />
-          <AvatarItem onSelect={() => {}} image={11} />
+          {avatars.map((avatarId) => (
+            <AvatarItem
+              onSelect={() => onChangeAvatar(avatarId)}
+              image={avatarId}
+              selected={avatar === avatarId}
+            />
+          ))}
         </div>
         <div className="d-flex justify-content-end mt-3">
-          <Button color="primary" className="shadow d-flex align-items-center">
+          <Button
+            color="primary"
+            className="shadow d-flex align-items-center"
+            onClick={onSave}
+          >
             <i className="ri-save-line me-1" /> Save
           </Button>
         </div>
