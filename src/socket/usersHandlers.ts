@@ -18,6 +18,27 @@ function registerUsersHandlers(
     });
 
     dispatch({
+      type: actions.config.SetUserId,
+      payload: {
+        id: data.localUser.id,
+      },
+    });
+
+    dispatch({
+      type: actions.config.SetAvatar,
+      payload: {
+        avatar: data.localUser.avatar,
+      },
+    });
+
+    dispatch({
+      type: actions.config.SetNickname,
+      payload: {
+        nickname: data.localUser.nickname,
+      },
+    });
+
+    dispatch({
       type: actions.config.SetUsers,
       payload: {
         users: data.users,

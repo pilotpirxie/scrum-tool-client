@@ -5,6 +5,7 @@ import smallLogo from './small-logo.png';
 import Avatar from '../../../components/Avatar';
 import DimContainer from '../../../components/DimContainer';
 import { useAppSelector } from '../../../utils/hooks';
+import { useSocket } from '../../../socket/useSocket';
 
 function Sidebar({
   isOpen,
@@ -15,6 +16,30 @@ function Sidebar({
 }) {
   const users = useAppSelector((state) => state.config.users);
   const board = useAppSelector((state) => state.config.board);
+  const localUser = useAppSelector((state) => state.config.localUser);
+
+  // const dispatch = useAppDispatch();
+  const socketController = useSocket();
+
+  const handleNextStage = () => {
+    if (board.stage < 2) {
+      socketController.socket?.emit('SetStage', {
+        stage: board.stage + 1,
+      });
+    }
+  };
+
+  const handlePreviousStage = () => {
+    if (board.stage > 0) {
+      socketController.socket?.emit('SetStage', {
+        stage: board.stage - 1,
+      });
+    }
+  };
+
+  const handleToggleReady = () => {
+    socketController.socket?.emit('ToggleReady');
+  };
 
   return isOpen ? (
     <DimContainer>
@@ -66,25 +91,25 @@ function Sidebar({
                 />
               </div>
             </div>
-            <div className="pt-4">
-              <div className="fw-bolder text-primary text-uppercase d-flex align-items-center">
-                Export <i className="ri-download-line ms-2" />
-              </div>
-              <div className="mt-1">
-                <button
-                  className="btn btn-outline-secondary btn-block btn-sm mx-1 px-3 shadow"
-                  type="button"
-                >
-                  PDF
-                </button>
-                <button
-                  className="btn btn-outline-secondary btn-block btn-sm mx-1 px-3 shadow"
-                  type="button"
-                >
-                  CSV
-                </button>
-              </div>
-            </div>
+            {/* <div className="pt-4"> */}
+            {/*  <div className="fw-bolder text-primary text-uppercase d-flex align-items-center"> */}
+            {/*    Export <i className="ri-download-line ms-2" /> */}
+            {/*  </div> */}
+            {/*  <div className="mt-1"> */}
+            {/*    <button */}
+            {/*      className="btn btn-outline-secondary btn-block btn-sm mx-1 px-3 shadow" */}
+            {/*      type="button" */}
+            {/*    > */}
+            {/*      PDF */}
+            {/*    </button> */}
+            {/*    <button */}
+            {/*      className="btn btn-outline-secondary btn-block btn-sm mx-1 px-3 shadow" */}
+            {/*      type="button" */}
+            {/*    > */}
+            {/*      CSV */}
+            {/*    </button> */}
+            {/*  </div> */}
+            {/* </div> */}
             <div className="pt-4">
               <div className="fw-bolder text-primary text-uppercase d-flex align-items-center">
                 Timer <i className="ri-timer-line ms-2" />
@@ -120,14 +145,28 @@ function Sidebar({
           </div>
           <button
             type="button"
-            className="btn btn-outline-primary form-control shadow d-flex align-items-center justify-content-center"
+            className={`btn ${
+              localUser.isReady ? 'btn-success' : 'btn-outline-primary'
+            } form-control shadow d-flex align-items-center justify-content-center`}
+            onClick={handleToggleReady}
           >
             <i className="ri-checkbox-circle-line fs-5 me-1" />
-            Mark as done
+            {localUser.isReady ? 'Mark as not ready' : 'Mark as ready'}
           </button>
           <button
             type="button"
+            disabled={board.stage === 0}
             className="mt-3 btn btn-outline-primary form-control shadow d-flex align-items-center justify-content-center"
+            onClick={handlePreviousStage}
+          >
+            <i className="ri-arrow-left-circle-line fs-5 me-1" />
+            Previous stage
+          </button>
+          <button
+            type="button"
+            disabled={board.stage === 2}
+            className="mt-3 btn btn-outline-primary form-control shadow d-flex align-items-center justify-content-center"
+            onClick={handleNextStage}
           >
             <i className="ri-arrow-right-circle-line fs-5 me-1" />
             Next stage
@@ -165,13 +204,26 @@ function Sidebar({
           </div>
           <button
             type="button"
-            className="btn btn-outline-primary btn-circle-md form-control shadow rounded-circle fs-3 p-0"
+            className={`btn ${
+              localUser.isReady ? 'btn-success' : 'btn-outline-primary'
+            } btn-circle-md form-control shadow rounded-circle fs-3 p-0`}
+            onClick={handleToggleReady}
           >
             <i className="ri-checkbox-circle-line" />
           </button>
           <button
             type="button"
             className="mt-3 btn btn-outline-primary btn-circle-md form-control shadow rounded-circle fs-3 p-0"
+            onClick={handlePreviousStage}
+            disabled={board.stage === 0}
+          >
+            <i className="ri-arrow-left-circle-line" />
+          </button>
+          <button
+            type="button"
+            className="mt-3 btn btn-outline-primary btn-circle-md form-control shadow rounded-circle fs-3 p-0"
+            onClick={handleNextStage}
+            disabled={board.stage === 2}
           >
             <i className="ri-arrow-right-circle-line" />
           </button>

@@ -125,6 +125,10 @@ export default function reducer(
     case ActionType.SetUser:
       return {
         ...state,
+        localUser:
+          state.localUser.id === action.payload.user.id
+            ? action.payload.user
+            : state.localUser,
         users: [
           ...state.users.filter((user) => user.id !== action.payload.user.id),
           action.payload.user,
