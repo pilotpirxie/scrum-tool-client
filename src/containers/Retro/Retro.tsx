@@ -19,6 +19,10 @@ function Retro() {
   const dispatch = useDispatch<RootDispatch>();
   const socketController = useSocket();
 
+  const [modalCardId, setModalCardId] = useState('');
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [editModalContent, setEditModalContent] = useState<string>('');
+
   const cards = useSelector((state: RootState) => state.cards);
 
   useEffect(() => {
@@ -49,6 +53,33 @@ function Retro() {
     socketController.socket?.emit('DeleteCard', { cardId });
   };
 
+  const handleUpvote = (cardId: string) => {
+    socketController.socket?.emit('UpvoteCard', { cardId });
+  };
+
+  const handleDownvote = (cardId: string) => {
+    socketController.socket?.emit('DownvoteCard', { cardId });
+  };
+
+  const handleCardEdit = (cardId: string, content: string) => {
+    setIsEditModalOpen(true);
+    setModalCardId(cardId);
+    setEditModalContent(content);
+  };
+
+  const handleModalSave = () => {
+    socketController.socket?.emit('UpdateCard', {
+      cardId: modalCardId,
+      content: editModalContent,
+    });
+    setIsEditModalOpen(false);
+  };
+
+  const handleModalDelete = () => {
+    handleCardDelete(modalCardId);
+    setIsEditModalOpen(false);
+  };
+
   return (
     <div>
       <Sidebar
@@ -69,12 +100,12 @@ function Retro() {
                   key={card.id}
                   id={card.id}
                   content={card.content}
-                  onDecreaseVote={() => {}}
+                  onDecreaseVote={() => handleDownvote(card.id)}
                   votesCount={card.votes}
                   onDelete={() => handleCardDelete(card.id)}
-                  onEdit={() => {}}
+                  onEdit={() => handleCardEdit(card.id, card.content)}
                   onGroup={handleCardGroup}
-                  onIncreaseVote={() => {}}
+                  onIncreaseVote={() => handleUpvote(card.id)}
                   stack={!!card.stackedOn}
                 />
               ))}
@@ -125,7 +156,14 @@ function Retro() {
           </List>
         </div>
       </ShiftedContent>
-      <EditModal />
+      <EditModal
+        isOpen={isEditModalOpen}
+        onClose={() => setIsEditModalOpen(false)}
+        onSave={handleModalSave}
+        onChange={setEditModalContent}
+        onDelete={handleModalDelete}
+        content={editModalContent}
+      />
       <UserModal />
     </div>
   );
