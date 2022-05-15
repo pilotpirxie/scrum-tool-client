@@ -128,11 +128,16 @@ export default function reducer(
           action.payload.user,
         ],
       };
-    case ActionType.SetUsers:
+    case ActionType.SetUsers: {
+      const localUser = action.payload.users.find(
+        (user) => user.id === state.localUser.id,
+      );
       return {
         ...state,
+        localUser: localUser || state.localUser,
         users: action.payload.users,
       };
+    }
     case ActionType.SetSocket: {
       state.socket?.disconnect();
       return {

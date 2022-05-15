@@ -152,25 +152,46 @@ function Sidebar({
               </div>
               <div className="mt-1">
                 <button
-                  className="btn btn-outline-secondary btn-block btn-sm mx-1 px-3 shadow"
+                  className="btn btn-outline-secondary btn-block btn-sm m-1 px-3 shadow"
+                  type="button"
+                  onClick={() => handleSetTimer(0)}
+                >
+                  Clear
+                </button>
+                <button
+                  className="btn btn-outline-secondary btn-block btn-sm m-1 px-3 shadow"
                   type="button"
                   onClick={() => handleSetTimer(60)}
                 >
                   1 min
                 </button>
                 <button
-                  className="btn btn-outline-secondary btn-block btn-sm mx-1 px-3 shadow"
+                  className="btn btn-outline-secondary btn-block btn-sm m-1 px-3 shadow"
                   type="button"
                   onClick={() => handleSetTimer(180)}
                 >
                   3 min
                 </button>
                 <button
-                  className="btn btn-outline-secondary btn-block btn-sm mx-1 px-3 shadow"
+                  className="btn btn-outline-secondary btn-block btn-sm m-1 px-3 shadow"
                   type="button"
                   onClick={() => handleSetTimer(300)}
                 >
                   5 min
+                </button>
+                <button
+                  className="btn btn-outline-secondary btn-block btn-sm m-1 px-3 shadow"
+                  type="button"
+                  onClick={() => handleSetTimer(600)}
+                >
+                  10 min
+                </button>
+                <button
+                  className="btn btn-outline-secondary btn-block btn-sm m-1 px-3 shadow"
+                  type="button"
+                  onClick={() => handleSetTimer(900)}
+                >
+                  15 min
                 </button>
               </div>
             </div>
