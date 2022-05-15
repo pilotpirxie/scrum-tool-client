@@ -124,7 +124,7 @@ function Retro() {
                   id={card.id}
                   content={card.content}
                   onDecreaseVote={() => handleDownvote(card.id)}
-                  votesCount={card.votes}
+                  votesCount={card.votes.length}
                   onDelete={() => handleCardDelete(card.id)}
                   onEdit={() => handleCardEdit(card.id, card.content)}
                   onGroup={handleCardGroup}
@@ -147,7 +147,7 @@ function Retro() {
                   id={card.id}
                   content={card.content}
                   onDecreaseVote={() => handleDownvote(card.id)}
-                  votesCount={card.votes}
+                  votesCount={card.votes.length}
                   onDelete={() => handleCardDelete(card.id)}
                   onEdit={() => handleCardEdit(card.id, card.content)}
                   onGroup={handleCardGroup}
@@ -173,7 +173,7 @@ function Retro() {
                     id={card.id}
                     content={card.content}
                     onDecreaseVote={() => handleDownvote(card.id)}
-                    votesCount={card.votes}
+                    votesCount={card.votes.length}
                     onDelete={() => handleCardDelete(card.id)}
                     onEdit={() => handleCardEdit(card.id, card.content)}
                     onGroup={handleCardGroup}

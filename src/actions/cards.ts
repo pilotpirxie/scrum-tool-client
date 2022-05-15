@@ -1,4 +1,4 @@
-import { Card } from '../reducers/cards';
+import { RawCard } from '../socket/events/models';
 
 export enum ActionType {
   GroupCards = 'CARDS/GROUP_CARDS',
@@ -18,14 +18,14 @@ export type GroupCards = {
 export type SetOneCard = {
   type: ActionType.SetOneCard;
   payload: {
-    card: Card;
+    card: RawCard;
   };
 };
 
 export type SetAllCards = {
   type: ActionType.SetAllCards;
   payload: {
-    cards: Array<Card>;
+    cards: Array<RawCard>;
   };
 };
 

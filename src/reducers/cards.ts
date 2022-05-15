@@ -5,17 +5,9 @@ import {
   SetAllCards,
   SetOneCard,
 } from '../actions/cards';
+import { RawCard } from '../socket/events/models';
 
-export type Card = {
-  id: string;
-  stackedOn: string | null;
-  content: string;
-  userId: string;
-  column: number;
-  votes: number;
-};
-
-export type CardsState = Array<Card>;
+export type CardsState = Array<RawCard>;
 
 const initialState: CardsState = [];
 

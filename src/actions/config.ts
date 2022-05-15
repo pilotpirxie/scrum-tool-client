@@ -1,5 +1,5 @@
 import { Socket } from 'socket.io-client';
-import { User } from '../reducers/config';
+import { RawUser } from '../socket/events/models';
 
 export enum ActionType {
   SetUserId = 'CONFIG/SET_USER_ID',
@@ -67,14 +67,14 @@ export type SetTimer = {
 export type SetUser = {
   type: ActionType.SetUser;
   payload: {
-    user: User;
+    user: RawUser;
   };
 };
 
 export type SetUsers = {
   type: ActionType.SetUsers;
   payload: {
-    users: Array<User>;
+    users: Array<RawUser>;
   };
 };
 

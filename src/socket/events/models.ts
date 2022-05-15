@@ -1,3 +1,8 @@
+export type RawVote = {
+  id: string;
+  userId: string;
+};
+
 export type RawUser = {
   id: string;
   nickname: string;
@@ -11,5 +16,5 @@ export type RawCard = {
   content: string;
   userId: string;
   column: number;
-  votes: number;
+  votes: RawVote[];
 };

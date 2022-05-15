@@ -13,22 +13,16 @@ import {
   SetUserId,
   SetUsers,
 } from '../actions/config';
-
-export type User = {
-  id: string;
-  nickname: string;
-  avatar: number;
-  isReady: boolean;
-};
+import { RawUser } from '../socket/events/models';
 
 export type ConfigState = {
-  localUser: User;
+  localUser: RawUser;
   board: {
     boardId: string;
     stage: number;
     timerTo: number;
   };
-  users: Array<User>;
+  users: Array<RawUser>;
   socket: Socket | null;
 };
 
