@@ -212,7 +212,8 @@ function Retro() {
                 })}
             </List>
           )}
-          {(board.stage === 2 || (isMobile && selectedColumn === 2)) && (
+          {((board.stage === 2 && !isMobile) ||
+            (isMobile && selectedColumn === 2)) && (
             <List
               id={2}
               type="actions"
