@@ -45,6 +45,7 @@ function UserModal({
         <div className="row py-3 user-modal">
           {avatars.map((avatarId) => (
             <AvatarItem
+              key={avatarId}
               onSelect={() => onChangeAvatar(avatarId)}
               image={avatarId}
               selected={avatar === avatarId}
