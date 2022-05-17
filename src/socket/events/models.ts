@@ -17,4 +17,5 @@ export type RawCard = {
   userId: string;
   column: number;
   votes: RawVote[];
+  createdAt: number;
 };

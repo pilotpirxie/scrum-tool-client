@@ -118,6 +118,12 @@ function Retro() {
                   card.column === 0 &&
                   !cards.some((nestedCard) => nestedCard.stackedOn === card.id),
               )
+              .sort((a, b) => {
+                if (board.stage !== 2) {
+                  return b.createdAt - a.createdAt;
+                }
+                return b.votes.length - a.votes.length;
+              })
               .map((card) => {
                 const votesCount =
                   board.stage === 1
@@ -148,6 +154,12 @@ function Retro() {
                   card.column === 1 &&
                   !cards.some((nestedCard) => nestedCard.stackedOn === card.id),
               )
+              .sort((a, b) => {
+                if (board.stage === 2) {
+                  return b.createdAt - a.createdAt;
+                }
+                return b.votes.length - a.votes.length;
+              })
               .map((card) => {
                 const votesCount =
                   board.stage === 1
@@ -181,6 +193,12 @@ function Retro() {
                       (nestedCard) => nestedCard.stackedOn === card.id,
                     ),
                 )
+                .sort((a, b) => {
+                  if (board.stage === 2) {
+                    return b.createdAt - a.createdAt;
+                  }
+                  return b.votes.length - a.votes.length;
+                })
                 .map((card) => {
                   const votesCount =
                     board.stage === 1
