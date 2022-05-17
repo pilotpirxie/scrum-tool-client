@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import Sidebar from './Sidebar/Sidebar';
 import ShiftedContent from '../../components/ShiftedContent';
@@ -8,8 +7,6 @@ import Card from '../../components/Card';
 import EditModal from '../../components/EditModal';
 import UserModal from '../../components/UserModal';
 import List from '../../components/List';
-import { RootDispatch } from '../../utils/store';
-import actions from '../../actions';
 import { useSocket } from '../../socket/useSocket';
 import { useAppSelector } from '../../utils/hooks';
 
@@ -17,7 +14,6 @@ function Retro() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const [isNavbarOpen, setIsNavbarOpen] = useState(false);
-  const dispatch = useDispatch<RootDispatch>();
   const socketController = useSocket();
 
   const [modalCardId, setModalCardId] = useState('');
@@ -41,14 +37,8 @@ function Retro() {
     };
   }, []);
 
-  const handleCardGroup = (sourceCard: string, targetCard: string) => {
-    dispatch({
-      type: actions.cards.GroupCards,
-      payload: {
-        sourceCard,
-        targetCard,
-      },
-    });
+  const handleCardGroup = (cardId: string, stackedOn: string) => {
+    socketController.socket?.emit('GroupCards', { cardId, stackedOn });
   };
 
   const handleCardDelete = (cardId: string) => {
@@ -155,7 +145,7 @@ function Retro() {
                   !cards.some((nestedCard) => nestedCard.stackedOn === card.id),
               )
               .sort((a, b) => {
-                if (board.stage === 2) {
+                if (board.stage !== 2) {
                   return b.createdAt - a.createdAt;
                 }
                 return b.votes.length - a.votes.length;
@@ -194,7 +184,7 @@ function Retro() {
                     ),
                 )
                 .sort((a, b) => {
-                  if (board.stage === 2) {
+                  if (board.stage !== 2) {
                     return b.createdAt - a.createdAt;
                   }
                   return b.votes.length - a.votes.length;
