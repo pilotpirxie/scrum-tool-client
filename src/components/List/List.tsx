@@ -1,17 +1,23 @@
 import React from 'react';
 import './List.css';
 import { useSocket } from '../../socket/useSocket';
+import useWindowSize from '../../utils/useWindowSize';
+import ColumnSelector from '../ColumnSelector';
 
 function List({
   id,
   type,
   children,
   columnWidth,
+  selectedColumn,
+  onChangeColumn,
 }: {
   id: number;
   type: 'positive' | 'negative' | 'actions';
   children: React.ReactNode;
   columnWidth: number;
+  selectedColumn: number;
+  onChangeColumn: (column: number) => void;
 }) {
   const column = {
     positive: 0,
@@ -50,6 +56,9 @@ function List({
     setInput('');
   };
 
+  const windowSize = useWindowSize();
+  const isMobile = windowSize.width < 768;
+
   return (
     <div
       key={id}
@@ -58,7 +67,13 @@ function List({
       } p-0 d-flex flex-column justify-content-between vh-100 retro-list`}
     >
       <div className="overflow-y-auto overflow-x-hidden h-100 p-3">
-        <h1 className="text-black">{heading}</h1>
+        {!isMobile && <h1 className="text-black">{heading}</h1>}
+        {isMobile && (
+          <ColumnSelector
+            selectedColumn={selectedColumn}
+            onChangeColumn={onChangeColumn}
+          />
+        )}
         <div className="row">{children}</div>
       </div>
       <div className="input-group p-3">
