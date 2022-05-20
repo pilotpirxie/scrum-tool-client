@@ -59,6 +59,13 @@ function registerUsersHandlers(
       },
     });
 
+    dispatch({
+      type: actions.config.SetMaxVotes,
+      payload: {
+        maxVotes: data.board.maxVotes,
+      },
+    });
+
     navigate(`/retro/${data.board.id}`);
   });
 
