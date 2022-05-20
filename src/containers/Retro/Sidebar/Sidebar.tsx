@@ -122,7 +122,7 @@ function Sidebar({
                   type="text"
                   className="form-control form-control-sm mt-1"
                   placeholder="Link to the board"
-                  value={`${window.location.origin}/board/${board.boardId}`}
+                  value={`${window.location.origin}/retro/${board.boardId}`}
                   readOnly
                 />
               </div>

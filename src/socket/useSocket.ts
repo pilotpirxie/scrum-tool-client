@@ -8,7 +8,7 @@ import registerCardsHandlers from './cardsHandlers';
 import registerUsersHandlers from './usersHandlers';
 
 export type SocketHook = {
-  connect: (nickname: string, boardId: string) => void;
+  connect: (nickname: string, avatar: number, boardId: string) => void;
   socket: Socket<IncomingEvents, OutgoingEvents> | null;
 };
 
@@ -17,7 +17,7 @@ export function useSocket(): SocketHook {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  function connect(nickname: string, boardId: string) {
+  function connect(nickname: string, avatar: number, boardId: string) {
     if (socket?.connected) {
       socket.disconnect();
     }
@@ -35,6 +35,7 @@ export function useSocket(): SocketHook {
       newSocket.emit('Join', {
         nickname,
         boardId,
+        avatar,
       });
 
       dispatch({

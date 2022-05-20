@@ -10,6 +10,7 @@ import List from '../../components/List';
 import { useSocket } from '../../socket/useSocket';
 import { useAppSelector } from '../../utils/hooks';
 import useWindowSize from '../../utils/useWindowSize';
+import useLocalStorage from '../../utils/useLocalStorage';
 
 function Retro() {
   const { id } = useParams<{ id: string }>();
@@ -24,13 +25,21 @@ function Retro() {
   const cards = useAppSelector((state) => state.cards);
   const board = useAppSelector((state) => state.config.board);
 
+  const [nickname, setNickname] = useLocalStorage<string>(
+    'nickname',
+    `Guest${Math.floor(Math.random() * 10000)}`,
+  );
+
+  const [avatar, setAvatar] = useLocalStorage<number>(
+    'avatar',
+    Math.floor(Math.random() * 89),
+  );
+
   useEffect(() => {
     if (!socketController.socket?.connected) {
-      const nickname = `Guest${Math.floor(Math.random() * 10000)}`;
-
       if (!id) navigate('/');
 
-      socketController.connect(nickname, id || '');
+      socketController.connect(nickname, avatar, id || '');
     }
 
     return () => {
@@ -90,10 +99,14 @@ function Retro() {
   };
 
   const handleUserModalSave = () => {
+    if (!userModalNickname) return;
+
     socketController.socket?.emit('ChangeUserData', {
       nickname: userModalNickname,
       avatar: userModalAvatar,
     });
+    setNickname(userModalNickname);
+    setAvatar(userModalAvatar);
     setIsUserModalOpen(false);
   };
 
@@ -129,6 +142,9 @@ function Retro() {
                     !cards.some(
                       (nestedCard) => nestedCard.stackedOn === card.id,
                     ),
+                )
+                .filter(
+                  (card) => board.stage !== 0 || card.userId === localUser.id,
                 )
                 .sort((a, b) => {
                   if (board.stage !== 2) {
@@ -179,6 +195,9 @@ function Retro() {
                       (nestedCard) => nestedCard.stackedOn === card.id,
                     ),
                 )
+                .filter(
+                  (card) => board.stage !== 0 || card.userId === localUser.id,
+                )
                 .sort((a, b) => {
                   if (board.stage !== 2) {
                     return b.createdAt - a.createdAt;
@@ -228,6 +247,9 @@ function Retro() {
                     !cards.some(
                       (nestedCard) => nestedCard.stackedOn === card.id,
                     ),
+                )
+                .filter(
+                  (card) => board.stage !== 0 || card.userId === localUser.id,
                 )
                 .sort((a, b) => {
                   if (board.stage !== 2) {
