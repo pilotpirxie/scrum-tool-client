@@ -22,7 +22,6 @@ function Sidebar({
   const board = useAppSelector((state) => state.config.board);
   const localUser = useAppSelector((state) => state.config.localUser);
 
-  // const dispatch = useAppDispatch();
   const socketController = useSocket();
 
   const handleNextStage = () => {
@@ -43,6 +42,12 @@ function Sidebar({
 
   const handleToggleReady = () => {
     socketController.socket?.emit('ToggleReady');
+  };
+
+  const handleChangeMaxVotes = (maxVotes: number) => {
+    socketController.socket?.emit('SetMaxVotes', {
+      maxVotes,
+    });
   };
 
   const handleSetTimer = (duration: number) => {
@@ -195,6 +200,25 @@ function Sidebar({
                 </button>
               </div>
             </div>
+          </div>
+          <div className="pt-4">
+            <div className="fw-bolder text-primary text-uppercase d-flex align-items-center">
+              Votes per user <i className="ri-arrow-up-line ms-2" />
+            </div>
+            <select
+              value={board.maxVotes}
+              onChange={(e) => handleChangeMaxVotes(Number(e.target.value))}
+              className="form-select"
+            >
+              <option value="0">Unlimited</option>
+              <option value="1">1</option>
+              <option value="3">3</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="10">10</option>
+              <option value="15">15</option>
+              <option value="20">20</option>
+            </select>
           </div>
         </div>
         <div>

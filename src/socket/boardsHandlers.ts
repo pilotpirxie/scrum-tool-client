@@ -21,6 +21,13 @@ function registerBoardsHandlers(
         timerTo: data.board.timerTo,
       },
     });
+
+    dispatch({
+      type: actions.config.SetMaxVotes,
+      payload: {
+        maxVotes: data.board.maxVotes,
+      },
+    });
   });
 }
 

@@ -9,6 +9,7 @@ export enum ActionType {
   SetBoardId = 'CONFIG/SET_CODE',
   SetStage = 'CONFIG/SET_STAGE',
   SetTimer = 'CONFIG/SET_TIMER',
+  SetMaxVotes = 'CONFIG/SET_MAX_VOTES',
   SetUser = 'CONFIG/SET_USER',
   SetUsers = 'CONFIG/SET_USERS',
   ConfigureNewSocket = 'CONFIG/CONFIGURE_NEW_SOCKET',
@@ -54,6 +55,13 @@ export type SetStage = {
   type: ActionType.SetStage;
   payload: {
     stage: number;
+  };
+};
+
+export type SetMaxVotes = {
+  type: ActionType.SetMaxVotes;
+  payload: {
+    maxVotes: number;
   };
 };
 

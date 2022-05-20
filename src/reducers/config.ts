@@ -5,6 +5,7 @@ import {
   SetAvatar,
   SetCode,
   SetIsReady,
+  SetMaxVotes,
   SetNickname,
   SetSocket,
   SetStage,
@@ -21,6 +22,7 @@ export type ConfigState = {
     boardId: string;
     stage: number;
     timerTo: number;
+    maxVotes: number;
   };
   users: Array<RawUser>;
   socket: Socket | null;
@@ -37,6 +39,7 @@ const initialState: ConfigState = {
     boardId: '',
     stage: 0,
     timerTo: Date.now(),
+    maxVotes: 0,
   },
   users: [],
   socket: null,
@@ -53,7 +56,8 @@ export type ConfigActions =
   | SetUser
   | SetUsers
   | SetSocket
-  | ConfigureNewSocket;
+  | ConfigureNewSocket
+  | SetMaxVotes;
 
 export default function reducer(
   state: ConfigState = initialState,
@@ -106,6 +110,14 @@ export default function reducer(
         localUser: {
           ...state.localUser,
           avatar: action.payload.avatar,
+        },
+      };
+    case ActionType.SetMaxVotes:
+      return {
+        ...state,
+        board: {
+          ...state.board,
+          maxVotes: action.payload.maxVotes,
         },
       };
     case ActionType.SetIsReady:

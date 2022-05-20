@@ -11,7 +11,7 @@ export type IncomingUsersEvents = {
     localUser: RawUser;
     users: RawUser[];
     cards: RawCard[];
-    board: { id: string; stage: number; timerTo: number };
+    board: { id: string; stage: number; maxVotes: number; timerTo: number };
   }) => void;
   UserState: (data: { user: RawUser }) => void;
   UsersState: (data: { users: RawUser[] }) => void;
