@@ -132,25 +132,6 @@ function Sidebar({
                 />
               </div>
             </div>
-            {/* <div className="pt-4"> */}
-            {/*  <div className="fw-bolder text-primary text-uppercase d-flex align-items-center"> */}
-            {/*    Export <i className="ri-download-line ms-2" /> */}
-            {/*  </div> */}
-            {/*  <div className="mt-1"> */}
-            {/*    <button */}
-            {/*      className="btn btn-outline-secondary btn-block btn-sm mx-1 px-3 shadow" */}
-            {/*      type="button" */}
-            {/*    > */}
-            {/*      PDF */}
-            {/*    </button> */}
-            {/*    <button */}
-            {/*      className="btn btn-outline-secondary btn-block btn-sm mx-1 px-3 shadow" */}
-            {/*      type="button" */}
-            {/*    > */}
-            {/*      CSV */}
-            {/*    </button> */}
-            {/*  </div> */}
-            {/* </div> */}
             <div className="pt-4">
               <div className="fw-bolder text-primary text-uppercase d-flex align-items-center">
                 Timer <i className="ri-timer-line ms-2" />

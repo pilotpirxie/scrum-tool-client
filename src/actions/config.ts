@@ -6,7 +6,7 @@ export enum ActionType {
   SetNickname = 'CONFIG/SET_NICKNAME',
   SetAvatar = 'CONFIG/SET_AVATAR',
   SetIsReady = 'CONFIG/SET_IS_READY',
-  SetBoardId = 'CONFIG/SET_CODE',
+  SetBoardId = 'CONFIG/SET_BOARD_ID',
   SetStage = 'CONFIG/SET_STAGE',
   SetTimer = 'CONFIG/SET_TIMER',
   SetMaxVotes = 'CONFIG/SET_MAX_VOTES',

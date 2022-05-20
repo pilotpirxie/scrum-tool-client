@@ -60,6 +60,13 @@ function registerUsersHandlers(
     });
 
     dispatch({
+      type: actions.config.SetBoardId,
+      payload: {
+        boardId: data.board.id,
+      },
+    });
+
+    dispatch({
       type: actions.config.SetMaxVotes,
       payload: {
         maxVotes: data.board.maxVotes,

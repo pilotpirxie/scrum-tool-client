@@ -27,7 +27,7 @@ function Home() {
       <div className="row h-100">
         <div className="col-12 h-100">
           <div className="d-flex justify-content-center align-items-center flex-column h-100">
-            <h1 className="fw-bold text-black">ScrumPurr.com</h1>
+            <h1 className="fw-bold text-black">ScrumPurr</h1>
             <div className="form-group w-100 mt-3">
               <input
                 className="form-control shadow-lg"
