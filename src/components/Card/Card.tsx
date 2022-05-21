@@ -52,7 +52,9 @@ function Card({
     <div ref={drop} className="col-12 col-xl-6 position-relative" key={id}>
       <div
         ref={drag}
-        className={`card card-body mt-3 retro-card retro-card-${color} border-2 border-${color} ${
+        className={`card card-body mt-3 retro-card ${
+          color === 'success' ? 'text-black' : 'text-white'
+        } bg-${color} retro-card-${color} border-2 border-${color} ${
           isDragging ? `is-dragging` : ''
         } ${isOver ? `is-over` : ''}`}
       >

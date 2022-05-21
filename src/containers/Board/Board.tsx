@@ -56,6 +56,7 @@ function Board() {
   };
 
   const localUser = useAppSelector((state) => state.config.localUser);
+  const board = useAppSelector((state) => state.config.board);
 
   const [isUserModalOpen, setIsUserModalOpen] = useState(false);
   const [userModalNickname, setUserModalNickname] = useState('');
@@ -79,8 +80,6 @@ function Board() {
     setIsUserModalOpen(false);
   };
 
-  const mode = 1;
-
   return (
     <div>
       <Sidebar
@@ -89,14 +88,15 @@ function Board() {
         onChangeUserData={handleUserModalOpen}
       />
       {/* @ts-ignore */}
-      {mode === 0 && (
+      {board.mode === 'retro' && (
         <Retro
           setIsEditModalOpen={setIsEditModalOpen}
           setEditModalContent={setEditModalContent}
           setModalCardId={setModalCardId}
         />
       )}
-      {mode === 1 && <Planning />}
+      {(board.mode === 'planning_hidden' ||
+        board.mode === 'planning_revealed') && <Planning />}
       <EditModal
         isOpen={isEditModalOpen}
         onClose={() => setIsEditModalOpen(false)}

@@ -3,6 +3,7 @@ import { RawCard, RawUser } from './models';
 export type OutgoingUsersEvents = {
   Join: (data: { boardId: string; nickname: string; avatar: number }) => void;
   ToggleReady: () => void;
+  SetSelectedPlanningCard: (data: { selectedPlanningCard: number }) => void;
   ChangeUserData: (data: { nickname: string; avatar: number }) => void;
 };
 

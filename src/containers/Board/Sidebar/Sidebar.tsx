@@ -56,6 +56,12 @@ function Sidebar({
     });
   };
 
+  const handleSetBoardMode = () => {
+    socketController.socket?.emit('SetBoardMode', {
+      mode: board.mode === 'retro' ? 'planning_hidden' : 'retro',
+    });
+  };
+
   const timerTo = useAppSelector((state) => state.config.board.timerTo);
   const [timer, setTimer] = useState('');
 
@@ -180,6 +186,19 @@ function Sidebar({
                   15 min
                 </button>
               </div>
+            </div>
+            <div className="pt-4">
+              <div className="fw-bolder text-primary text-uppercase d-flex align-items-center">
+                Board mode <i className="ri-toggle-line ms-2" />
+              </div>
+              <button
+                type="button"
+                className="btn btn-outline-primary form-control shadow d-flex align-items-center justify-content-center"
+                onClick={handleSetBoardMode}
+              >
+                <i className="ri-toggle-line fs-5 me-1" />
+                Switch to {board.mode === 'retro' ? 'planning' : 'retro'}
+              </button>
             </div>
           </div>
           <div className="pt-4">
