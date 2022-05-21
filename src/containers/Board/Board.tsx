@@ -6,6 +6,7 @@ import UserModal from '../../components/UserModal';
 import { useSocket } from '../../socket/useSocket';
 import { useAppSelector } from '../../utils/hooks';
 import useLocalStorage from '../../utils/useLocalStorage';
+import Planning from '../Planning/Planning';
 import Retro from '../Retro';
 
 function Board() {
@@ -78,6 +79,8 @@ function Board() {
     setIsUserModalOpen(false);
   };
 
+  const mode = 1;
+
   return (
     <div>
       <Sidebar
@@ -85,11 +88,15 @@ function Board() {
         onSidebarToggleClick={() => setIsNavbarOpen(!isNavbarOpen)}
         onChangeUserData={handleUserModalOpen}
       />
-      <Retro
-        setIsEditModalOpen={setIsEditModalOpen}
-        setEditModalContent={setEditModalContent}
-        setModalCardId={setModalCardId}
-      />
+      {/* @ts-ignore */}
+      {mode === 0 && (
+        <Retro
+          setIsEditModalOpen={setIsEditModalOpen}
+          setEditModalContent={setEditModalContent}
+          setModalCardId={setModalCardId}
+        />
+      )}
+      {mode === 1 && <Planning />}
       <EditModal
         isOpen={isEditModalOpen}
         onClose={() => setIsEditModalOpen(false)}
