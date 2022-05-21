@@ -8,6 +8,7 @@ export type RawUser = {
   nickname: string;
   avatar: number;
   isReady: boolean;
+  selectedPlanningCard: number;
 };
 
 export type RawCard = {

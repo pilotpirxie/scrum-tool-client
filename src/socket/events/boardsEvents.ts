@@ -6,6 +6,11 @@ export type OutgoingBoardsEvents = {
 
 export type IncomingBoardsEvents = {
   BoardConfig: (data: {
-    board: { stage: number; timerTo: number; maxVotes: number };
+    board: {
+      stage: number;
+      timerTo: number;
+      maxVotes: number;
+      mode: string;
+    };
   }) => void;
 };

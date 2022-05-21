@@ -3,10 +3,12 @@ import {
   ActionType,
   ConfigureNewSocket,
   SetAvatar,
+  SetBoardMode,
   SetCode,
   SetIsReady,
   SetMaxVotes,
   SetNickname,
+  SetSelectedPlanningCard,
   SetSocket,
   SetStage,
   SetTimer,
@@ -23,6 +25,7 @@ export type ConfigState = {
     stage: number;
     timerTo: number;
     maxVotes: number;
+    mode: string;
   };
   users: Array<RawUser>;
   socket: Socket | null;
@@ -34,12 +37,14 @@ const initialState: ConfigState = {
     avatar: 0,
     isReady: false,
     nickname: '',
+    selectedPlanningCard: 0,
   },
   board: {
     boardId: '',
     stage: 0,
     timerTo: Date.now(),
     maxVotes: 0,
+    mode: '',
   },
   users: [],
   socket: null,
@@ -48,10 +53,12 @@ const initialState: ConfigState = {
 export type ConfigActions =
   | SetUserId
   | SetNickname
+  | SetSelectedPlanningCard
   | SetAvatar
   | SetIsReady
   | SetCode
   | SetStage
+  | SetBoardMode
   | SetTimer
   | SetUser
   | SetUsers
@@ -88,6 +95,14 @@ export default function reducer(
           timerTo: action.payload.timerTo,
         },
       };
+    case ActionType.SetBoardMode:
+      return {
+        ...state,
+        board: {
+          ...state.board,
+          mode: action.payload.mode,
+        },
+      };
     case ActionType.SetUserId:
       return {
         ...state,
@@ -102,6 +117,14 @@ export default function reducer(
         localUser: {
           ...state.localUser,
           nickname: action.payload.nickname,
+        },
+      };
+    case ActionType.SetSelectedPlanningCard:
+      return {
+        ...state,
+        localUser: {
+          ...state.localUser,
+          selectedPlanningCard: action.payload.selectedPlanningCard,
         },
       };
     case ActionType.SetAvatar:

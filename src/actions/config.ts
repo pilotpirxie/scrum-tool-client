@@ -4,12 +4,14 @@ import { RawUser } from '../socket/events/models';
 export enum ActionType {
   SetUserId = 'CONFIG/SET_USER_ID',
   SetNickname = 'CONFIG/SET_NICKNAME',
+  SetSelectedPlanningCard = 'CONFIG/SET_SELECTED_PLANNING_CARD',
   SetAvatar = 'CONFIG/SET_AVATAR',
   SetIsReady = 'CONFIG/SET_IS_READY',
   SetBoardId = 'CONFIG/SET_BOARD_ID',
   SetStage = 'CONFIG/SET_STAGE',
   SetTimer = 'CONFIG/SET_TIMER',
   SetMaxVotes = 'CONFIG/SET_MAX_VOTES',
+  SetBoardMode = 'CONFIG/SET_BOARD_MODE',
   SetUser = 'CONFIG/SET_USER',
   SetUsers = 'CONFIG/SET_USERS',
   ConfigureNewSocket = 'CONFIG/CONFIGURE_NEW_SOCKET',
@@ -27,6 +29,13 @@ export type SetNickname = {
   type: ActionType.SetNickname;
   payload: {
     nickname: string;
+  };
+};
+
+export type SetSelectedPlanningCard = {
+  type: ActionType.SetSelectedPlanningCard;
+  payload: {
+    selectedPlanningCard: number;
   };
 };
 
@@ -55,6 +64,13 @@ export type SetStage = {
   type: ActionType.SetStage;
   payload: {
     stage: number;
+  };
+};
+
+export type SetBoardMode = {
+  type: ActionType.SetBoardMode;
+  payload: {
+    mode: string;
   };
 };
 

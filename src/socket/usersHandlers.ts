@@ -73,6 +73,13 @@ function registerUsersHandlers(
       },
     });
 
+    dispatch({
+      type: actions.config.SetBoardMode,
+      payload: {
+        mode: data.board.mode,
+      },
+    });
+
     navigate(`/retro/${data.board.id}`);
   });
 

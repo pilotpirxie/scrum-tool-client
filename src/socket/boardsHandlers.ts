@@ -28,6 +28,13 @@ function registerBoardsHandlers(
         maxVotes: data.board.maxVotes,
       },
     });
+
+    dispatch({
+      type: actions.config.SetBoardMode,
+      payload: {
+        mode: data.board.mode,
+      },
+    });
   });
 }
 
