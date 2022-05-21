@@ -1,51 +1,25 @@
-import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import Sidebar from './Sidebar/Sidebar';
-import ShiftedContent from '../../components/ShiftedContent';
-import './Retro.css';
-import Card from '../../components/Card';
-import EditModal from '../../components/EditModal';
-import UserModal from '../../components/UserModal';
+import { useState } from 'react';
 import List from '../../components/List';
-import { useSocket } from '../../socket/useSocket';
-import { useAppSelector } from '../../utils/hooks';
+import Card from '../../components/Card';
+import ShiftedContent from '../../components/ShiftedContent';
 import useWindowSize from '../../utils/useWindowSize';
-import useLocalStorage from '../../utils/useLocalStorage';
+import { useAppSelector } from '../../utils/hooks';
+import { useSocket } from '../../socket/useSocket';
 
-function Retro() {
-  const { id } = useParams<{ id: string }>();
-  const navigate = useNavigate();
-  const [isNavbarOpen, setIsNavbarOpen] = useState(false);
-  const socketController = useSocket();
-
-  const [modalCardId, setModalCardId] = useState('');
-  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-  const [editModalContent, setEditModalContent] = useState<string>('');
-
+function Retro({
+  setIsEditModalOpen,
+  setModalCardId,
+  setEditModalContent,
+}: {
+  setIsEditModalOpen: (isOpen: boolean) => void;
+  setModalCardId: (cardId: string) => void;
+  setEditModalContent: (content: string) => void;
+}) {
   const cards = useAppSelector((state) => state.cards);
   const board = useAppSelector((state) => state.config.board);
+  const localUser = useAppSelector((state) => state.config.localUser);
 
-  const [nickname, setNickname] = useLocalStorage<string>(
-    'nickname',
-    `Guest${Math.floor(Math.random() * 10000)}`,
-  );
-
-  const [avatar, setAvatar] = useLocalStorage<number>(
-    'avatar',
-    Math.floor(Math.random() * 89),
-  );
-
-  useEffect(() => {
-    if (!socketController.socket?.connected) {
-      if (!id) navigate('/');
-
-      socketController.connect(nickname, avatar, id || '');
-    }
-
-    return () => {
-      socketController.socket?.disconnect();
-    };
-  }, []);
+  const socketController = useSocket();
 
   const handleCardGroup = (cardId: string, stackedOn: string) => {
     socketController.socket?.emit('GroupCards', { cardId, stackedOn });
@@ -73,43 +47,6 @@ function Retro() {
     setEditModalContent(content);
   };
 
-  const handleEditModalSave = () => {
-    socketController.socket?.emit('UpdateCard', {
-      cardId: modalCardId,
-      content: editModalContent,
-    });
-    setIsEditModalOpen(false);
-  };
-
-  const handleEditModalDelete = () => {
-    handleCardDelete(modalCardId);
-    setIsEditModalOpen(false);
-  };
-
-  const localUser = useAppSelector((state) => state.config.localUser);
-
-  const [isUserModalOpen, setIsUserModalOpen] = useState(false);
-  const [userModalNickname, setUserModalNickname] = useState('');
-  const [userModalAvatar, setUserModalAvatar] = useState(0);
-
-  const handleUserModalOpen = () => {
-    setUserModalNickname(localUser.nickname);
-    setUserModalAvatar(localUser.avatar);
-    setIsUserModalOpen(true);
-  };
-
-  const handleUserModalSave = () => {
-    if (!userModalNickname) return;
-
-    socketController.socket?.emit('ChangeUserData', {
-      nickname: userModalNickname,
-      avatar: userModalAvatar,
-    });
-    setNickname(userModalNickname);
-    setAvatar(userModalAvatar);
-    setIsUserModalOpen(false);
-  };
-
   const [selectedColumn, setSelectedColumn] = useState(0);
   const windowSize = useWindowSize();
   const isMobile = windowSize.width < 768;
@@ -119,191 +56,158 @@ function Retro() {
   }
 
   return (
-    <div>
-      <Sidebar
-        isOpen={isNavbarOpen}
-        onSidebarToggleClick={() => setIsNavbarOpen(!isNavbarOpen)}
-        onChangeUserData={handleUserModalOpen}
-      />
-      <ShiftedContent>
-        <div className="row m-0 vh-100">
-          {(!isMobile || selectedColumn === 0) && (
-            <List
-              id={0}
-              type="positive"
-              columnWidth={columnWidth}
-              selectedColumn={selectedColumn}
-              onChangeColumn={setSelectedColumn}
-            >
-              {cards
-                .filter(
-                  (card) =>
-                    card.column === 0 &&
-                    !cards.some(
-                      (nestedCard) => nestedCard.stackedOn === card.id,
-                    ),
-                )
-                .filter(
-                  (card) => board.stage !== 0 || card.userId === localUser.id,
-                )
-                .sort((a, b) => {
-                  if (board.stage !== 2) {
-                    return b.createdAt - a.createdAt;
-                  }
-                  return b.votes.length - a.votes.length;
-                })
-                .map((card) => {
-                  const votesCount =
-                    board.stage === 1
-                      ? card.votes.filter(
-                          (vote) => vote.userId === localUser.id,
-                        ).length
-                      : card.votes.length;
-                  return (
-                    <Card
-                      key={card.id}
-                      id={card.id}
-                      content={card.content}
-                      onDecreaseVote={() => handleDownvote(card.id)}
-                      votesCount={votesCount}
-                      onDelete={() => handleCardDelete(card.id)}
-                      onEdit={() => handleCardEdit(card.id, card.content)}
-                      onGroup={handleCardGroup}
-                      onUngroup={handleCardUngroup}
-                      onIncreaseVote={() => handleUpvote(card.id)}
-                      stack={!!card.stackedOn}
-                      displayVotes={board.stage !== 0}
-                      color="success"
-                    />
-                  );
-                })}
-            </List>
-          )}
-          {(!isMobile || selectedColumn === 1) && (
-            <List
-              id={1}
-              type="negative"
-              columnWidth={columnWidth}
-              selectedColumn={selectedColumn}
-              onChangeColumn={setSelectedColumn}
-            >
-              {cards
-                .filter(
-                  (card) =>
-                    card.column === 1 &&
-                    !cards.some(
-                      (nestedCard) => nestedCard.stackedOn === card.id,
-                    ),
-                )
-                .filter(
-                  (card) => board.stage !== 0 || card.userId === localUser.id,
-                )
-                .sort((a, b) => {
-                  if (board.stage !== 2) {
-                    return b.createdAt - a.createdAt;
-                  }
-                  return b.votes.length - a.votes.length;
-                })
-                .map((card) => {
-                  const votesCount =
-                    board.stage === 1
-                      ? card.votes.filter(
-                          (vote) => vote.userId === localUser.id,
-                        ).length
-                      : card.votes.length;
-                  return (
-                    <Card
-                      key={card.id}
-                      id={card.id}
-                      content={card.content}
-                      onDecreaseVote={() => handleDownvote(card.id)}
-                      votesCount={votesCount}
-                      onDelete={() => handleCardDelete(card.id)}
-                      onEdit={() => handleCardEdit(card.id, card.content)}
-                      onGroup={handleCardGroup}
-                      onUngroup={handleCardUngroup}
-                      onIncreaseVote={() => handleUpvote(card.id)}
-                      stack={!!card.stackedOn}
-                      displayVotes={board.stage !== 0}
-                      color="danger"
-                    />
-                  );
-                })}
-            </List>
-          )}
-          {((board.stage === 2 && !isMobile) ||
-            (isMobile && selectedColumn === 2)) && (
-            <List
-              id={2}
-              type="actions"
-              columnWidth={columnWidth}
-              selectedColumn={selectedColumn}
-              onChangeColumn={setSelectedColumn}
-            >
-              {cards
-                .filter(
-                  (card) =>
-                    card.column === 2 &&
-                    !cards.some(
-                      (nestedCard) => nestedCard.stackedOn === card.id,
-                    ),
-                )
-                .filter(
-                  (card) => board.stage !== 0 || card.userId === localUser.id,
-                )
-                .sort((a, b) => {
-                  if (board.stage !== 2) {
-                    return b.createdAt - a.createdAt;
-                  }
-                  return b.votes.length - a.votes.length;
-                })
-                .map((card) => {
-                  const votesCount =
-                    board.stage === 1
-                      ? card.votes.filter(
-                          (vote) => vote.userId === localUser.id,
-                        ).length
-                      : card.votes.length;
-                  return (
-                    <Card
-                      key={card.id}
-                      id={card.id}
-                      content={card.content}
-                      onDecreaseVote={() => handleDownvote(card.id)}
-                      votesCount={votesCount}
-                      onDelete={() => handleCardDelete(card.id)}
-                      onEdit={() => handleCardEdit(card.id, card.content)}
-                      onGroup={handleCardGroup}
-                      onUngroup={handleCardUngroup}
-                      onIncreaseVote={() => handleUpvote(card.id)}
-                      stack={!!card.stackedOn}
-                      displayVotes={board.stage !== 0}
-                      color="primary"
-                    />
-                  );
-                })}
-            </List>
-          )}
-        </div>
-      </ShiftedContent>
-      <EditModal
-        isOpen={isEditModalOpen}
-        onClose={() => setIsEditModalOpen(false)}
-        onSave={handleEditModalSave}
-        onChange={setEditModalContent}
-        onDelete={handleEditModalDelete}
-        content={editModalContent}
-      />
-      <UserModal
-        isOpen={isUserModalOpen}
-        avatar={userModalAvatar}
-        nickname={userModalNickname}
-        onSave={handleUserModalSave}
-        onChangeAvatar={setUserModalAvatar}
-        onChangeNickname={setUserModalNickname}
-        onClose={() => setIsUserModalOpen(false)}
-      />
-    </div>
+    <ShiftedContent>
+      <div className="row m-0 vh-100">
+        {(!isMobile || selectedColumn === 0) && (
+          <List
+            id={0}
+            type="positive"
+            columnWidth={columnWidth}
+            selectedColumn={selectedColumn}
+            onChangeColumn={setSelectedColumn}
+          >
+            {cards
+              .filter(
+                (card) =>
+                  card.column === 0 &&
+                  !cards.some((nestedCard) => nestedCard.stackedOn === card.id),
+              )
+              .filter(
+                (card) => board.stage !== 0 || card.userId === localUser.id,
+              )
+              .sort((a, b) => {
+                if (board.stage !== 2) {
+                  return b.createdAt - a.createdAt;
+                }
+                return b.votes.length - a.votes.length;
+              })
+              .map((card) => {
+                const votesCount =
+                  board.stage === 1
+                    ? card.votes.filter((vote) => vote.userId === localUser.id)
+                        .length
+                    : card.votes.length;
+                return (
+                  <Card
+                    key={card.id}
+                    id={card.id}
+                    content={card.content}
+                    onDecreaseVote={() => handleDownvote(card.id)}
+                    votesCount={votesCount}
+                    onDelete={() => handleCardDelete(card.id)}
+                    onEdit={() => handleCardEdit(card.id, card.content)}
+                    onGroup={handleCardGroup}
+                    onUngroup={handleCardUngroup}
+                    onIncreaseVote={() => handleUpvote(card.id)}
+                    stack={!!card.stackedOn}
+                    displayVotes={board.stage !== 0}
+                    color="success"
+                  />
+                );
+              })}
+          </List>
+        )}
+        {(!isMobile || selectedColumn === 1) && (
+          <List
+            id={1}
+            type="negative"
+            columnWidth={columnWidth}
+            selectedColumn={selectedColumn}
+            onChangeColumn={setSelectedColumn}
+          >
+            {cards
+              .filter(
+                (card) =>
+                  card.column === 1 &&
+                  !cards.some((nestedCard) => nestedCard.stackedOn === card.id),
+              )
+              .filter(
+                (card) => board.stage !== 0 || card.userId === localUser.id,
+              )
+              .sort((a, b) => {
+                if (board.stage !== 2) {
+                  return b.createdAt - a.createdAt;
+                }
+                return b.votes.length - a.votes.length;
+              })
+              .map((card) => {
+                const votesCount =
+                  board.stage === 1
+                    ? card.votes.filter((vote) => vote.userId === localUser.id)
+                        .length
+                    : card.votes.length;
+                return (
+                  <Card
+                    key={card.id}
+                    id={card.id}
+                    content={card.content}
+                    onDecreaseVote={() => handleDownvote(card.id)}
+                    votesCount={votesCount}
+                    onDelete={() => handleCardDelete(card.id)}
+                    onEdit={() => handleCardEdit(card.id, card.content)}
+                    onGroup={handleCardGroup}
+                    onUngroup={handleCardUngroup}
+                    onIncreaseVote={() => handleUpvote(card.id)}
+                    stack={!!card.stackedOn}
+                    displayVotes={board.stage !== 0}
+                    color="danger"
+                  />
+                );
+              })}
+          </List>
+        )}
+        {((board.stage === 2 && !isMobile) ||
+          (isMobile && selectedColumn === 2)) && (
+          <List
+            id={2}
+            type="actions"
+            columnWidth={columnWidth}
+            selectedColumn={selectedColumn}
+            onChangeColumn={setSelectedColumn}
+          >
+            {cards
+              .filter(
+                (card) =>
+                  card.column === 2 &&
+                  !cards.some((nestedCard) => nestedCard.stackedOn === card.id),
+              )
+              .filter(
+                (card) => board.stage !== 0 || card.userId === localUser.id,
+              )
+              .sort((a, b) => {
+                if (board.stage !== 2) {
+                  return b.createdAt - a.createdAt;
+                }
+                return b.votes.length - a.votes.length;
+              })
+              .map((card) => {
+                const votesCount =
+                  board.stage === 1
+                    ? card.votes.filter((vote) => vote.userId === localUser.id)
+                        .length
+                    : card.votes.length;
+                return (
+                  <Card
+                    key={card.id}
+                    id={card.id}
+                    content={card.content}
+                    onDecreaseVote={() => handleDownvote(card.id)}
+                    votesCount={votesCount}
+                    onDelete={() => handleCardDelete(card.id)}
+                    onEdit={() => handleCardEdit(card.id, card.content)}
+                    onGroup={handleCardGroup}
+                    onUngroup={handleCardUngroup}
+                    onIncreaseVote={() => handleUpvote(card.id)}
+                    stack={!!card.stackedOn}
+                    displayVotes={board.stage !== 0}
+                    color="primary"
+                  />
+                );
+              })}
+          </List>
+        )}
+      </div>
+    </ShiftedContent>
   );
 }
 
