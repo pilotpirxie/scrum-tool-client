@@ -80,7 +80,7 @@ function registerUsersHandlers(
       },
     });
 
-    navigate(`/retro/${data.board.id}`);
+    navigate(`/board/${data.board.id}`);
   });
 
   socket.on('UsersState', (data) => {

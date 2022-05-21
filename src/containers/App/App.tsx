@@ -11,7 +11,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/retro/:id" element={<Board />} />
+      <Route path="/board/:id" element={<Board />} />
     </Routes>
   );
 }

@@ -48,6 +48,10 @@ function Card({
     }),
   }));
 
+  const isKudos = content.toLowerCase().indexOf('kudos') > -1;
+  const kudosHash = content.length % 24;
+  const kudosImage = `/kudos/q${kudosHash}.gif`;
+
   return (
     <div ref={drop} className="col-12 col-xl-6 position-relative" key={id}>
       <div
@@ -57,6 +61,15 @@ function Card({
         } bg-${color} retro-card-${color} border-2 border-${color} ${
           isDragging ? `is-dragging` : ''
         } ${isOver ? `is-over` : ''}`}
+        style={
+          isKudos
+            ? {
+                backgroundImage: `url(${kudosImage})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+              }
+            : {}
+        }
       >
         <div className="retro-card-text">
           {stack && <i className="ri-stack-line ms-1" />} {content}
