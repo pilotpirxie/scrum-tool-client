@@ -8,10 +8,7 @@ function Planning() {
       <div className="vh-100 w-100 bg-planning overflow-y-auto">
         <div className="container d-flex align-items-center">
           <div className="row m-0">
-            <div className="col-12 d-flex align-items-center justify-content-center">
-              <h1 className="text-white mt-5">Waiting for others...</h1>
-            </div>
-            <div className="col-12 col-lg-8 offset-lg-2 ">
+            <div className="mt-5 col-12 col-lg-8 offset-lg-2 ">
               <div className="d-flex flex-row flex-wrap justify-content-center">
                 <PlanningCard selected={false} onClick={() => {}} number={1} />
                 <PlanningCard selected={false} onClick={() => {}} number={2} />
