@@ -9,7 +9,7 @@ function Planning() {
         <div className="container d-flex align-items-center">
           <div className="row m-0">
             <div className="col-12 d-flex align-items-center justify-content-center">
-              <h1 className="text-white">Planning</h1>
+              <h1 className="text-white mt-5">Waiting for others...</h1>
             </div>
             <div className="col-12 col-lg-8 offset-lg-2 ">
               <div className="d-flex flex-row flex-wrap justify-content-center">
@@ -17,7 +17,7 @@ function Planning() {
                 <PlanningCard selected={false} onClick={() => {}} number={2} />
                 <PlanningCard selected={false} onClick={() => {}} number={3} />
                 <PlanningCard selected={false} onClick={() => {}} number={5} />
-                <PlanningCard selected={false} onClick={() => {}} number={8} />
+                <PlanningCard selected onClick={() => {}} number={8} />
                 <PlanningCard selected={false} onClick={() => {}} number={13} />
                 <PlanningCard selected={false} onClick={() => {}} number={21} />
                 <PlanningCard selected={false} onClick={() => {}} number={34} />

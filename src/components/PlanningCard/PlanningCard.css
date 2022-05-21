@@ -6,6 +6,34 @@
 @media (min-width: 480px) {
     .planning-card {
         height: 200px;
-        width: 120px;
+        width: 140px;
     }
+}
+
+.planning-card:hover {
+    cursor: pointer;
+    opacity: 0.9;
+}
+
+.planning-card-body {
+    border: 0;
+}
+
+@keyframes selected-card {
+    from {
+        transform: rotate(-5deg);
+    }
+    to {
+        transform: rotate(5deg);
+    }
+}
+
+.planning-card-body.selected {
+    background-image: -webkit-linear-gradient(110deg,
+    #ffffff 30%,
+    #B9FB1A 30%,
+    #B9FB1A 70%,
+    #ffffff 70%);
+
+    animation: selected-card 1s ease-in-out infinite alternate;
 }
