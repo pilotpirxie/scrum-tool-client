@@ -50,7 +50,7 @@ function Planning() {
     <ShiftedContent>
       <div className="vh-100 w-100 bg-planning overflow-y-auto">
         <div className="container d-flex align-items-center">
-          <div className="row m-0">
+          <div className="row m-0 w-100">
             <div className="mt-5 col-12 col-lg-8 offset-lg-2 ">
               {board.mode === 'planning_hidden' && (
                 <div className="d-flex flex-row flex-wrap justify-content-center">
