@@ -51,7 +51,7 @@ function Card({
   }));
 
   const isKudos = content.toLowerCase().indexOf('kudos') > -1;
-  const kudosHash = createdAt % 24;
+  const kudosHash = createdAt % 32;
   const kudosImage = `/kudos/q${kudosHash}.gif`;
   const kudosStyles = isKudos
     ? {
