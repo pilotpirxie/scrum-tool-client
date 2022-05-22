@@ -102,6 +102,7 @@ function Retro({
                     stack={!!card.stackedOn}
                     displayVotes={board.stage !== 0}
                     color="success"
+                    createdAt={card.createdAt}
                   />
                 );
               })}
@@ -151,6 +152,7 @@ function Retro({
                     stack={!!card.stackedOn}
                     displayVotes={board.stage !== 0}
                     color="danger"
+                    createdAt={card.createdAt}
                   />
                 );
               })}
@@ -201,6 +203,7 @@ function Retro({
                     stack={!!card.stackedOn}
                     displayVotes={board.stage !== 0}
                     color="primary"
+                    createdAt={card.createdAt}
                   />
                 );
               })}

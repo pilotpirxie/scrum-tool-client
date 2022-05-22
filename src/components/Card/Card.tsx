@@ -4,6 +4,7 @@ import { useDrag, useDrop } from 'react-dnd';
 function Card({
   id,
   content,
+  createdAt,
   votesCount,
   onIncreaseVote,
   onDecreaseVote,
@@ -17,6 +18,7 @@ function Card({
 }: {
   id: string;
   content: string;
+  createdAt: number;
   votesCount: number;
   onIncreaseVote: () => void;
   onDecreaseVote: () => void;
@@ -49,27 +51,26 @@ function Card({
   }));
 
   const isKudos = content.toLowerCase().indexOf('kudos') > -1;
-  const kudosHash = content.length % 24;
+  const kudosHash = createdAt % 24;
   const kudosImage = `/kudos/q${kudosHash}.gif`;
+  const kudosStyles = isKudos
+    ? {
+        backgroundImage: `url(${kudosImage})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }
+    : {};
+  const cardColor =
+    color === 'success' && !isKudos ? 'text-black' : 'text-white';
 
   return (
     <div ref={drop} className="col-12 col-xl-6 position-relative" key={id}>
       <div
         ref={drag}
-        className={`card card-body mt-3 retro-card ${
-          color === 'success' ? 'text-black' : 'text-white'
-        } bg-${color} retro-card-${color} border-2 border-${color} ${
+        className={`card card-body mt-3 ${cardColor} retro-card bg-${color} retro-card-${color} border-2 border-${color} ${
           isDragging ? `is-dragging` : ''
         } ${isOver ? `is-over` : ''}`}
-        style={
-          isKudos
-            ? {
-                backgroundImage: `url(${kudosImage})`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-              }
-            : {}
-        }
+        style={kudosStyles}
       >
         <div className="retro-card-text">
           {stack && <i className="ri-stack-line ms-1" />} {content}

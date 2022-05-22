@@ -135,6 +135,13 @@ function Sidebar({
                   placeholder="Link to the board"
                   value={`${window.location.origin}/board/${board.boardId}`}
                   readOnly
+                  onFocus={(e) => {
+                    e.target.select();
+                    navigator.clipboard
+                      .writeText(e.target.value)
+                      // eslint-disable-next-line no-console
+                      .catch((error) => console.error(error));
+                  }}
                 />
               </div>
             </div>
@@ -224,7 +231,7 @@ function Sidebar({
         <div>
           <div className="btn-timer p-3 my-3 rounded-4 text-center">
             <div className="text-black fw-bold fs-3 d-flex align-items-center justify-content-center">
-              <i className="ri-timer-line" />{' '}
+              <i className="me-1 ri-timer-line" />{' '}
               {timerTo > Date.now() ? timer : '0:00'}
             </div>
           </div>

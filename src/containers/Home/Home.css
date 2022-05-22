@@ -1,0 +1,12 @@
+@keyframes logo-spin {
+    from {
+        transform: rotate(-1deg);
+    }
+    to {
+        transform: rotate(1deg);
+    }
+}
+
+.animated-logo {
+    animation: logo-spin infinite 1s ease-in-out alternate;
+}
