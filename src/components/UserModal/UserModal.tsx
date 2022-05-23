@@ -1,4 +1,4 @@
-import { Button, Modal, ModalBody, ModalHeader } from 'reactstrap';
+import { Modal, ModalBody, ModalHeader } from 'reactstrap';
 import AvatarItem from './AvatarItem/AvatarItem';
 import './UserModal.css';
 
@@ -24,9 +24,10 @@ function UserModal({
   for (let i = 0; i <= 88; i++) {
     avatars.push(i);
   }
+
   return (
-    <Modal isOpen={isOpen} className="rounded-4">
-      <ModalHeader className="text-black" toggle={() => onClose()}>
+    <Modal isOpen={isOpen} className="rounded-4" toggle={onClose}>
+      <ModalHeader className="text-black" toggle={onClose}>
         <i className="ri-user-line" /> User Settings
       </ModalHeader>
       <ModalBody>
@@ -53,13 +54,13 @@ function UserModal({
           ))}
         </div>
         <div className="d-flex justify-content-end mt-3">
-          <Button
+          <div
+            className="btn btn-primary shadow d-flex align-items-center"
             color="primary"
-            className="shadow d-flex align-items-center"
             onClick={onSave}
           >
             <i className="ri-save-line me-1" /> Save
-          </Button>
+          </div>
         </div>
       </ModalBody>
     </Modal>

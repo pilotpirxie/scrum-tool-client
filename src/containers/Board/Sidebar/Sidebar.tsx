@@ -1,13 +1,14 @@
 import './Sidebar.css';
 
 import dayjs from 'dayjs';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import logo from './logo.png';
 import smallLogo from './small-logo.png';
 import Avatar from '../../../components/Avatar';
 import DimContainer from '../../../components/DimContainer';
 import { useAppSelector } from '../../../utils/hooks';
 import { useSocket } from '../../../socket/useSocket';
+import useOnClickOutside from '../../../utils/useOnClickOutside';
 
 function Sidebar({
   isOpen,
@@ -80,9 +81,15 @@ function Sidebar({
     };
   }, [timerTo]);
 
+  const ref = useRef(null);
+  useOnClickOutside(ref, onSidebarToggleClick);
+
   return isOpen ? (
     <DimContainer>
-      <div className="d-flex flex-column justify-content-between p-3 bg-white shadow sidebar">
+      <div
+        ref={ref}
+        className="d-flex flex-column justify-content-between p-3 bg-white shadow sidebar"
+      >
         <div>
           <div className="d-flex justify-content-between my-2 align-items-center">
             <img src={logo} className="img-fluid p-3" alt="logo" />

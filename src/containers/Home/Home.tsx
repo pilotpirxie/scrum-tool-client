@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useSocket } from '../../socket/useSocket';
 import useLocalStorage from '../../utils/useLocalStorage';
 import './Home.css';
@@ -14,7 +13,6 @@ function Home() {
     Math.floor(Math.random() * 89),
   );
 
-  const [boardId, setBoardId] = useState('');
   const socketController = useSocket();
 
   const handleJoin = () => {
@@ -22,7 +20,7 @@ function Home() {
       socketController.socket.disconnect();
     }
 
-    socketController.connect(nickname, avatar, boardId);
+    socketController.connect(nickname, avatar, '');
   };
 
   return (
@@ -42,14 +40,6 @@ function Home() {
                   placeholder="Nickname"
                   value={nickname}
                   onChange={(e) => setNickname(e.target.value)}
-                />
-              </div>
-              <div className="form-group w-100 mt-3">
-                <input
-                  className="form-control shadow-lg"
-                  placeholder="Room code, leave empty to create new"
-                  value={boardId}
-                  onChange={(e) => setBoardId(e.target.value)}
                 />
               </div>
               <div className="form-group w-100 mt-3">

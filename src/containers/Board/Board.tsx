@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Sidebar from './Sidebar/Sidebar';
-import EditModal from '../../components/EditModal';
 import UserModal from '../../components/UserModal';
 import { useSocket } from '../../socket/useSocket';
 import { useAppSelector } from '../../utils/hooks';
@@ -14,10 +13,6 @@ function Board() {
   const navigate = useNavigate();
   const [isNavbarOpen, setIsNavbarOpen] = useState(false);
   const socketController = useSocket();
-
-  const [modalCardId, setModalCardId] = useState('');
-  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-  const [editModalContent, setEditModalContent] = useState<string>('');
 
   const [nickname, setNickname] = useLocalStorage<string>(
     'nickname',
@@ -40,20 +35,6 @@ function Board() {
       socketController.socket?.disconnect();
     };
   }, []);
-
-  const handleEditModalSave = () => {
-    socketController.socket?.emit('UpdateCard', {
-      cardId: modalCardId,
-      content: editModalContent,
-    });
-    setIsEditModalOpen(false);
-  };
-
-  const handleEditModalDelete = () => {
-    socketController.socket?.emit('DeleteCard', { cardId: modalCardId });
-
-    setIsEditModalOpen(false);
-  };
 
   const localUser = useAppSelector((state) => state.config.localUser);
   const board = useAppSelector((state) => state.config.board);
@@ -87,24 +68,10 @@ function Board() {
         onSidebarToggleClick={() => setIsNavbarOpen(!isNavbarOpen)}
         onChangeUserData={handleUserModalOpen}
       />
-      {/* @ts-ignore */}
-      {board.mode === 'retro' && (
-        <Retro
-          setIsEditModalOpen={setIsEditModalOpen}
-          setEditModalContent={setEditModalContent}
-          setModalCardId={setModalCardId}
-        />
-      )}
+      {board.mode === 'retro' && <Retro />}
       {(board.mode === 'planning_hidden' ||
         board.mode === 'planning_revealed') && <Planning />}
-      <EditModal
-        isOpen={isEditModalOpen}
-        onClose={() => setIsEditModalOpen(false)}
-        onSave={handleEditModalSave}
-        onChange={setEditModalContent}
-        onDelete={handleEditModalDelete}
-        content={editModalContent}
-      />
+
       <UserModal
         isOpen={isUserModalOpen}
         avatar={userModalAvatar}
