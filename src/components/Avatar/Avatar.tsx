@@ -1,4 +1,5 @@
 import './Avatar.css';
+import { UncontrolledTooltip } from 'reactstrap';
 
 function Avatar({
   image,
@@ -14,20 +15,36 @@ function Avatar({
       {!success ? (
         <div className="m-1">
           <img
+            id={`tooltip-${alt}`}
             title={alt}
             src={`/avatars/avatar${image}.png`}
             className="img-fluid avatar"
             alt={alt}
           />
+          <UncontrolledTooltip
+            placement="right"
+            target={`tooltip-${alt}`}
+            fade={false}
+          >
+            {alt}
+          </UncontrolledTooltip>
         </div>
       ) : (
         <div className="avatar-bg-success m-1">
           <img
+            id={`tooltip-${alt}`}
             title={alt}
             src={`/avatars/avatar${image}.png`}
             className="img-fluid avatar avatar-success"
             alt={alt}
           />
+          <UncontrolledTooltip
+            placement="right"
+            target={`tooltip-${alt}`}
+            fade={false}
+          >
+            {alt}
+          </UncontrolledTooltip>
         </div>
       )}
     </div>

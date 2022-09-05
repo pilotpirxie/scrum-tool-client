@@ -6612,7 +6612,8 @@ fieldset:disabled .btn {
 }
 
 .tooltip.show {
-  opacity: 0.9;
+  opacity: 1;
+  z-index: 1080;
 }
 
 .tooltip .tooltip-arrow {

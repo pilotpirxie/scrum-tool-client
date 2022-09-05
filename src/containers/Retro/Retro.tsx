@@ -140,38 +140,33 @@ function Retro() {
                 .filter(
                   (card) => board.stage !== 0 || card.userId === localUser.id,
                 )
+                .map((card) => ({
+                  ...card,
+                  votes: getVotes(card, cards, board.stage, localUser.id),
+                }))
                 .sort((a, b) => {
                   if (board.stage !== 2) {
                     return b.createdAt - a.createdAt;
                   }
-                  return b.votes.length - a.votes.length;
+                  return b.votes - a.votes;
                 })
-                .map((card) => {
-                  const votesCount = getVotes(
-                    card,
-                    cards,
-                    board.stage,
-                    localUser.id,
-                  );
-
-                  return (
-                    <Card
-                      key={card.id}
-                      id={card.id}
-                      content={card.content}
-                      onDecreaseVote={() => handleDownvote(card.id)}
-                      votesCount={votesCount}
-                      onEdit={() => handleCardEdit(card.id, card.content)}
-                      onGroup={handleCardGroup}
-                      onUngroup={handleCardUngroup}
-                      onIncreaseVote={() => handleUpvote(card.id)}
-                      stack={!!card.stackedOn}
-                      displayVotes={board.stage !== 0}
-                      color="success"
-                      createdAt={card.createdAt}
-                    />
-                  );
-                })}
+                .map((card) => (
+                  <Card
+                    key={card.id}
+                    id={card.id}
+                    content={card.content}
+                    onDecreaseVote={() => handleDownvote(card.id)}
+                    votesCount={card.votes}
+                    onEdit={() => handleCardEdit(card.id, card.content)}
+                    onGroup={handleCardGroup}
+                    onUngroup={handleCardUngroup}
+                    onIncreaseVote={() => handleUpvote(card.id)}
+                    stack={!!card.stackedOn}
+                    displayVotes={board.stage !== 0}
+                    color="success"
+                    createdAt={card.createdAt}
+                  />
+                ))}
             </List>
           )}
           {(!isMobile || selectedColumn === 1) && (
@@ -190,40 +185,33 @@ function Retro() {
                       (nestedCard) => nestedCard.stackedOn === card.id,
                     ),
                 )
-                .filter(
-                  (card) => board.stage !== 0 || card.userId === localUser.id,
-                )
+                .map((card) => ({
+                  ...card,
+                  votes: getVotes(card, cards, board.stage, localUser.id),
+                }))
                 .sort((a, b) => {
                   if (board.stage !== 2) {
                     return b.createdAt - a.createdAt;
                   }
-                  return b.votes.length - a.votes.length;
+                  return b.votes - a.votes;
                 })
-                .map((card) => {
-                  const votesCount = getVotes(
-                    card,
-                    cards,
-                    board.stage,
-                    localUser.id,
-                  );
-                  return (
-                    <Card
-                      key={card.id}
-                      id={card.id}
-                      content={card.content}
-                      onDecreaseVote={() => handleDownvote(card.id)}
-                      votesCount={votesCount}
-                      onEdit={() => handleCardEdit(card.id, card.content)}
-                      onGroup={handleCardGroup}
-                      onUngroup={handleCardUngroup}
-                      onIncreaseVote={() => handleUpvote(card.id)}
-                      stack={!!card.stackedOn}
-                      displayVotes={board.stage !== 0}
-                      color="danger"
-                      createdAt={card.createdAt}
-                    />
-                  );
-                })}
+                .map((card) => (
+                  <Card
+                    key={card.id}
+                    id={card.id}
+                    content={card.content}
+                    onDecreaseVote={() => handleDownvote(card.id)}
+                    votesCount={card.votes}
+                    onEdit={() => handleCardEdit(card.id, card.content)}
+                    onGroup={handleCardGroup}
+                    onUngroup={handleCardUngroup}
+                    onIncreaseVote={() => handleUpvote(card.id)}
+                    stack={!!card.stackedOn}
+                    displayVotes={board.stage !== 0}
+                    color="danger"
+                    createdAt={card.createdAt}
+                  />
+                ))}
             </List>
           )}
           {((board.stage === 2 && !isMobile) ||
@@ -243,40 +231,33 @@ function Retro() {
                       (nestedCard) => nestedCard.stackedOn === card.id,
                     ),
                 )
-                .filter(
-                  (card) => board.stage !== 0 || card.userId === localUser.id,
-                )
+                .map((card) => ({
+                  ...card,
+                  votes: getVotes(card, cards, board.stage, localUser.id),
+                }))
                 .sort((a, b) => {
                   if (board.stage !== 2) {
                     return b.createdAt - a.createdAt;
                   }
-                  return b.votes.length - a.votes.length;
+                  return b.votes - a.votes;
                 })
-                .map((card) => {
-                  const votesCount = getVotes(
-                    card,
-                    cards,
-                    board.stage,
-                    localUser.id,
-                  );
-                  return (
-                    <Card
-                      key={card.id}
-                      id={card.id}
-                      content={card.content}
-                      onDecreaseVote={() => handleDownvote(card.id)}
-                      votesCount={votesCount}
-                      onEdit={() => handleCardEdit(card.id, card.content)}
-                      onGroup={handleCardGroup}
-                      onUngroup={handleCardUngroup}
-                      onIncreaseVote={() => handleUpvote(card.id)}
-                      stack={!!card.stackedOn}
-                      displayVotes={board.stage !== 0}
-                      color="primary"
-                      createdAt={card.createdAt}
-                    />
-                  );
-                })}
+                .map((card) => (
+                  <Card
+                    key={card.id}
+                    id={card.id}
+                    content={card.content}
+                    onDecreaseVote={() => handleDownvote(card.id)}
+                    votesCount={card.votes}
+                    onEdit={() => handleCardEdit(card.id, card.content)}
+                    onGroup={handleCardGroup}
+                    onUngroup={handleCardUngroup}
+                    onIncreaseVote={() => handleUpvote(card.id)}
+                    stack={!!card.stackedOn}
+                    displayVotes={board.stage !== 0}
+                    color="primary"
+                    createdAt={card.createdAt}
+                  />
+                ))}
             </List>
           )}
         </div>
