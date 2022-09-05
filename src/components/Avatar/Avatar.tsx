@@ -5,17 +5,19 @@ function Avatar({
   image,
   success = false,
   alt,
+  tooltipId,
 }: {
   image: number;
   success: boolean;
   alt?: string;
+  tooltipId: string;
 }) {
   return (
     <div>
       {!success ? (
         <div className="m-1">
           <img
-            id={`tooltip-${alt}`}
+            id={`tooltip-${tooltipId}`}
             title={alt}
             src={`/avatars/avatar${image}.png`}
             className="img-fluid avatar"
@@ -23,7 +25,7 @@ function Avatar({
           />
           <UncontrolledTooltip
             placement="right"
-            target={`tooltip-${alt}`}
+            target={`tooltip-${tooltipId}`}
             fade={false}
           >
             {alt}
@@ -32,7 +34,7 @@ function Avatar({
       ) : (
         <div className="avatar-bg-success m-1">
           <img
-            id={`tooltip-${alt}`}
+            id={`tooltip-${tooltipId}`}
             title={alt}
             src={`/avatars/avatar${image}.png`}
             className="img-fluid avatar avatar-success"
@@ -40,7 +42,7 @@ function Avatar({
           />
           <UncontrolledTooltip
             placement="right"
-            target={`tooltip-${alt}`}
+            target={`tooltip-${tooltipId}`}
             fade={false}
           >
             {alt}

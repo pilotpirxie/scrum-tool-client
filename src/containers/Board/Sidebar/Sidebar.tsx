@@ -112,6 +112,7 @@ function Sidebar({
             <div className="pt-4 d-flex flex-row flex-wrap justify-content-center">
               {users.map((user) => (
                 <Avatar
+                  tooltipId={user.id}
                   key={user.id}
                   image={user.avatar}
                   success={user.isReady}
@@ -296,6 +297,7 @@ function Sidebar({
           <div className="d-flex flex-row flex-wrap justify-content-center">
             {users.map((user) => (
               <Avatar
+                tooltipId={user.id}
                 data-tip
                 data-for={`user${user.id}`}
                 image={user.avatar}
