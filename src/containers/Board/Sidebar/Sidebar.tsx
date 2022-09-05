@@ -242,16 +242,18 @@ function Sidebar({
               {timerTo > Date.now() ? timer : '0:00'}
             </div>
           </div>
-          <button
-            type="button"
-            className={`btn ${
-              localUser.isReady ? 'btn-success' : 'btn-outline-primary'
-            } form-control shadow d-flex align-items-center justify-content-center`}
-            onClick={handleToggleReady}
-          >
-            <i className="ri-checkbox-circle-line fs-5 me-1" />
-            {localUser.isReady ? 'Mark as not ready' : 'Mark as ready'}
-          </button>
+          {board.mode === 'retro' && (
+            <button
+              type="button"
+              className={`btn ${
+                localUser.isReady ? 'btn-success' : 'btn-outline-primary'
+              } form-control shadow d-flex align-items-center justify-content-center`}
+              onClick={handleToggleReady}
+            >
+              <i className="ri-checkbox-circle-line fs-5 me-1" />
+              {localUser.isReady ? 'Mark as not ready' : 'Mark as ready'}
+            </button>
+          )}
           <button
             type="button"
             disabled={board.stage === 0}
@@ -303,42 +305,28 @@ function Sidebar({
           </div>
         </div>
         <div className="d-flex flex-column align-items-center">
+          {board.mode === 'retro' && (
+            <button
+              type="button"
+              className={`btn ${
+                localUser.isReady ? 'btn-success' : 'btn-outline-primary'
+              } btn-circle-md form-control shadow rounded-circle fs-3 p-0`}
+              onClick={handleToggleReady}
+            >
+              <i className="ri-checkbox-circle-line" />
+            </button>
+          )}
           <div
             onClick={
               timerTo < Date.now() ? () => handleSetTimer(180) : undefined
             }
             className={`${
               timerTo < Date.now() ? 'cursor-pointer' : ''
-            } btn-timer btn-circle-lg my-3 rounded-circle text-center text-black fw-bold d-flex align-items-center justify-content-center`}
+            } btn-timer btn-circle-lg mt-3 rounded-circle text-center text-black fw-bold d-flex align-items-center justify-content-center`}
           >
             {timerTo < Date.now() && <i className="ri-timer-line fs-3" />}
             {timerTo > Date.now() ? timer : ''}
           </div>
-          <button
-            type="button"
-            className={`btn ${
-              localUser.isReady ? 'btn-success' : 'btn-outline-primary'
-            } btn-circle-md form-control shadow rounded-circle fs-3 p-0`}
-            onClick={handleToggleReady}
-          >
-            <i className="ri-checkbox-circle-line" />
-          </button>
-          <button
-            type="button"
-            className="mt-3 btn btn-outline-primary btn-circle-md form-control shadow rounded-circle fs-3 p-0"
-            onClick={handlePreviousStage}
-            disabled={board.stage === 0}
-          >
-            <i className="ri-arrow-left-circle-line" />
-          </button>
-          <button
-            type="button"
-            className="mt-3 btn btn-outline-primary btn-circle-md form-control shadow rounded-circle fs-3 p-0"
-            onClick={handleNextStage}
-            disabled={board.stage === 2}
-          >
-            <i className="ri-arrow-right-circle-line" />
-          </button>
         </div>
       </div>
     </div>

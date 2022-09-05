@@ -23,9 +23,7 @@ export function useSocket(): SocketHook {
     }
 
     const newSocket: Socket<IncomingEvents, OutgoingEvents> = io(
-      process.env.NODE_ENV === 'production'
-        ? 'https://scrumpurr.eu/'
-        : 'http://localhost:3001',
+      process.env.NODE_ENV === 'production' ? `/` : 'http://localhost:3001',
       {
         transports: ['websocket', 'polling'],
       },

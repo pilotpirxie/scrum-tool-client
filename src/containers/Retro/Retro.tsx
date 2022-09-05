@@ -71,10 +71,6 @@ function Retro() {
     socketController.socket?.emit('UngroupCards', { cardId });
   };
 
-  const handleCardDelete = (cardId: string) => {
-    socketController.socket?.emit('DeleteCard', { cardId });
-  };
-
   const handleUpvote = (cardId: string) => {
     socketController.socket?.emit('UpvoteCard', { cardId });
   };
@@ -165,7 +161,6 @@ function Retro() {
                       content={card.content}
                       onDecreaseVote={() => handleDownvote(card.id)}
                       votesCount={votesCount}
-                      onDelete={() => handleCardDelete(card.id)}
                       onEdit={() => handleCardEdit(card.id, card.content)}
                       onGroup={handleCardGroup}
                       onUngroup={handleCardUngroup}
@@ -218,7 +213,6 @@ function Retro() {
                       content={card.content}
                       onDecreaseVote={() => handleDownvote(card.id)}
                       votesCount={votesCount}
-                      onDelete={() => handleCardDelete(card.id)}
                       onEdit={() => handleCardEdit(card.id, card.content)}
                       onGroup={handleCardGroup}
                       onUngroup={handleCardUngroup}
@@ -272,7 +266,6 @@ function Retro() {
                       content={card.content}
                       onDecreaseVote={() => handleDownvote(card.id)}
                       votesCount={votesCount}
-                      onDelete={() => handleCardDelete(card.id)}
                       onEdit={() => handleCardEdit(card.id, card.content)}
                       onGroup={handleCardGroup}
                       onUngroup={handleCardUngroup}

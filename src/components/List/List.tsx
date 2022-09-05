@@ -32,8 +32,8 @@ function List({
   }[type];
 
   const heading = {
-    positive: 'Positive',
-    negative: 'Negative',
+    positive: 'Positives',
+    negative: 'Negatives',
     actions: 'Actions',
   }[type];
 

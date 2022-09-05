@@ -8,7 +8,6 @@ function Card({
   votesCount,
   onIncreaseVote,
   onDecreaseVote,
-  onDelete,
   onEdit,
   onGroup,
   onUngroup,
@@ -22,7 +21,6 @@ function Card({
   votesCount: number;
   onIncreaseVote: () => void;
   onDecreaseVote: () => void;
-  onDelete: () => void;
   onEdit: () => void;
   onGroup: (sourceCard: string, targetCard: string) => void;
   onUngroup: (cardId: string) => void;
@@ -77,12 +75,6 @@ function Card({
         </div>
         <div className="retro-card-buttons d-flex align-items-center justify-content-end">
           <div>
-            <div
-              className={`btn btn-${color} shadow me-1 btn-sm`}
-              onClick={onDelete}
-            >
-              <i className="ri-delete-bin-2-line" />
-            </div>
             <div
               className={`btn btn-${color} shadow me-1 btn-sm`}
               onClick={onEdit}
