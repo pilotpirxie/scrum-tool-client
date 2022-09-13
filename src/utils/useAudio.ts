@@ -7,14 +7,12 @@ function useAudio(url: string) {
   const toggle = () => setPlaying(!playing);
 
   useEffect(() => {
-      if (playing) { 
-        audio.play() 
-      } else { 
-        audio.pause(); 
-      } 
-    },
-    [playing]
-  );
+    if (playing) {
+      audio.play();
+    } else {
+      audio.pause();
+    }
+  }, [playing]);
 
   useEffect(() => {
     audio.addEventListener('ended', () => setPlaying(false));
@@ -24,4 +22,4 @@ function useAudio(url: string) {
   }, []);
 
   return [playing, toggle];
-};
+}

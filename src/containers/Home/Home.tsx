@@ -32,7 +32,14 @@ function Home() {
   }, []);
 
   return (
-    <div className="w-100 vh-100" style={{backgroundImage: `url(/bg/a${backgroundIndex}.png)`, backgroundPosition: 'center', backgroundSize: 'cover'}}>
+    <div
+      className="w-100 vh-100"
+      style={{
+        backgroundImage: `url(/bg/a${backgroundIndex}.png)`,
+        backgroundPosition: 'center',
+        backgroundSize: 'cover',
+      }}
+    >
       <div className="container h-100">
         <div className="row h-100">
           <div className="col-12 col-md-6 offset-md-3 h-100">
@@ -65,7 +72,7 @@ function Home() {
                   <div className="mt-3 small text-center text-dark">
                     Made with <span className="text-danger">&hearts;</span> by{' '}
                     <a
-                    className='text-dark'
+                      className="text-dark"
                       href="https://github.com/pilotpirxie/scrum-tool-client"
                       target="_blank"
                       rel="noopener noreferrer"
@@ -74,7 +81,7 @@ function Home() {
                     </a>{' '}
                     and{' '}
                     <a
-                                        className='text-dark'
+                      className="text-dark"
                       href="https://behance.net/krzysztofsojka1"
                       target="_blank"
                       rel="noopener noreferrer"

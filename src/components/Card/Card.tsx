@@ -74,25 +74,26 @@ function Card({
           {stack && <i className="ri-stack-line ms-1" />} {content}
         </div>
         <div className="retro-card-buttons">
-          <div className='d-flex align-items-center justify-content-between'>
-           <div>
-           <div
-                          className={`btn btn-${color} shadow me-1 btn-sm`}
-                          onClick={onEdit}
-                        >
-                          <i className="ri-edit-2-line" />
-                        </div>
-                        {stack ? (
+          <div className="d-flex align-items-center justify-content-between">
+            <div>
               <div
                 className={`btn btn-${color} shadow me-1 btn-sm`}
-                onClick={() => onUngroup(id)}
+                onClick={onEdit}
               >
-                <i className="ri-stack-line" />
+                <i className="ri-edit-2-line" />
               </div>
+              {stack ? (
+                <div
+                  className={`btn btn-${color} shadow me-1 btn-sm`}
+                  onClick={() => onUngroup(id)}
+                >
+                  <i className="ri-stack-line" />
+                </div>
+              ) : (
+                <div />
+              )}
+            </div>
 
-            ) : <div />}
-           </div>
-            
             {displayVotes && (
               <div>
                 <div
@@ -101,9 +102,7 @@ function Card({
                 >
                   <i className="ri-thumb-down-line" />
                 </div>
-                <div
-                  className={`btn btn-${color} shadow me-1 btn-sm`}
-                >
+                <div className={`btn btn-${color} shadow me-1 btn-sm`}>
                   {votesCount}
                 </div>
                 <div

@@ -49,7 +49,7 @@ function List({
 
   const handleSubmit = () => {
     if (!input) return;
-    
+
     socketController.socket?.emit('CreateCard', {
       column,
       content: input,

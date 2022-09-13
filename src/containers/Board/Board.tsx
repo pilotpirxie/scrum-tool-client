@@ -50,10 +50,10 @@ function Board() {
   };
 
   useEffect(() => {
-    if (id !== "" && window.localStorage.getItem("nickname") === null) {
+    if (id !== '' && window.localStorage.getItem('nickname') === null) {
       handleUserModalOpen();
-    } 
-    
+    }
+
     if (!socketController.socket?.connected) {
       if (!id) navigate('/');
 
