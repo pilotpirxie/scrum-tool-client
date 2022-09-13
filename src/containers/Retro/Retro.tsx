@@ -132,6 +132,7 @@ function Retro() {
               {cards.filter(
                 (card) =>
                   card.column === 0 &&
+                  card.userId === localUser.id &&
                   !cards.some((nestedCard) => nestedCard.stackedOn === card.id),
               ).length === 0 && (
                 <div>
@@ -192,6 +193,7 @@ function Retro() {
               {cards.filter(
                 (card) =>
                   card.column === 1 &&
+                  card.userId === localUser.id &&
                   !cards.some((nestedCard) => nestedCard.stackedOn === card.id),
               ).length === 0 && (
                 <div>
@@ -249,6 +251,7 @@ function Retro() {
               {cards.filter(
                 (card) =>
                   card.column === 2 &&
+                  card.userId === localUser.id &&
                   !cards.some((nestedCard) => nestedCard.stackedOn === card.id),
               ).length === 0 && (
                 <div>
