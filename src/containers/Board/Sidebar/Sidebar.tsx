@@ -302,6 +302,7 @@ function Sidebar({
           <div className="d-flex flex-row flex-wrap justify-content-center">
             {users.map((user) => (
               <Avatar
+                key={user.id}
                 tooltipId={user.id}
                 data-tip
                 data-for={`user${user.id}`}

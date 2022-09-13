@@ -129,12 +129,17 @@ function Retro() {
               selectedColumn={selectedColumn}
               onChangeColumn={setSelectedColumn}
             >
-              {cards.filter(
-                (card) =>
-                  card.column === 0 &&
-                  card.userId === localUser.id &&
-                  !cards.some((nestedCard) => nestedCard.stackedOn === card.id),
-              ).length === 0 && (
+              {cards
+                .filter(
+                  (card) =>
+                    card.column === 0 &&
+                    !cards.some(
+                      (nestedCard) => nestedCard.stackedOn === card.id,
+                    ),
+                )
+                .filter(
+                  (card) => board.stage !== 0 || card.userId === localUser.id,
+                ).length === 0 && (
                 <div>
                   <div className="mt-5 fs-5 fw-bold text-center text-dark opacity-10">
                     What nice have happened recently? <br /> (hint: give someone
@@ -190,12 +195,17 @@ function Retro() {
               selectedColumn={selectedColumn}
               onChangeColumn={setSelectedColumn}
             >
-              {cards.filter(
-                (card) =>
-                  card.column === 1 &&
-                  card.userId === localUser.id &&
-                  !cards.some((nestedCard) => nestedCard.stackedOn === card.id),
-              ).length === 0 && (
+              {cards
+                .filter(
+                  (card) =>
+                    card.column === 1 &&
+                    !cards.some(
+                      (nestedCard) => nestedCard.stackedOn === card.id,
+                    ),
+                )
+                .filter(
+                  (card) => board.stage !== 0 || card.userId === localUser.id,
+                ).length === 0 && (
                 <div>
                   <div className="mt-5 fs-5 fw-bold text-center text-dark opacity-10">
                     What needs to be improved? 🤔
@@ -248,12 +258,17 @@ function Retro() {
               selectedColumn={selectedColumn}
               onChangeColumn={setSelectedColumn}
             >
-              {cards.filter(
-                (card) =>
-                  card.column === 2 &&
-                  card.userId === localUser.id &&
-                  !cards.some((nestedCard) => nestedCard.stackedOn === card.id),
-              ).length === 0 && (
+              {cards
+                .filter(
+                  (card) =>
+                    card.column === 2 &&
+                    !cards.some(
+                      (nestedCard) => nestedCard.stackedOn === card.id,
+                    ),
+                )
+                .filter(
+                  (card) => board.stage !== 0 || card.userId === localUser.id,
+                ).length === 0 && (
                 <div>
                   <div className="mt-5 fs-5 fw-bold text-center text-dark opacity-10">
                     What are the plans for the future? 🚀 <br />
