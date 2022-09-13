@@ -1,15 +1,15 @@
 .avatar {
-    border: 3px #37CAEC solid;
-    border-radius: 50%;
-    width: 42px;
-    height: 42px;
+  border: 3px #37caec solid;
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
 }
 
 .avatar-bg-success {
-    background: #B9FB1A;
-    border-radius: 50%;
+  background: #b9fb1a;
+  border-radius: 50%;
 }
 
 .avatar-success {
-    opacity: 0.5;
+  opacity: 0.5;
 }

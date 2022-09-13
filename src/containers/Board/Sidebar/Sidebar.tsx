@@ -155,55 +155,6 @@ function Sidebar({
             </div>
             <div className="pt-4">
               <div className="fw-bolder text-primary text-uppercase d-flex align-items-center">
-                Timer <i className="ri-timer-line ms-2" />
-              </div>
-              <div className="mt-1">
-                <button
-                  className="btn btn-outline-secondary btn-block btn-sm m-1 px-3 shadow"
-                  type="button"
-                  onClick={() => handleSetTimer(0)}
-                >
-                  Clear
-                </button>
-                <button
-                  className="btn btn-outline-secondary btn-block btn-sm m-1 px-3 shadow"
-                  type="button"
-                  onClick={() => handleSetTimer(60)}
-                >
-                  1 min
-                </button>
-                <button
-                  className="btn btn-outline-secondary btn-block btn-sm m-1 px-3 shadow"
-                  type="button"
-                  onClick={() => handleSetTimer(180)}
-                >
-                  3 min
-                </button>
-                <button
-                  className="btn btn-outline-secondary btn-block btn-sm m-1 px-3 shadow"
-                  type="button"
-                  onClick={() => handleSetTimer(300)}
-                >
-                  5 min
-                </button>
-                <button
-                  className="btn btn-outline-secondary btn-block btn-sm m-1 px-3 shadow"
-                  type="button"
-                  onClick={() => handleSetTimer(600)}
-                >
-                  10 min
-                </button>
-                <button
-                  className="btn btn-outline-secondary btn-block btn-sm m-1 px-3 shadow"
-                  type="button"
-                  onClick={() => handleSetTimer(900)}
-                >
-                  15 min
-                </button>
-              </div>
-            </div>
-            <div className="pt-4">
-              <div className="fw-bolder text-primary text-uppercase d-flex align-items-center">
                 Board mode <i className="ri-toggle-line ms-2" />
               </div>
               <button
@@ -216,27 +167,78 @@ function Sidebar({
               </button>
             </div>
           </div>
-          <div className="pt-4">
-            <div className="fw-bolder text-primary text-uppercase d-flex align-items-center">
-              Votes per user <i className="ri-arrow-up-line ms-2" />
+          {board.mode === 'retro' && (
+            <div className="pt-4">
+              <div className="fw-bolder text-primary text-uppercase d-flex align-items-center">
+                Votes per user <i className="ri-arrow-up-line ms-2" />
+              </div>
+              <select
+                value={board.maxVotes}
+                onChange={(e) => handleChangeMaxVotes(Number(e.target.value))}
+                className="form-select"
+              >
+                <option value="0">Unlimited</option>
+                <option value="1">1</option>
+                <option value="3">3</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+                <option value="20">20</option>
+              </select>
             </div>
-            <select
-              value={board.maxVotes}
-              onChange={(e) => handleChangeMaxVotes(Number(e.target.value))}
-              className="form-select"
-            >
-              <option value="0">Unlimited</option>
-              <option value="1">1</option>
-              <option value="3">3</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="10">10</option>
-              <option value="15">15</option>
-              <option value="20">20</option>
-            </select>
-          </div>
+          )}
         </div>
         <div>
+          <div className="pt-4">
+            <div className="fw-bolder text-primary text-uppercase d-flex align-items-center">
+              Timer <i className="ri-timer-line ms-2" />
+            </div>
+            <div className="mt-1">
+              <button
+                className="btn btn-outline-secondary btn-block btn-sm m-1 px-3 shadow"
+                type="button"
+                onClick={() => handleSetTimer(0)}
+              >
+                Clear
+              </button>
+              <button
+                className="btn btn-outline-secondary btn-block btn-sm m-1 px-3 shadow"
+                type="button"
+                onClick={() => handleSetTimer(60)}
+              >
+                1 min
+              </button>
+              <button
+                className="btn btn-outline-secondary btn-block btn-sm m-1 px-3 shadow"
+                type="button"
+                onClick={() => handleSetTimer(180)}
+              >
+                3 min
+              </button>
+              <button
+                className="btn btn-outline-secondary btn-block btn-sm m-1 px-3 shadow"
+                type="button"
+                onClick={() => handleSetTimer(300)}
+              >
+                5 min
+              </button>
+              <button
+                className="btn btn-outline-secondary btn-block btn-sm m-1 px-3 shadow"
+                type="button"
+                onClick={() => handleSetTimer(600)}
+              >
+                10 min
+              </button>
+              <button
+                className="btn btn-outline-secondary btn-block btn-sm m-1 px-3 shadow"
+                type="button"
+                onClick={() => handleSetTimer(900)}
+              >
+                15 min
+              </button>
+            </div>
+          </div>
           <div className="btn-timer p-3 my-3 rounded-4 text-center">
             <div className="text-black fw-bold fs-3 d-flex align-items-center justify-content-center">
               <i className="me-1 ri-timer-line" />{' '}
@@ -244,35 +246,38 @@ function Sidebar({
             </div>
           </div>
           {board.mode === 'retro' && (
-            <button
-              type="button"
-              className={`btn ${
-                localUser.isReady ? 'btn-success' : 'btn-outline-primary'
-              } form-control shadow d-flex align-items-center justify-content-center`}
-              onClick={handleToggleReady}
-            >
-              <i className="ri-checkbox-circle-line fs-5 me-1" />
-              {localUser.isReady ? 'Mark as not ready' : 'Mark as ready'}
-            </button>
+            <>
+              <button
+                type="button"
+                className={`btn ${
+                  localUser.isReady ? 'btn-success' : 'btn-outline-primary'
+                } form-control shadow d-flex align-items-center justify-content-center`}
+                onClick={handleToggleReady}
+              >
+                <i className="ri-checkbox-circle-line fs-5 me-1" />
+                {localUser.isReady ? 'Mark as not ready' : 'Mark as ready'}
+              </button>
+
+              <button
+                type="button"
+                disabled={board.stage === 0}
+                className="mt-3 btn btn-outline-primary form-control shadow d-flex align-items-center justify-content-center"
+                onClick={handlePreviousStage}
+              >
+                <i className="ri-arrow-left-circle-line fs-5 me-1" />
+                Previous stage
+              </button>
+              <button
+                type="button"
+                disabled={board.stage === 2}
+                className="mt-3 btn btn-outline-primary form-control shadow d-flex align-items-center justify-content-center"
+                onClick={handleNextStage}
+              >
+                <i className="ri-arrow-right-circle-line fs-5 me-1" />
+                Next stage
+              </button>
+            </>
           )}
-          <button
-            type="button"
-            disabled={board.stage === 0}
-            className="mt-3 btn btn-outline-primary form-control shadow d-flex align-items-center justify-content-center"
-            onClick={handlePreviousStage}
-          >
-            <i className="ri-arrow-left-circle-line fs-5 me-1" />
-            Previous stage
-          </button>
-          <button
-            type="button"
-            disabled={board.stage === 2}
-            className="mt-3 btn btn-outline-primary form-control shadow d-flex align-items-center justify-content-center"
-            onClick={handleNextStage}
-          >
-            <i className="ri-arrow-right-circle-line fs-5 me-1" />
-            Next stage
-          </button>
         </div>
       </div>
     </DimContainer>

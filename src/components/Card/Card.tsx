@@ -73,27 +73,36 @@ function Card({
         <div className="retro-card-text">
           {stack && <i className="ri-stack-line ms-1" />} {content}
         </div>
-        <div className="retro-card-buttons d-flex align-items-center justify-content-end">
-          <div>
-            <div
-              className={`btn btn-${color} shadow me-1 btn-sm`}
-              onClick={onEdit}
-            >
-              <i className="ri-edit-2-line" />
-            </div>
-            {stack && (
+        <div className="retro-card-buttons">
+          <div className='d-flex align-items-center justify-content-between'>
+           <div>
+           <div
+                          className={`btn btn-${color} shadow me-1 btn-sm`}
+                          onClick={onEdit}
+                        >
+                          <i className="ri-edit-2-line" />
+                        </div>
+                        {stack ? (
               <div
                 className={`btn btn-${color} shadow me-1 btn-sm`}
                 onClick={() => onUngroup(id)}
               >
                 <i className="ri-stack-line" />
               </div>
-            )}
+
+            ) : <div />}
+           </div>
+            
             {displayVotes && (
-              <>
+              <div>
                 <div
                   className={`btn btn-${color} shadow me-1 btn-sm`}
                   onClick={onDecreaseVote}
+                >
+                  <i className="ri-thumb-down-line" />
+                </div>
+                <div
+                  className={`btn btn-${color} shadow me-1 btn-sm`}
                 >
                   {votesCount}
                 </div>
@@ -101,9 +110,9 @@ function Card({
                   className={`btn btn-${color} shadow me-1 btn-sm`}
                   onClick={onIncreaseVote}
                 >
-                  <i className="ri-add-line" />
+                  <i className="ri-thumb-up-line" />
                 </div>
-              </>
+              </div>
             )}
           </div>
         </div>

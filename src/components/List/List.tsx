@@ -48,6 +48,8 @@ function List({
   const socketController = useSocket();
 
   const handleSubmit = () => {
+    if (!input) return;
+    
     socketController.socket?.emit('CreateCard', {
       column,
       content: input,

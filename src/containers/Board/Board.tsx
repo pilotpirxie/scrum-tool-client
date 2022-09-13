@@ -24,18 +24,6 @@ function Board() {
     Math.floor(Math.random() * 89),
   );
 
-  useEffect(() => {
-    if (!socketController.socket?.connected) {
-      if (!id) navigate('/');
-
-      socketController.connect(nickname, avatar, id || '');
-    }
-
-    return () => {
-      socketController.socket?.disconnect();
-    };
-  }, []);
-
   const localUser = useAppSelector((state) => state.config.localUser);
   const board = useAppSelector((state) => state.config.board);
 
@@ -61,6 +49,22 @@ function Board() {
     setIsUserModalOpen(false);
   };
 
+  useEffect(() => {
+    if (id !== "" && window.localStorage.getItem("nickname") === null) {
+      handleUserModalOpen();
+    } 
+    
+    if (!socketController.socket?.connected) {
+      if (!id) navigate('/');
+
+      socketController.connect(nickname, avatar, id || '');
+    }
+
+    return () => {
+      socketController.socket?.disconnect();
+    };
+  }, []);
+
   return (
     <div>
       <Sidebar
@@ -79,7 +83,7 @@ function Board() {
         onSave={handleUserModalSave}
         onChangeAvatar={setUserModalAvatar}
         onChangeNickname={setUserModalNickname}
-        onClose={() => setIsUserModalOpen(false)}
+        onClose={handleUserModalSave}
       />
     </div>
   );

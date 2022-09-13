@@ -54,13 +54,14 @@ function UserModal({
           ))}
         </div>
         <div className="d-flex justify-content-end mt-3">
-          <div
+          <button
             className="btn btn-primary shadow d-flex align-items-center"
-            color="primary"
             onClick={onSave}
+            disabled={!nickname}
+            type="button"
           >
             <i className="ri-save-line me-1" /> Save
-          </div>
+          </button>
         </div>
       </ModalBody>
     </Modal>

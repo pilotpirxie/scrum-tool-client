@@ -1,61 +1,67 @@
 .retro-card {
-    height: 200px;
-    cursor: pointer;
-    border-radius: 32px;
-    z-index: 2;
+  height: 200px;
+  cursor: pointer;
+  border-radius: 32px;
+  z-index: 2;
 }
 
 .retro-card-primary {
-    box-shadow: 8px 8px 48px rgba(18, 84, 136, 0.2), inset 0px 0px 20px rgba(55, 202, 236, 0.2), inset 0px 0px 20px rgba(42, 147, 213, 0.2);
+  box-shadow: 8px 8px 48px rgba(18, 84, 136, 0.2),
+    inset 0px 0px 20px rgba(55, 202, 236, 0.2),
+    inset 0px 0px 20px rgba(42, 147, 213, 0.2);
 }
 
 .retro-card-danger {
-    box-shadow: 8px 8px 48px rgba(136, 18, 18, 0.2), inset 0px 0px 20px rgba(236, 55, 55, 0.2), inset 0px 0px 20px rgba(213, 42, 42, 0.2);
+  box-shadow: 8px 8px 48px rgba(136, 18, 18, 0.2),
+    inset 0px 0px 20px rgba(236, 55, 55, 0.2),
+    inset 0px 0px 20px rgba(213, 42, 42, 0.2);
 }
 
 .retro-card-success {
-    box-shadow: 8px 8px 48px rgba(44, 136, 18, 0.2), inset 0px 0px 20px rgba(94, 236, 55, 0.2), inset 0px 0px 20px rgba(99, 213, 42, 0.2);
+  box-shadow: 8px 8px 48px rgba(44, 136, 18, 0.2),
+    inset 0px 0px 20px rgba(94, 236, 55, 0.2),
+    inset 0px 0px 20px rgba(99, 213, 42, 0.2);
 }
 
 .retro-card.is-dragging {
-    opacity: 0.5;
-    border: dashed;
+  opacity: 0.5;
+  border: dashed;
 }
 
 .retro-card.is-over {
-    opacity: 0.5;
-    /*border: dashed 32px black;*/
+  opacity: 0.5;
+  /*border: dashed 32px black;*/
 }
 
 .retro-card-text {
-    font-size: 16px;
-    height: 120px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 5;
-    line-clamp: 5;
-    -webkit-box-orient: vertical;
+  font-size: 16px;
+  height: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  line-clamp: 5;
+  -webkit-box-orient: vertical;
 }
 
 .retro-card-buttons {
-    padding: 8px 0;
+  padding: 8px 0;
 }
 
 .stack {
-    width: calc(100% - 32px);
-    top: 0px;
-    right: 16px;
-    z-index: 1;
-    background: #eaf7ff;
-    transform: rotate(5deg);
+  width: calc(100% - 32px);
+  top: 0px;
+  right: 16px;
+  z-index: 1;
+  background: #eaf7ff;
+  transform: rotate(5deg);
 }
 
 .stack-2 {
-    width: calc(100% - 48px);
-    top: 0;
-    right: 24px;
-    z-index: 0;
-    background: #d2e0e8;
-    transform: rotate(-7deg);
+  width: calc(100% - 48px);
+  top: 0;
+  right: 24px;
+  z-index: 0;
+  background: #d2e0e8;
+  transform: rotate(-7deg);
 }
