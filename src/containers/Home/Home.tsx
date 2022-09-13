@@ -1,8 +1,11 @@
+import { useEffect, useState } from 'react';
 import { useSocket } from '../../socket/useSocket';
 import useLocalStorage from '../../utils/useLocalStorage';
 import './Home.css';
 
 function Home() {
+  const [backgroundIndex, setBackgroundIndex] = useState(0);
+
   const [nickname, setNickname] = useLocalStorage<string>(
     'nickname',
     `Guest${Math.floor(Math.random() * 10000)}`,
@@ -23,10 +26,13 @@ function Home() {
     socketController.connect(nickname, avatar, '');
   };
 
-  const bgIndex = Math.floor(Math.random() * 20);
+  useEffect(() => {
+    const bgIndex = Math.floor(Math.random() * 20);
+    setBackgroundIndex(bgIndex);
+  }, []);
 
   return (
-    <div className="w-100 vh-100" style={{backgroundImage: `url(/bg/a${bgIndex}.png)`, backgroundPosition: 'center', backgroundSize: 'cover'}}>
+    <div className="w-100 vh-100" style={{backgroundImage: `url(/bg/a${backgroundIndex}.png)`, backgroundPosition: 'center', backgroundSize: 'cover'}}>
       <div className="container h-100">
         <div className="row h-100">
           <div className="col-12 col-md-6 offset-md-3 h-100">
