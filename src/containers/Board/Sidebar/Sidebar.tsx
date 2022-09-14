@@ -2,6 +2,7 @@ import './Sidebar.css';
 
 import dayjs from 'dayjs';
 import { useEffect, useRef, useState } from 'react';
+import { UncontrolledTooltip } from 'reactstrap';
 import logo from './logo.png';
 import smallLogo from './small-logo.png';
 import Avatar from '../../../components/Avatar';
@@ -86,10 +87,7 @@ function Sidebar({
 
   return isOpen ? (
     <DimContainer>
-      <div
-        ref={ref}
-        className="d-flex flex-column justify-content-between p-3 bg-white shadow sidebar"
-      >
+      <div ref={ref} className="d-flex flex-column p-3 bg-white shadow sidebar">
         <div>
           <div className="d-flex justify-content-between my-2 align-items-center">
             <img src={logo} className="img-fluid p-3" alt="logo" />
@@ -292,10 +290,22 @@ function Sidebar({
               onClick={onSidebarToggleClick}
             />
           </div>
-          <div className="text-center">
+          <div className="text-center" id="stage-info">
             <div className="fw-bolder text-primary text-uppercase small mb-1">
               Stage {board.stage + 1}
             </div>
+            <i className="ri-information-line fs-3 text-primary fw-bold mb-1" />
+            <UncontrolledTooltip
+              placement="right"
+              target="stage-info"
+              fade={false}
+            >
+              {board.stage === 0 &&
+                'Write what went well and what could be improved'}
+              {board.stage === 1 &&
+                'Group similar cards together and vote on the cards using the thumbs up button'}
+              {board.stage === 2 && 'Discuss the cards and decide on actions'}
+            </UncontrolledTooltip>
           </div>
         </div>
         <div className="overflow-y-auto overflow-x-hidden hide-scrollbar">

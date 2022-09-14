@@ -67,10 +67,6 @@ function Retro() {
     socketController.socket?.emit('GroupCards', { cardId, stackedOn });
   };
 
-  const handleCardUngroup = (cardId: string) => {
-    socketController.socket?.emit('UngroupCards', { cardId });
-  };
-
   const handleUpvote = (cardId: string) => {
     socketController.socket?.emit('UpvoteCard', { cardId });
   };
@@ -91,6 +87,12 @@ function Retro() {
     setIsEditModalOpen(false);
   };
 
+  const handleEditModalUngroup = () => {
+    socketController.socket?.emit('UngroupCards', { cardId: modalCardId });
+
+    setIsEditModalOpen(false);
+  };
+
   const handleEditModalDelete = () => {
     socketController.socket?.emit('DeleteCard', { cardId: modalCardId });
 
@@ -102,6 +104,9 @@ function Retro() {
   if (modalCardId) {
     cardsStack = getCardsStack(modalCardId, cards);
   }
+
+  const modalCardVotesCount = cards.filter((card) => card.id === modalCardId)[0]
+    ?.votes.length;
 
   const handleCardEdit = (cardId: string, content: string) => {
     setIsEditModalOpen(true);
@@ -177,7 +182,6 @@ function Retro() {
                     votesCount={card.votes}
                     onEdit={() => handleCardEdit(card.id, card.content)}
                     onGroup={handleCardGroup}
-                    onUngroup={handleCardUngroup}
                     onIncreaseVote={() => handleUpvote(card.id)}
                     stack={!!card.stackedOn}
                     displayVotes={board.stage !== 0}
@@ -220,6 +224,9 @@ function Retro() {
                       (nestedCard) => nestedCard.stackedOn === card.id,
                     ),
                 )
+                .filter(
+                  (card) => board.stage !== 0 || card.userId === localUser.id,
+                )
                 .map((card) => ({
                   ...card,
                   votes: getVotes(card, cards, board.stage, localUser.id),
@@ -239,7 +246,6 @@ function Retro() {
                     votesCount={card.votes}
                     onEdit={() => handleCardEdit(card.id, card.content)}
                     onGroup={handleCardGroup}
-                    onUngroup={handleCardUngroup}
                     onIncreaseVote={() => handleUpvote(card.id)}
                     stack={!!card.stackedOn}
                     displayVotes={board.stage !== 0}
@@ -284,6 +290,9 @@ function Retro() {
                       (nestedCard) => nestedCard.stackedOn === card.id,
                     ),
                 )
+                .filter(
+                  (card) => board.stage !== 0 || card.userId === localUser.id,
+                )
                 .map((card) => ({
                   ...card,
                   votes: getVotes(card, cards, board.stage, localUser.id),
@@ -303,7 +312,6 @@ function Retro() {
                     votesCount={card.votes}
                     onEdit={() => handleCardEdit(card.id, card.content)}
                     onGroup={handleCardGroup}
-                    onUngroup={handleCardUngroup}
                     onIncreaseVote={() => handleUpvote(card.id)}
                     stack={!!card.stackedOn}
                     displayVotes={board.stage !== 0}
@@ -319,9 +327,11 @@ function Retro() {
         isOpen={isEditModalOpen}
         onClose={() => setIsEditModalOpen(false)}
         onSave={handleEditModalSave}
+        onUngroup={handleEditModalUngroup}
         onChange={setEditModalContent}
         onDelete={handleEditModalDelete}
         content={editModalContent}
+        votesCount={modalCardVotesCount}
         stackItems={cardsStack}
       />
     </>

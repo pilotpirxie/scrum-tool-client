@@ -10,7 +10,6 @@ function Card({
   onDecreaseVote,
   onEdit,
   onGroup,
-  onUngroup,
   stack = false,
   displayVotes = false,
   color,
@@ -23,7 +22,6 @@ function Card({
   onDecreaseVote: () => void;
   onEdit: () => void;
   onGroup: (sourceCard: string, targetCard: string) => void;
-  onUngroup: (cardId: string) => void;
   stack?: boolean;
   displayVotes?: boolean;
   color: 'primary' | 'danger' | 'success';
@@ -82,16 +80,6 @@ function Card({
               >
                 <i className="ri-edit-2-line" />
               </div>
-              {stack ? (
-                <div
-                  className={`btn btn-${color} shadow me-1 btn-sm`}
-                  onClick={() => onUngroup(id)}
-                >
-                  <i className="ri-stack-line" />
-                </div>
-              ) : (
-                <div />
-              )}
             </div>
 
             {displayVotes && (

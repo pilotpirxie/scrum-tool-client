@@ -32,9 +32,9 @@ function List({
   }[type];
 
   const heading = {
-    positive: 'Positives',
-    negative: 'Negatives',
-    actions: 'Actions',
+    positive: 'What went well 🎉',
+    negative: "What didn't go well 🤔",
+    actions: 'Actions 🚀',
   }[type];
 
   const inputPlaceholder = {
