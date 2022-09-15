@@ -25,6 +25,8 @@ export function useSocket(): SocketHook {
     const newSocket: Socket<IncomingEvents, OutgoingEvents> = io(
       process.env.NODE_ENV === 'production' ? `/` : 'http://localhost:3001',
       {
+        timeout: 10000,
+        requestTimeout: 5000,
         transports: ['websocket', 'polling'],
       },
     );

@@ -98,13 +98,29 @@ function Sidebar({
           </div>
           <div>
             <div className="text-center">
-              <div className="fw-bolder text-primary text-uppercase fs-5">
-                Stage {board.stage + 1}
-              </div>
+              {board.mode === 'retro' && (
+                <div className="fw-bolder text-primary text-uppercase fs-5">
+                  Stage {board.stage + 1}
+                </div>
+              )}
+              {board.mode !== 'retro' && (
+                <div className="fw-bolder text-primary text-uppercase fs-5">
+                  Planning
+                </div>
+              )}
               <div className="text-uppercase text-success fs-6">
-                {board.stage === 0 && <div>Positives & Negatives</div>}
-                {board.stage === 1 && <div>Vote for cards</div>}
-                {board.stage === 2 && <div>Write action items</div>}
+                {board.mode === 'retro' && board.stage === 0 && (
+                  <div>Positives & Negatives</div>
+                )}
+                {board.mode === 'retro' && board.stage === 1 && (
+                  <div>Vote for cards</div>
+                )}
+                {board.mode === 'retro' && board.stage === 2 && (
+                  <div>Write action items</div>
+                )}
+                {board.mode !== 'retro' && (
+                  <div>Choose complexity by voting on the card</div>
+                )}
               </div>
             </div>
             <div className="pt-4 d-flex flex-row flex-wrap justify-content-center">
@@ -291,20 +307,28 @@ function Sidebar({
             />
           </div>
           <div className="text-center" id="stage-info">
-            <div className="fw-bolder text-primary text-uppercase small mb-1">
-              Stage {board.stage + 1}
-            </div>
+            {board.mode === 'retro' && (
+              <div className="fw-bolder text-primary text-uppercase small mb-1">
+                Stage {board.stage + 1}
+              </div>
+            )}
             <i className="ri-information-line fs-3 text-primary fw-bold mb-1" />
             <UncontrolledTooltip
               placement="right"
               target="stage-info"
               fade={false}
             >
-              {board.stage === 0 &&
+              {board.mode === 'retro' &&
+                board.stage === 0 &&
                 'Write what went well and what could be improved'}
-              {board.stage === 1 &&
+              {board.mode === 'retro' &&
+                board.stage === 1 &&
                 'Group similar cards together and vote on the cards using the thumbs up button'}
-              {board.stage === 2 && 'Discuss the cards and decide on actions'}
+              {board.mode === 'retro' &&
+                board.stage === 2 &&
+                'Discuss the cards and decide on actions'}
+              {board.mode !== 'retro' &&
+                'Choose complexity by voting on the card'}
             </UncontrolledTooltip>
           </div>
         </div>
