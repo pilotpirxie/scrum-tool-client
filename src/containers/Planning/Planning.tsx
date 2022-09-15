@@ -1,11 +1,15 @@
+import { useState } from 'react';
 import ShiftedContent from '../../components/ShiftedContent';
 import './Planning.css';
 import PlanningCard from '../../components/PlanningCard';
 import { useSocket } from '../../socket/useSocket';
 import { useAppSelector } from '../../utils/hooks';
+import ConfirmModal from '../../components/ConfirmModal';
 
 function Planning() {
   const socketController = useSocket();
+  const [isConfirmRevealModalOpen, setIsConfirmRevealModalOpen] =
+    useState(false);
 
   const localUser = useAppSelector((state) => state.config.localUser);
   const board = useAppSelector((state) => state.config.board);
@@ -25,6 +29,7 @@ function Planning() {
     socketController.socket?.emit('SetBoardMode', {
       mode: 'planning_revealed',
     });
+    setIsConfirmRevealModalOpen(false);
   };
 
   const cardsMap: Array<{
@@ -74,72 +79,88 @@ function Planning() {
   ];
 
   return (
-    <ShiftedContent>
-      <div className="vh-100 w-100 bg-planning overflow-y-auto">
-        <div className="container d-flex align-items-center">
-          <div className="row m-0 w-100">
-            <div className="mt-5 col-12 col-lg-8 offset-lg-2 ">
-              {board.mode === 'planning_hidden' && (
-                <div className="d-flex flex-row flex-wrap justify-content-center">
-                  {cardsMap
-                    .filter((card) => card.number !== 0)
-                    .map((card, index) => (
-                      <PlanningCard
-                        key={card.number}
-                        number={card.number}
-                        icon={card.icon}
-                        selected={localUser.selectedPlanningCard === index + 1}
-                        onClick={() => handleSetSelectPlanningCard(index + 1)}
-                      />
-                    ))}
-                </div>
-              )}
-              {board.mode === 'planning_revealed' && (
-                <div>
-                  <div className="small text-white text-center">
-                    {
-                      comments[
-                        (userVotesWithNumbers.length + sum + users.length) %
-                          comments.length
-                      ]
-                    }
-                  </div>
-                  <h1 className="text-white text-center">{average}</h1>
+    <>
+      <ShiftedContent>
+        <div className="vh-100 w-100 bg-planning overflow-y-auto">
+          <div className="container d-flex align-items-center">
+            <div className="row m-0 w-100">
+              <div className="mt-5 col-12 col-lg-8 offset-lg-2 ">
+                {board.mode === 'planning_hidden' && (
                   <div className="d-flex flex-row flex-wrap justify-content-center">
-                    {userVotes.map((user) => (
-                      <PlanningCard
-                        key={user.nickname}
-                        number={cardsMap[user.selectedPlanningCard].number}
-                        icon={cardsMap[user.selectedPlanningCard].icon}
-                        voter={user.nickname}
-                      />
-                    ))}
+                    {cardsMap
+                      .filter((card) => card.number !== 0)
+                      .map((card, index) => (
+                        <PlanningCard
+                          key={card.number}
+                          number={card.number}
+                          icon={card.icon}
+                          selected={
+                            localUser.selectedPlanningCard === index + 1
+                          }
+                          onClick={() => handleSetSelectPlanningCard(index + 1)}
+                        />
+                      ))}
                   </div>
-                </div>
-              )}
-            </div>
-            <div className="my-3 col-12 d-flex align-items-center justify-content-center">
-              <button
-                onClick={handleResetPlanning}
-                type="button"
-                className="btn btn-primary"
-                disabled={board.mode === 'planning_hidden'}
-              >
-                Reset
-              </button>
-              <button
-                onClick={handleRevealPlanning}
-                type="button"
-                className="ms-3 btn btn-success"
-                disabled={board.mode === 'planning_revealed'}
-              >
-                Reveal
-              </button>
+                )}
+                {board.mode === 'planning_revealed' && (
+                  <div>
+                    <div className="small text-white text-center">
+                      {
+                        comments[
+                          (userVotesWithNumbers.length + sum + users.length) %
+                            comments.length
+                        ]
+                      }
+                    </div>
+                    <h1 className="text-white text-center">{average}</h1>
+                    <div className="d-flex flex-row flex-wrap justify-content-center">
+                      {userVotes.map((user) => (
+                        <PlanningCard
+                          key={user.nickname}
+                          number={cardsMap[user.selectedPlanningCard].number}
+                          icon={cardsMap[user.selectedPlanningCard].icon}
+                          voter={user.nickname}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+              <div className="my-3 col-12 d-flex align-items-center justify-content-center">
+                <button
+                  onClick={handleResetPlanning}
+                  type="button"
+                  className="btn btn-primary"
+                  disabled={board.mode === 'planning_hidden'}
+                >
+                  Reset
+                </button>
+                <button
+                  onClick={() => setIsConfirmRevealModalOpen(true)}
+                  type="button"
+                  className="ms-3 btn btn-success"
+                  disabled={board.mode === 'planning_revealed'}
+                >
+                  Reveal
+                </button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </ShiftedContent>
+      </ShiftedContent>
+      <ConfirmModal
+        title="Confirm cards reveal"
+        cancelText="Cancel"
+        confirmText="Reveal"
+        onCancel={() => setIsConfirmRevealModalOpen(false)}
+        onConfirm={handleRevealPlanning}
+        isOpen={isConfirmRevealModalOpen}
+      >
+        <div className="text-black">
+          <b>Everyone ready?</b> Are you sure you want to reveal cards?
+        </div>
+      </ConfirmModal>
+    </>
   );
 }
 
