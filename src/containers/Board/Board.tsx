@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import {useEffect, useState} from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Sidebar from './Sidebar/Sidebar';
 import UserModal from '../../components/UserModal';
@@ -7,6 +7,7 @@ import { useAppSelector } from '../../utils/hooks';
 import useLocalStorage from '../../utils/useLocalStorage';
 import Planning from '../Planning/Planning';
 import Retro from '../Retro';
+import useChristmasDecoration from "../../utils/decorations";
 
 function Board() {
   const { id } = useParams<{ id: string }>();
@@ -65,8 +66,13 @@ function Board() {
     };
   }, []);
 
+  const christmasDecoration = useChristmasDecoration();
+
   return (
     <div>
+      {christmasDecoration && <div className="snow-wrapper">
+        <div className="snow" />
+      </div>}
       <Sidebar
         isOpen={isNavbarOpen}
         onSidebarToggleClick={() => setIsNavbarOpen(!isNavbarOpen)}

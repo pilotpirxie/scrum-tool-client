@@ -3,6 +3,7 @@ import './List.css';
 import { useSocket } from '../../socket/useSocket';
 import useWindowSize from '../../utils/useWindowSize';
 import ColumnSelector from '../ColumnSelector';
+import useChristmasDecoration from "../../utils/decorations";
 
 function List({
   id,
@@ -47,8 +48,14 @@ function List({
 
   const socketController = useSocket();
 
+  const christmasDecoration = useChristmasDecoration();
+
   const handleSubmit = () => {
     if (!input) return;
+
+    if (christmasDecoration && type === 'positive' && input.toLowerCase().includes('christmas')) {
+      window.open('https://www.youtube.com/watch?v=E8gmARGvPlI', '_blank');
+    }
 
     socketController.socket?.emit('CreateCard', {
       column,
@@ -66,7 +73,7 @@ function List({
       key={id}
       className={`col-${
         columnWidth || 4
-      } p-0 d-flex flex-column justify-content-between vh-100 retro-list`}
+      } p-0 d-flex flex-column justify-content-between vh-100 retro-list elevate-10`}
     >
       <div className="overflow-y-auto overflow-x-hidden h-100 p-3">
         {!isMobile && <h1 className="text-black">{heading}</h1>}

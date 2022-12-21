@@ -7,6 +7,8 @@ import { useAppSelector } from '../../utils/hooks';
 import { useSocket } from '../../socket/useSocket';
 import EditModal from '../../components/EditModal';
 import { RawCard } from '../../socket/events/models';
+import './Retro.css';
+import useChristmasDecoration from "../../utils/decorations";
 
 const getCardsStack = (firstCardId: string, allCards: Array<RawCard>) => {
   const cardsStack: Array<RawCard> = [];
@@ -122,10 +124,12 @@ function Retro() {
     columnWidth = board.stage === 2 ? 4 : 6;
   }
 
+  const christmasDecoration = useChristmasDecoration();
+
   return (
     <>
       <ShiftedContent>
-        <div className="row m-0 vh-100">
+        <div className={`row m-0 vh-100 ${christmasDecoration ? 'winter-bg': ''}`}>
           {(!isMobile || selectedColumn === 0) && (
             <List
               id={0}

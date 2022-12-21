@@ -126,7 +126,7 @@ function Planning() {
                   </div>
                 )}
               </div>
-              <div className="my-3 col-12 d-flex align-items-center justify-content-center">
+              <div className="my-3 col-12 d-flex align-items-center justify-content-center elevate-10">
                 <button
                   onClick={handleResetPlanning}
                   type="button"
