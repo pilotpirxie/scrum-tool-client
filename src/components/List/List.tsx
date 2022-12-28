@@ -32,10 +32,12 @@ function List({
     actions: 'primary',
   }[type];
 
+  const christmasDecoration = useChristmasDecoration();
+
   const heading = {
-    positive: 'What went well 🎉',
+    positive: christmasDecoration ? 'What went well 🎄' : 'What went well 🎉',
     negative: "What didn't go well 🤔",
-    actions: 'Actions 🚀',
+    actions: christmasDecoration ? 'Actions 🎁' : 'Actions 🚀',
   }[type];
 
   const inputPlaceholder = {
@@ -47,8 +49,6 @@ function List({
   const [input, setInput] = React.useState('');
 
   const socketController = useSocket();
-
-  const christmasDecoration = useChristmasDecoration();
 
   const handleSubmit = () => {
     if (!input) return;
